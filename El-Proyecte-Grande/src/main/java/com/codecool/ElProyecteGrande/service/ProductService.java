@@ -1,4 +1,4 @@
 package com.codecool.ElProyecteGrande.service;
 
-public interface ProductService {
-}
+//public class ProductService implements PorductRepository{
+//}
