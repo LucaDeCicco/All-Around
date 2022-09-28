@@ -1,14 +1,21 @@
 package com.codecool.ElProyecteGrande.controller;
 
 
+import com.codecool.ElProyecteGrande.model.Product;
+import com.codecool.ElProyecteGrande.model.User;
 import com.codecool.ElProyecteGrande.payload.ProductRequest;
+import com.codecool.ElProyecteGrande.payload.UserRequest;
+import com.codecool.ElProyecteGrande.repository.UsersDao;
+import com.codecool.ElProyecteGrande.repository.UsersDaoMem;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
-    @GetMapping("history/{userId}")
+    @GetMapping("/history/{userId}")
     public String getUserHistory(@PathVariable(name="userId") int id){
         return "History of user with id = "+id;
     }
@@ -17,4 +24,45 @@ public class UserController {
     public String addToHistory(@RequestBody ProductRequest product, @PathVariable(name = "userId") int id){
         return product.getName()+" "+product.getPrice()+" "+"Added to userHistory with userId = "+ id;
     }
+
+    @PostMapping("/add")
+    public String addUser(@RequestBody UserRequest user){
+        UsersDao usersDao = UsersDaoMem.getInstance();
+        User newUser = new User(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail());
+        usersDao.add(newUser);
+        return "user added successfully";
+    }
+
+    @GetMapping("/getAll")
+    public List<User> getAllUsers(){
+        return UsersDaoMem.getInstance().getAll();
+    }
+
+    @PostMapping("/addToUserHistory")
+    public String addToUserHistory(@RequestBody ProductRequest product){
+        Product newProduct = new Product(product.getId(), product.getName(), product.getDescription(), product.getPrice());
+        long userId = product.getUserId();
+        List<User> userList = UsersDaoMem.getInstance().getAll();
+        for (User user : userList) {
+            if (user.getId()==userId){
+                user.addToHistory(newProduct);
+            }
+        }
+        return "product added to user history successfully";
+    }
+
+    @GetMapping("/getHistory")
+    public List<Product> getHistoryOfUser(@RequestBody UserRequest userRequest){
+        System.out.println("get UserHistory");
+        System.out.println(userRequest.getId());
+        for (User user : UsersDaoMem.getInstance().getAll()) {
+            if (user.getId()== userRequest.getId()){
+                return user.getHistory();
+            }
+        }
+
+        return null;
+    }
+
+
 }

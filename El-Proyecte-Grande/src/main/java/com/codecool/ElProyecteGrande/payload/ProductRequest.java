@@ -15,6 +15,9 @@ public class ProductRequest {
     @NotBlank
     private int price;
 
+    @NotBlank
+    private long userId;
+
     public String getName() {
         return name;
     }
@@ -30,4 +33,5 @@ public class ProductRequest {
     public String getDescription() {
         return description;
     }
+    public long getUserId() {return userId;}
 }
