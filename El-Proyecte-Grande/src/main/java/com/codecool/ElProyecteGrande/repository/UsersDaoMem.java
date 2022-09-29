@@ -1,26 +1,21 @@
 package com.codecool.ElProyecteGrande.repository;
 
-import com.codecool.ElProyecteGrande.model.Product;
 import com.codecool.ElProyecteGrande.model.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Repository
 public class UsersDaoMem implements UsersDao{
 
     private List<User> usersList;
-    private static UsersDaoMem instance = null;
 
     private UsersDaoMem() {
         usersList = new ArrayList<>();
     }
 
-    public static UsersDaoMem getInstance() {
-        if (instance == null) {
-            instance = new UsersDaoMem();
-        }
-        return instance;
-    }
 
 
 

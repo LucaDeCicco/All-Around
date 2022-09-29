@@ -1,6 +1,5 @@
 package com.codecool.ElProyecteGrande.repository;
 
-import com.codecool.ElProyecteGrande.model.Product;
 import com.codecool.ElProyecteGrande.model.User;
 
 import java.util.List;

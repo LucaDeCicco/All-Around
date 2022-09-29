@@ -2,6 +2,8 @@ package com.codecool.ElProyecteGrande.model;
 
 //import javax.persistence.*;
 
+import com.codecool.ElProyecteGrande.model.products.Product;
+
 import java.util.ArrayList;
 import java.util.List;
 

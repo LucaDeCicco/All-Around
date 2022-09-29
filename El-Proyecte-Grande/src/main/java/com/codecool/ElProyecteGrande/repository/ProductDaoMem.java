@@ -1,25 +1,23 @@
 package com.codecool.ElProyecteGrande.repository;
 
-import com.codecool.ElProyecteGrande.model.Product;
+import com.codecool.ElProyecteGrande.model.products.Product;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+//@Component
+@Repository
+@Scope()
 public class ProductDaoMem implements ProductsDao {
 
 
     private List<Product> data;
-    private static ProductDaoMem instance = null;
 
     private ProductDaoMem() {
         data = new ArrayList<>();
-    }
-
-    public static ProductDaoMem getInstance() {
-        if (instance == null) {
-            instance = new ProductDaoMem();
-        }
-        return instance;
     }
 
     @Override
