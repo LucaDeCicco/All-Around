@@ -7,6 +7,7 @@ import com.codecool.ElProyecteGrande.payload.ProductRequest;
 import com.codecool.ElProyecteGrande.payload.UserRequest;
 import com.codecool.ElProyecteGrande.repository.UsersDao;
 import com.codecool.ElProyecteGrande.repository.UsersDaoMem;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class UserController {
     public UserController() {
     }
 
+    @Autowired
     public UserController(UsersDao usersDao) {
         this.usersDao = usersDao;
     }
@@ -33,13 +35,12 @@ public class UserController {
 //        return product.getName()+" "+product.getPrice()+" "+"Added to userHistory with userId = "+ id;
 //    }
 
-//    @PostMapping("/add")
-//    public String addUser(@RequestBody UserRequest user){
-//        UsersDao usersDao = UsersDaoMem.getInstance();
-//        User newUser = new User(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail());
-//        usersDao.add(newUser);
-//        return "user added successfully";
-//    }
+    @PostMapping("/add")
+    public String addUser(@RequestBody UserRequest user){
+        User newUser = new User(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail());
+        usersDao.add(newUser);
+        return "user added successfully";
+    }
 
     @GetMapping("/getAll")
     public List<User> getAllUsers(){

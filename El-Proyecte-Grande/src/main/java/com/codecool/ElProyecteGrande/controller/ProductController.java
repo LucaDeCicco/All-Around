@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,16 +39,7 @@ public class ProductController {
     public String index(){
         return "homePage";
     }
-//
-//    @GetMapping("allProducts")
-//    public String getAllProducts(){
-//        return "All products.";
-//    }
-//
-//    @PostMapping("postProduct")
-//    public String postProduct(@RequestBody ProductRequest product) {
-//        return (product.getName() + " " + product.getPrice() + " successfully added!");
-//    }
+
 
     @PostMapping("/addCircuitProduct")
     public String addCircuitProduct(@RequestBody CircuitRequest product) throws ParseException {
@@ -80,8 +72,41 @@ public class ProductController {
 
 
     @GetMapping("allMemProducts")
-    public List<Product> getAllMemProducts(){
+    public List<Product> getAllProducts(){
         return productsDao.getAll();
+    }
+
+    @GetMapping("allMemCircuitProducts")
+    public List<Product> getAllCircuitProducts(){
+        List<Product> circuitProducts = new ArrayList<>();
+        for (Product product : productsDao.getAll()) {
+            if (product.getProductType()==ProductType.CIRCUIT){
+                circuitProducts.add(product);
+            }
+        }
+        return circuitProducts;
+    }
+
+    @GetMapping("allMemResortProducts")
+    public List<Product> getAllResortProducts(){
+        List<Product> resortProducts = new ArrayList<>();
+        for (Product product : productsDao.getAll()) {
+            if (product.getProductType()==ProductType.RESORT){
+                resortProducts.add(product);
+            }
+        }
+        return resortProducts;
+    }
+
+    @GetMapping("allMemHotelProducts")
+    public List<Product> getAllHotelProducts(){
+        List<Product> hotelProducts = new ArrayList<>();
+        for (Product product : productsDao.getAll()) {
+            if (product.getProductType()==ProductType.HOTEL){
+                hotelProducts.add(product);
+            }
+        }
+        return hotelProducts;
     }
 
 }
