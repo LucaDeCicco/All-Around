@@ -3,8 +3,9 @@
 // import React from 'react';
 // import ReactDOM from 'react-dom/client';
 import AirbnbCard from './Card'
-import { ChakraProvider } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import {ChakraProvider} from '@chakra-ui/react'
+import {useEffect, useState} from 'react'
+import { SimpleGrid } from '@chakra-ui/react'
 
 function Circuits() {
 
@@ -23,19 +24,30 @@ function Circuits() {
 
         fetcher();
     }, [loading])
-    
 
-    // console.log("before return");
-    // console.log(data);
-    // for(let circuit of data){
-    //     console.log(circuit);
-    // }
-    console.log("ceva");
-    console.log(data);
+    const container={
+        margin: "10em"
+    };
 
-    return <ChakraProvider>
-            <AirbnbCard data={data} />
-    </ChakraProvider>
+
+
+    if (data!=null){
+        return (
+            <div className="circuits" style={container}>
+
+                <ChakraProvider>
+                    <SimpleGrid columns={3} spacing={3}>
+                    {data.map(circuit => {
+                        return (
+                            <>
+                                <AirbnbCard data={circuit}/>
+                            </>
+                        );
+                    })}
+                    </SimpleGrid>
+                </ChakraProvider>
+            </div>);
+    }
 }
 
 export default Circuits;
