@@ -2,9 +2,10 @@
 import React, { Component } from 'react';
 import mainPage3 from "C:/Codecool/repository/ADVANCED/weekpair2/el-proyecte-grande-sprint-2-java-LucaDeCicco/my-app/src/images/mainPage3.jpg";
 import { Button } from '@mui/material';
-// import {blue, blueGrey, yellow} from "@mui/material/colors";
+import Circuits from "./Circuits";
+import { NavLink } from 'react-router-dom';
 
-class MainBg extends Component {
+class MainPage extends Component {
   render() {
     const parent={
         backgroundImage: `url(${mainPage3})`,
@@ -32,14 +33,14 @@ class MainBg extends Component {
     return (
       <div style={parent}>
         <div style={childDiv}>
-            <Button variant="text" color={"warning"} style={buttonStyle}><b>Text</b></Button>
+          <NavLink style={{ textDecoration: 'none' }} to="/circuits"><Button variant="text" color={"warning"} style={buttonStyle}><b>CIRCUITS</b></Button></NavLink>
         </div>
         <div style={childDiv}>
-            <Button variant="text" color={"warning"} style={buttonStyle}><b>Text</b></Button>
+            <Button variant="text" color={"secondary"} style={buttonStyle}><b>RESORTS</b></Button>
         </div>
       </div>
     );
   }
 }
    
-export default MainBg;
+export default MainPage;
