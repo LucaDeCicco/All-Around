@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import mainPage3 from "C:/Codecool/repository/ADVANCED/weekpair2/el-proyecte-grande-sprint-2-java-LucaDeCicco/my-app/src/images/mainPage3.jpg";
 import { Button } from '@mui/material';
-import Circuits from "./Circuits";
+// import Circuits from "./Circuits";
 import { NavLink } from 'react-router-dom';
 
 class MainPage extends Component {

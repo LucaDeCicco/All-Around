@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react'
 import {Badge} from '@chakra-ui/react'
 
-function AirbnbCard({data}) {
+function  AirbnbCard({data}) {
     const property = {
       imageUrl: 'https://bit.ly/2Z4KKcF',
       imageAlt: 'Rear view of modern home with pool',

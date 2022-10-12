@@ -15,6 +15,8 @@ function Circuits() {
         const fetcher = async () => {
             let request = await fetch("http://localhost:8888/allMemProducts")
             let result = await request.json();
+            console.log(result);
+
             setData(result);
             setLoading(false)
         };
@@ -23,8 +25,16 @@ function Circuits() {
     }, [loading])
     
 
+    // console.log("before return");
+    // console.log(data);
+    // for(let circuit of data){
+    //     console.log(circuit);
+    // }
+    console.log("ceva");
+    console.log(data);
+
     return <ChakraProvider>
-        <AirbnbCard data={data} />
+            <AirbnbCard data={data} />
     </ChakraProvider>
 }
 
