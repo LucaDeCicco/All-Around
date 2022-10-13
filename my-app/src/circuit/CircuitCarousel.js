@@ -6,6 +6,7 @@ import {useParams} from "react-router-dom";
 
 function CarouselFadeExample() {
     const {id} = useParams();
+    console.log("carousel")
     console.log(id)
 
     const carrouselDimensions={

@@ -7,7 +7,8 @@ import StickyFooter from './Footer';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"
 import NavBar from "./NavBar";
-import CircuitCarousel from "./circuit/CircuitCarousel";
+// import CircuitCarousel from "./circuit/CircuitCarousel";
+import CircuitPage from "./circuit/CircuitPage";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,11 +17,9 @@ root.render(
         <NavBar/>
       <Routes>
         <Route index element={<MainPage />} />
-        <Route path="circuits" element={<Circuits />} >
-            {/*<Route path="test" element={<CircuitCarousel />}/>*/}
-        </Route>
-          <Route path="/circuits/:id" element={<CircuitCarousel />}/>
-
+        <Route path="circuits" element={<Circuits />}/>
+        {/*<Route path="/circuits/:id" element={<CircuitCarousel />}/>*/}
+        <Route path="/circuits/:id" element={<CircuitPage />}/>
       </Routes>
     </BrowserRouter>
     <StickyFooter />
