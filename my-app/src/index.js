@@ -5,8 +5,9 @@ import MainPage from './MainPage';
 import Circuits from './Circuits';
 import StickyFooter from './Footer';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import"bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/css/bootstrap.min.css"
 import NavBar from "./NavBar";
+import CircuitCarousel from "./CircuitCarousel";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,12 +16,13 @@ root.render(
         <NavBar/>
       <Routes>
         <Route index element={<MainPage />} />
-        <Route path="circuits" element={<Circuits />} />
+        <Route path="circuits" element={<Circuits />} >
+            {/*<Route path="test" element={<CircuitCarousel />}/>*/}
+        </Route>
+          <Route path="/circuits/:id" element={<CircuitCarousel />}/>
+
       </Routes>
     </BrowserRouter>
-    
-
-    {/* <MainPage /> */}
     <StickyFooter />
   </React.StrictMode>
 );

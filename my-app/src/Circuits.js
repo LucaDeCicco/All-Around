@@ -6,6 +6,7 @@ import AirbnbCard from './Card'
 import {ChakraProvider} from '@chakra-ui/react'
 import {useEffect, useState} from 'react'
 import { SimpleGrid } from '@chakra-ui/react'
+import {Link} from "react-router-dom";
 
 function Circuits() {
 
@@ -49,11 +50,13 @@ function Circuits() {
 
                 <ChakraProvider>
                     <SimpleGrid columns={3} spacing={3}>
-                    {data.map(circuit => {
+                    {data.map((circuit, index) => {
                         return (
-                            <div onClick={handleClick(circuit)}>
-                                <AirbnbCard data={circuit}/>
-                            </div>
+                            <Link key={`circuit_${index}`} to={`/circuits/${circuit.id}`}>
+                                <div onClick={handleClick(circuit)}>
+                                    <AirbnbCard data={circuit}/>
+                                </div>
+                            </Link>
                         );
                     })}
                     </SimpleGrid>
