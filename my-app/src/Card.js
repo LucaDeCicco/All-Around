@@ -12,7 +12,7 @@ function AirbnbCard({data}) {
         imageAlt: 'Rear view of modern home with pool',
         days: data.days,
         // baths: 2,
-        title: data.description,
+        title: data.location,
         formattedPrice: data.price,
         // reviewCount: 34,
         rating: 4,

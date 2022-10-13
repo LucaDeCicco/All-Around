@@ -4,12 +4,15 @@ import './index.css';
 import MainPage from './MainPage';
 import Circuits from './Circuits';
 import StickyFooter from './Footer';
-import {BrowserRouter, Routes, Route} from "react-router-dom"; 
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import"bootstrap/dist/css/bootstrap.min.css"
+import NavBar from "./NavBar";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+        <NavBar/>
       <Routes>
         <Route index element={<MainPage />} />
         <Route path="circuits" element={<Circuits />} />

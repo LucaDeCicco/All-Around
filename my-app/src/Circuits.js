@@ -5,6 +5,7 @@
 import AirbnbCard from './Card'
 import {ChakraProvider} from '@chakra-ui/react'
 import {useEffect, useState} from 'react'
+import NavBar from "./NavBar";
 import { SimpleGrid } from '@chakra-ui/react'
 
 function Circuits() {
@@ -26,7 +27,12 @@ function Circuits() {
     }, [loading])
 
     const container={
-        margin: "10em"
+        // margin: "10em",
+        // marginwidth: "10em",
+        marginLeft: "10em",
+        marginRight: "10em",
+        marginBottom: "10em"
+
     };
 
 
@@ -35,6 +41,7 @@ function Circuits() {
         return (
             <div className="circuits" style={container}>
 
+                {/*<NavBar />*/}
                 <ChakraProvider>
                     <SimpleGrid columns={3} spacing={3}>
                     {data.map(circuit => {
