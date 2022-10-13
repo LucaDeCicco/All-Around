@@ -18,8 +18,12 @@ function AirbnbCard({data}) {
         rating: 4,
     }
 
+    const circuitPointer={
+        cursor: "pointer"
+    };
+
     return (
-        <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+        <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' style={circuitPointer}>
             {/*<Image src={property.imageUrl} alt={property.imageAlt}/>*/}
             <img src={Myimage} alt={property.imageAlt}/>
 

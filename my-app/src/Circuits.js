@@ -28,11 +28,20 @@ function Circuits() {
     const container={
         marginLeft: "10em",
         marginRight: "10em",
-        marginBottom: "10em"
+        marginBottom: "10em",
 
     };
 
+        // const circuitDiv={
+        //     cursor: "pointer"
+        // };
 
+    const handleClick = (elem) => event => {
+        // 👇️ refers to the div element
+        console.log(event.currentTarget);
+        console.log(elem)
+        console.log('div clicked');
+    };
 
     if (data!=null){
         return (
@@ -42,9 +51,9 @@ function Circuits() {
                     <SimpleGrid columns={3} spacing={3}>
                     {data.map(circuit => {
                         return (
-                            <>
+                            <div onClick={handleClick(circuit)}>
                                 <AirbnbCard data={circuit}/>
-                            </>
+                            </div>
                         );
                     })}
                     </SimpleGrid>
