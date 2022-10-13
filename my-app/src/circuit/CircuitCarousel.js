@@ -1,7 +1,7 @@
 import Carousel from 'react-bootstrap/Carousel';
-// import Myimage1 from "./images/circuits/1/1.jpg";
-import Myimage2 from "./images/circuits/1/4.jpg";
-import Myimage3 from "./images/circuits/1/5.jpg";
+import Myimage1 from "../images/circuits/1/2.jpg";
+import Myimage2 from "../images/circuits/1/3.jpg";
+import Myimage3 from "../images/circuits/1/4.jpg";
 import {useParams} from "react-router-dom";
 
 function CarouselFadeExample() {
@@ -25,7 +25,7 @@ function CarouselFadeExample() {
                 <img
                     className="d-block w-100"
                     // className="imageDimensions"
-                    src={Myimage3}
+                    src={Myimage1}
                     alt="First slide"
                     style={imageDimensions}
                 />

@@ -7,7 +7,7 @@ import StickyFooter from './Footer';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"
 import NavBar from "./NavBar";
-import CircuitCarousel from "./CircuitCarousel";
+import CircuitCarousel from "./circuit/CircuitCarousel";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
