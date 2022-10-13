@@ -4,10 +4,8 @@ import Myimage2 from "../images/circuits/1/3.jpg";
 import Myimage3 from "../images/circuits/1/4.jpg";
 import {useParams} from "react-router-dom";
 
-function CarouselFadeExample() {
+function CarouselFadeExampleCircuit() {
     const {id} = useParams();
-    console.log("carousel")
-    console.log(id)
 
     const carrouselDimensions={
         marginLeft:"20em",
@@ -73,4 +71,4 @@ function CarouselFadeExample() {
     );
 }
 
-export default CarouselFadeExample;
+export default CarouselFadeExampleCircuit;

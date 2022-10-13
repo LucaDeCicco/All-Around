@@ -3,11 +3,9 @@
 // import {StarIcon} from "@chakra-ui/icons";
 import {useParams} from "react-router-dom";
 
-function Description({data}) {
+function ResortDescription({data}) {
 
     const {id} = useParams();
-    console.log("description")
-    console.log(id)
 
     // const property = {
     //     // imageUrl: '/src/images/circuits/1/1.jpg',//TODO
@@ -26,9 +24,9 @@ function Description({data}) {
 
     return (
         <>
-            <div>TEST DESCRIERE</div>
+            <div>TEST DESCRIERE ${id}</div>
         </>
     )
 }
 
-export default Description;
+export default ResortDescription;

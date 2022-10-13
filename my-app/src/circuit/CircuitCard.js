@@ -1,18 +1,17 @@
 import {Box} from '@chakra-ui/react'
-// import {Image} from '@chakra-ui/react'
 import {Badge} from '@chakra-ui/react'
 import {StarIcon} from "@chakra-ui/icons";
-import Myimage from './images/circuits/1/1.jpg'
+import Myimage from '../images/circuits/1/1.jpg'
 
 
-function AirbnbCard({data}) {
+function AirbnbCardCircuit({data}) {
 
     const property = {
         // imageUrl: '/src/images/circuits/1/1.jpg',//TODO
         imageAlt: 'Rear view of modern home with pool',
         days: data.days,
         // baths: 2,
-        title: data.location,
+        title: data.countries,
         formattedPrice: data.price,
         // reviewCount: 34,
         rating: 4,
@@ -80,4 +79,4 @@ function AirbnbCard({data}) {
     )
 }
 
-export default AirbnbCard;
+export default AirbnbCardCircuit;

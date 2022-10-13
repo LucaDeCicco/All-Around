@@ -2,22 +2,21 @@
 // import mainPage from "./images/mainPage.jpg";
 // import React from 'react';
 // import ReactDOM from 'react-dom/client';
-import AirbnbCard from './Card'
+import AirbnbCard from './ResortCard'
 import {ChakraProvider} from '@chakra-ui/react'
 import {useEffect, useState} from 'react'
 import { SimpleGrid } from '@chakra-ui/react'
 import {Link} from "react-router-dom";
 
-function Circuits() {
+function Resorts() {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetcher = async () => {
-            let request = await fetch("http://localhost:8888/allMemProducts")
+            let request = await fetch("http://localhost:8888/allMemResortProducts")
             let result = await request.json();
-            console.log(result);
 
             setData(result);
             setLoading(false)
@@ -33,15 +32,12 @@ function Circuits() {
 
     };
 
-        // const circuitDiv={
-        //     cursor: "pointer"
-        // };
+    // const circuitDiv={
+    //     cursor: "pointer"
+    // };
 
     const handleClick = (elem) => event => {
         // 👇️ refers to the div element
-        console.log(event.currentTarget);
-        console.log(elem)
-        console.log('div clicked');
     };
 
     if (data!=null){
@@ -50,19 +46,19 @@ function Circuits() {
 
                 <ChakraProvider>
                     <SimpleGrid columns={3} spacing={3}>
-                    {data.map((circuit, index) => {
-                        return (
-                            <Link key={`circuit_${index}`} to={`/circuits/${circuit.id}`}>
-                                <div onClick={handleClick(circuit)}>
-                                    <AirbnbCard data={circuit}/>
-                                </div>
-                            </Link>
-                        );
-                    })}
+                        {data.map((resort, index) => {
+                            return (
+                                <Link key={`resort_${index}`} to={`/resort/${resort.id}`}>
+                                    <div onClick={handleClick(resort)}>
+                                        <AirbnbCard data={resort}/>
+                                    </div>
+                                </Link>
+                            );
+                        })}
                     </SimpleGrid>
                 </ChakraProvider>
             </div>);
     }
 }
 
-export default Circuits;
+export default Resorts;

@@ -6,7 +6,7 @@ function NavBar() {
         <>
             <Navbar bg="success" variant="dark">
                 <Container>
-                    <img src={Logo} width={80} height={64} />
+                    <img src={Logo} width={80} height={64} alt={""}/>
                     &nbsp;
                     &nbsp;
                     <Navbar.Brand href="/">All Around</Navbar.Brand>

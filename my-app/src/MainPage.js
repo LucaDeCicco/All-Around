@@ -36,7 +36,8 @@ class MainPage extends Component {
           <NavLink style={{ textDecoration: 'none' }} to="/circuits"><Button variant="text" color={"warning"} style={buttonStyle}><b>CIRCUITS</b></Button></NavLink>
         </div>
         <div style={childDiv}>
-            <Button variant="text" color={"secondary"} style={buttonStyle}><b>RESORTS</b></Button>
+          <NavLink style={{ textDecoration: 'none' }} to="/resorts"><Button variant="text" color={"secondary"} style={buttonStyle}><b>RESORTS</b></Button></NavLink>
+            {/*<Button variant="text" color={"secondary"} style={buttonStyle}><b>RESORTS</b></Button>*/}
         </div>
       </div>
     );
