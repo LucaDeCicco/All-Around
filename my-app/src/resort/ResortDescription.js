@@ -24,7 +24,7 @@ function ResortDescription({data}) {
 
     return (
         <>
-            <div>TEST DESCRIERE ${id}</div>
+            <div>DESCRIERE Resort{id}</div>
         </>
     )
 }

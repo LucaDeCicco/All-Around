@@ -24,7 +24,7 @@ function CircuitDescription({data}) {
 
     return (
         <>
-            <div>TEST DESCRIERE ${id}</div>
+            <div>DESCRIERE Circuit {id}</div>
         </>
     )
 }

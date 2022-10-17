@@ -14,7 +14,7 @@ function AirbnbCardResort({data}) {
         title: data.country,
         formattedPrice: data.price,
         // reviewCount: 34,
-        rating: 4,
+        rating: 2,
     }
 
     const circuitPointer={

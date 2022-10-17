@@ -1,5 +1,9 @@
 import {Container, Nav, Navbar} from "react-bootstrap";
 import Logo from "./images/Logo.png";
+import { NavLink } from 'react-router-dom';
+import { Button } from '@mui/material';
+
+
 
 function NavBar() {
     return (
@@ -11,8 +15,10 @@ function NavBar() {
                     &nbsp;
                     <Navbar.Brand href="/">All Around</Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link href="/circuits">Circuits</Nav.Link>
-                        <Nav.Link href="/resorts">Resorts</Nav.Link>
+                    <NavLink style={{ textDecoration: 'none' }} to="/circuits"><Button variant="text" color={"warning"}><b>CIRCUITS</b></Button></NavLink>
+                        {/* <Nav.Link href="/circuits">Circuits</Nav.Link> */}
+                    <NavLink style={{ textDecoration: 'none' }} to="/resorts"><Button variant="text" color={"secondary"}><b>RESORTS</b></Button></NavLink>
+                        {/* <Nav.Link href="/resorts">Resorts</Nav.Link> */}
                         <Nav.Link href="#Features">Features</Nav.Link>
                     </Nav>
                 </Container>
