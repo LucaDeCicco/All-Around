@@ -4,6 +4,7 @@ import mainPage3 from "C:/Codecool/repository/ADVANCED/weekpair2/el-proyecte-gra
 import { Button } from '@mui/material';
 // import Circuits from "./Circuits";
 import { NavLink } from 'react-router-dom';
+import Video from "./Video";
 
 class MainPage extends Component {
   render() {
@@ -39,6 +40,9 @@ class MainPage extends Component {
           <NavLink style={{ textDecoration: 'none' }} to="/resorts"><Button variant="text" color={"secondary"} style={buttonStyle}><b>RESORTS</b></Button></NavLink>
             {/*<Button variant="text" color={"secondary"} style={buttonStyle}><b>RESORTS</b></Button>*/}
         </div>
+          <div>
+              <Video />
+          </div>
       </div>
     );
   }
