@@ -30,7 +30,7 @@ public class ResortRequest {
     private int remainingTickets;
 
     @NotBlank
-    private String departureDate;
+    private String  departureDate;
 
     @NotBlank
     private int days;

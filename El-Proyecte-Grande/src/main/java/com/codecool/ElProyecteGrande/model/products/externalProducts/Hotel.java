@@ -15,8 +15,8 @@ public class Hotel extends Product {
     public Hotel() {
     }
 
-    public Hotel(Long id, ProductType productType, String description, int price, Country country, String location, String url) {
-        super(id, productType, description, price);
+    public Hotel(ProductType productType, String description, int price, Country country, String location, String url) {
+        super(productType, description, price);
         this.country = country;
         this.location = location;
         this.url = url;

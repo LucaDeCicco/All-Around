@@ -1,0 +1,7 @@
+@startuml
+class test{
+    -motor: Motor
+}
+abstract class ceva{}
+class altceva extends ceva
+@enduml

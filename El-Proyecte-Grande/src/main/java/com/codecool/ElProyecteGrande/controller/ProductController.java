@@ -6,12 +6,9 @@ import com.codecool.ElProyecteGrande.model.products.Product;
 import com.codecool.ElProyecteGrande.model.products.externalProducts.Hotel;
 import com.codecool.ElProyecteGrande.model.products.ourProducts.CircuitProduct;
 import com.codecool.ElProyecteGrande.model.products.ourProducts.ResortProduct;
-import com.codecool.ElProyecteGrande.payload.ProductRequest;
 import com.codecool.ElProyecteGrande.payload.externalProducts.HotelRequest;
 import com.codecool.ElProyecteGrande.payload.ourProducts.CircuitRequest;
 import com.codecool.ElProyecteGrande.payload.ourProducts.ResortRequest;
-import com.codecool.ElProyecteGrande.repository.ProductDaoMem;
-import com.codecool.ElProyecteGrande.repository.ProductsDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,17 +20,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/")
+@CrossOrigin
 public class ProductController {
 
-    ProductsDao productsDao;
 
     public ProductController() {
     }
 
-        @Autowired
-    public ProductController(ProductsDao productsDao) {
-        this.productsDao = productsDao;
-    }
+
 
     @GetMapping()
     public String index(){
@@ -45,11 +39,10 @@ public class ProductController {
     public String addCircuitProduct(@RequestBody CircuitRequest product) throws ParseException {
         SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
         Date date=formatter1.parse(product.getDepartureDate());
-        CircuitProduct newProduct = new CircuitProduct(product.getId(),product.getProductType(),
+        CircuitProduct newProduct = new CircuitProduct(product.getProductType(),
                 product.getDescription(),product.getPrice(),product.getLocation(),product.getItinerary(),
                 product.getRemainingTickets(),date, product.getDays(), product.getCountries());
-        productsDao.add(newProduct);
-        return "circuit added successfully";
+        return "circuit added successfully"; //TODO
     }
 
     @PostMapping("/addResortProduct")
@@ -57,56 +50,48 @@ public class ProductController {
         SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
         Date date=formatter1.parse(product.getDepartureDate());
         ResortProduct newProduct = new ResortProduct(product.getId(), product.getProductType(), product.getDescription(),
-                product.getPrice(), product.getCountry());
-        productsDao.add(newProduct);
-        return "resort added successfully";
+                product.getPrice(), product.getLocation(), product.getItinerary(), product.getRemainingTickets(), date,
+                product.getDays(), product.getCountry());
+//        productsDao.add(newProduct);
+        return "resort added successfully"; //TODO
     }
 
     @PostMapping("/addHotelProduct")
     public String addHotelProduct(@RequestBody HotelRequest product){
-        Hotel newProduct = new Hotel(product.getId(), product.getProductType(), product.getDescription(), product.getPrice(),
-                product.getCountry(), product.getLocation(), product.getUrl());
-        productsDao.add(newProduct);
-        return "hotel added successfully";
+        return "hotel added successfully"; //TODO
     }
 
 
     @GetMapping("allMemProducts")
     public List<Product> getAllProducts(){
-        return productsDao.getAll();
-    }
+        return null;
+    } //TODO
 
     @GetMapping("allMemCircuitProducts")
     public List<Product> getAllCircuitProducts(){
-        List<Product> circuitProducts = new ArrayList<>();
-        for (Product product : productsDao.getAll()) {
-            if (product.getProductType()==ProductType.CIRCUIT){
-                circuitProducts.add(product);
-            }
-        }
-        return circuitProducts;
+        return null; //TODO
     }
 
     @GetMapping("allMemResortProducts")
     public List<Product> getAllResortProducts(){
         List<Product> resortProducts = new ArrayList<>();
-        for (Product product : productsDao.getAll()) {
-            if (product.getProductType()==ProductType.RESORT){
-                resortProducts.add(product);
-            }
-        }
-        return resortProducts;
+//        for (Product product : productsDao.getAll()) {
+//            if (product.getProductType()==ProductType.RESORT){
+//                resortProducts.add(product);
+//            }
+//        }
+        return resortProducts; //TODO
     }
 
     @GetMapping("allMemHotelProducts")
     public List<Product> getAllHotelProducts(){
         List<Product> hotelProducts = new ArrayList<>();
-        for (Product product : productsDao.getAll()) {
-            if (product.getProductType()==ProductType.HOTEL){
-                hotelProducts.add(product);
-            }
-        }
-        return hotelProducts;
+//        for (Product product : productsDao.getAll()) {
+//            if (product.getProductType()==ProductType.HOTEL){
+//                hotelProducts.add(product);
+//            }
+//        }
+        return hotelProducts; //TODO
     }
 
 }

@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 //@Entity
-public class User {
-    //    @Id
+public class Person {
+//    @Id
 //    @SequenceGenerator(
 //            name = "product_sequence",
 //            allocationSize = 1
@@ -25,11 +25,11 @@ public class User {
 
     private List<Product> history;
 
-    public User() {
+    public Person() {
         history=new ArrayList<>();
     }
 
-    public User(Long id, String firstName, String lastName, String email) {
+    public Person(Long id, String firstName, String lastName, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

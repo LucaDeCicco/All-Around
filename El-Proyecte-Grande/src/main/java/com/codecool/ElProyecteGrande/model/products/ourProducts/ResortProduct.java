@@ -6,14 +6,14 @@ import com.codecool.ElProyecteGrande.model.products.Product;
 
 import java.util.Date;
 
-public class ResortProduct extends Product {
+public class ResortProduct extends OurProduct {
     private Country country;
 
     public ResortProduct() {
     }
 
-    public ResortProduct(Long id, ProductType productType, String description, int price, Country country) {
-        super(id, productType, description, price);
+    public ResortProduct(Long id, ProductType productType, String description, int price, String location, String itinerary, int remainingTickets, Date departureDate, int days, Country country) {
+        super(productType, description, price, location, itinerary, remainingTickets, departureDate, days);
         this.country = country;
     }
 

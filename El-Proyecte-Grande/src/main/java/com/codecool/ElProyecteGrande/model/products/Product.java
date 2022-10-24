@@ -3,33 +3,43 @@ package com.codecool.ElProyecteGrande.model.products;
 //import javax.persistence.*;
 
 import com.codecool.ElProyecteGrande.enums.ProductType;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-//@Entity
+import javax.persistence.*;
+
+@Entity
+@NoArgsConstructor
 public abstract class Product {
-    //    @Id
-//    @SequenceGenerator(
-//            name = "product_sequence",
-//            allocationSize = 1
-//    )
-//    @GeneratedValue(
-//            generator = "product_sequence",
-//            strategy = GenerationType.SEQUENCE
-//    )
+    @Id
+    @SequenceGenerator(
+            name = "product_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            generator = "product_sequence",
+            strategy = GenerationType.SEQUENCE
+    )
     private Long id;
 
     private ProductType productType;
     private String description;
     private int price;
 
-    public Product() {
+    public Product(ProductType productType, String description, int price) {
+
     }
 
-    public Product(Long id, ProductType productType, String description, int price) {
-        this.id = id;
-        this.productType = productType;
-        this.description = description;
-        this.price = price;
-    }
+//    public Product() {
+//    }
+//
+//    public Product(Long id, ProductType productType, String description, int price) {
+//        this.id = id;
+//        this.productType = productType;
+//        this.description = description;
+//        this.price = price;
+//
+//    }
 
     public Long getId() {
         return id;

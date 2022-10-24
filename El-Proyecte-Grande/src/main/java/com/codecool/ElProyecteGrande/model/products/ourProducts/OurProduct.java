@@ -3,8 +3,10 @@ package com.codecool.ElProyecteGrande.model.products.ourProducts;
 import com.codecool.ElProyecteGrande.enums.ProductType;
 import com.codecool.ElProyecteGrande.model.products.Product;
 
+import javax.persistence.Entity;
 import java.util.Date;
 
+@Entity
 public abstract class OurProduct extends Product {
     private String location;
     private String itinerary;
@@ -15,8 +17,8 @@ public abstract class OurProduct extends Product {
     public OurProduct() {
     }
 
-    public OurProduct(Long id, ProductType productType, String description, int price, String location, String itinerary, int remainingTickets, Date departureDate, int days) {
-        super(id, productType, description, price);
+    public OurProduct(ProductType productType, String description, int price, String location, String itinerary, int remainingTickets, Date departureDate, int days) {
+        super(productType, description, price);
         this.location = location;
         this.itinerary = itinerary;
         this.remainingTickets = remainingTickets;

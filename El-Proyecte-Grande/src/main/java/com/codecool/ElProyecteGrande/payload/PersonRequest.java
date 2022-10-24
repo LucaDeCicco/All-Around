@@ -2,7 +2,7 @@ package com.codecool.ElProyecteGrande.payload;
 
 import javax.validation.constraints.NotBlank;
 
-public class UserRequest {
+public class PersonRequest {
     @NotBlank
     private long id;
     @NotBlank
