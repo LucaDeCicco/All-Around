@@ -15,6 +15,9 @@ public class CircuitRequest {
     @NotBlank
     private ProductType productType;
 
+//    @NotBlank
+//    private String productType;
+
     @NotBlank
     private String description;
 
@@ -43,6 +46,9 @@ public class CircuitRequest {
         return id;
     }
 
+//    public ProductType getProductType() {
+//        return productType;
+//    }
     public ProductType getProductType() {
         return productType;
     }

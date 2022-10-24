@@ -22,12 +22,15 @@ public abstract class Product {
     )
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     private ProductType productType;
     private String description;
     private int price;
 
     public Product(ProductType productType, String description, int price) {
-
+        this.productType = productType;
+        this.description = description;
+        this.price = price;
     }
 
 //    public Product() {

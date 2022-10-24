@@ -1,6 +1,7 @@
 package com.codecool.ElProyecteGrande.controller;
 
 
+import com.codecool.ElProyecteGrande.enums.ProductType;
 import com.codecool.ElProyecteGrande.model.products.Product;
 import com.codecool.ElProyecteGrande.model.products.externalProducts.Hotel;
 import com.codecool.ElProyecteGrande.model.products.ourProducts.CircuitProduct;
@@ -9,6 +10,7 @@ import com.codecool.ElProyecteGrande.payload.externalProducts.HotelRequest;
 import com.codecool.ElProyecteGrande.payload.ourProducts.CircuitRequest;
 import com.codecool.ElProyecteGrande.payload.ourProducts.ResortRequest;
 import com.codecool.ElProyecteGrande.service.ProductService;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -68,34 +70,40 @@ public class ProductController {
 
     @GetMapping("allMemProducts")
     public List<Product> getAllProducts(){
-        return null;
-    } //TODO
+        return productService.findAll();
+    }
 
     @GetMapping("allMemCircuitProducts")
     public List<Product> getAllCircuitProducts(){
-        return null; //TODO
+        List<Product> circuitProducts = new ArrayList<>();
+        for (Product product : productService.findAll()) {
+            if (product.getProductType()== ProductType.CIRCUIT){
+                circuitProducts.add(product);
+            }
+        }
+        return circuitProducts;
     }
 
     @GetMapping("allMemResortProducts")
     public List<Product> getAllResortProducts(){
         List<Product> resortProducts = new ArrayList<>();
-//        for (Product product : productsDao.getAll()) {
-//            if (product.getProductType()==ProductType.RESORT){
-//                resortProducts.add(product);
-//            }
-//        }
-        return resortProducts; //TODO
+        for (Product product : productService.findAll()) {
+            if (product.getProductType()==ProductType.RESORT){
+                resortProducts.add(product);
+            }
+        }
+        return resortProducts;
     }
 
     @GetMapping("allMemHotelProducts")
     public List<Product> getAllHotelProducts(){
         List<Product> hotelProducts = new ArrayList<>();
-//        for (Product product : productsDao.getAll()) {
-//            if (product.getProductType()==ProductType.HOTEL){
-//                hotelProducts.add(product);
-//            }
-//        }
-        return hotelProducts; //TODO
+        for (Product product : productService.findAll()) {
+            if (product.getProductType()==ProductType.HOTEL){
+                hotelProducts.add(product);
+            }
+        }
+        return hotelProducts;
     }
 
 }
