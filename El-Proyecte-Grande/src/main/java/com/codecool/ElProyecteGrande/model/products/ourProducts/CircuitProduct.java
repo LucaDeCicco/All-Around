@@ -25,11 +25,7 @@ public class CircuitProduct extends OurProduct {
     @CollectionTable(name="circuits")
     @Column(name="countries") // Column name in person_interest
     Collection<Country> countries;
-//    private List<Country> countries;
 
-//    public CircuitProduct() {
-//    }
-//
     public CircuitProduct(ProductType productType, String description, int price, String location, String itinerary, int remainingTickets, Date departureDate, int days, List<Country> countries) {
         super(productType, description, price, location, itinerary, remainingTickets, departureDate, days);
         this.countries = countries;

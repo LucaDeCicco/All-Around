@@ -1,7 +1,6 @@
 package com.codecool.ElProyecteGrande.controller;
 
 
-import com.codecool.ElProyecteGrande.enums.ProductType;
 import com.codecool.ElProyecteGrande.model.products.Product;
 import com.codecool.ElProyecteGrande.model.products.externalProducts.Hotel;
 import com.codecool.ElProyecteGrande.model.products.ourProducts.CircuitProduct;
@@ -9,7 +8,7 @@ import com.codecool.ElProyecteGrande.model.products.ourProducts.ResortProduct;
 import com.codecool.ElProyecteGrande.payload.externalProducts.HotelRequest;
 import com.codecool.ElProyecteGrande.payload.ourProducts.CircuitRequest;
 import com.codecool.ElProyecteGrande.payload.ourProducts.ResortRequest;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.codecool.ElProyecteGrande.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -23,8 +22,10 @@ import java.util.List;
 @CrossOrigin
 public class ProductController {
 
+    private final ProductService productService;
 
-    public ProductController() {
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
 
@@ -42,25 +43,28 @@ public class ProductController {
         CircuitProduct newProduct = new CircuitProduct(product.getProductType(),
                 product.getDescription(),product.getPrice(),product.getLocation(),product.getItinerary(),
                 product.getRemainingTickets(),date, product.getDays(), product.getCountries());
-        return "circuit added successfully"; //TODO
+        productService.save(newProduct);
+        return "circuit added successfully";
     }
 
     @PostMapping("/addResortProduct")
     public String addResortProduct(@RequestBody ResortRequest product) throws ParseException {
         SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
         Date date=formatter1.parse(product.getDepartureDate());
-        ResortProduct newProduct = new ResortProduct(product.getId(), product.getProductType(), product.getDescription(),
+        ResortProduct newProduct = new ResortProduct(product.getProductType(), product.getDescription(),
                 product.getPrice(), product.getLocation(), product.getItinerary(), product.getRemainingTickets(), date,
                 product.getDays(), product.getCountry());
-//        productsDao.add(newProduct);
-        return "resort added successfully"; //TODO
+        productService.save(newProduct);
+        return "resort added successfully";
     }
 
     @PostMapping("/addHotelProduct")
     public String addHotelProduct(@RequestBody HotelRequest product){
-        return "hotel added successfully"; //TODO
+        Hotel newProduct = new Hotel(product.getProductType(), product.getDescription(), product.getPrice(),
+                product.getCountry(), product.getLocation(), product.getUrl());
+        productService.save(newProduct);
+        return "hotel added successfully";
     }
-
 
     @GetMapping("allMemProducts")
     public List<Product> getAllProducts(){

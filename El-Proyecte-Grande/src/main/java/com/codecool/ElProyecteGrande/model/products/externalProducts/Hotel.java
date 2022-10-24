@@ -3,7 +3,18 @@ package com.codecool.ElProyecteGrande.model.products.externalProducts;
 import com.codecool.ElProyecteGrande.enums.Country;
 import com.codecool.ElProyecteGrande.enums.ProductType;
 import com.codecool.ElProyecteGrande.model.products.Product;
+import lombok.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "resorts")
 public class Hotel extends Product {
 
     private Country country;
@@ -11,9 +22,6 @@ public class Hotel extends Product {
     private String location;
 
     private String url;
-
-    public Hotel() {
-    }
 
     public Hotel(ProductType productType, String description, int price, Country country, String location, String url) {
         super(productType, description, price);
