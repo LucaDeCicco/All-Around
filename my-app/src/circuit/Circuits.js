@@ -13,6 +13,7 @@ function Circuits() {
         const fetcher = async () => {
             let request = await fetch("http://localhost:8888/allMemCircuitProducts")
             let result = await request.json();
+            console.log(result)
 
             setData(result);
             setLoading(false)
