@@ -27,6 +27,8 @@ public abstract class Product {
     private String description;
     private int price;
 
+
+
     public Product(ProductType productType, String description, int price) {
         this.productType = productType;
         this.description = description;

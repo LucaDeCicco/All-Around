@@ -31,7 +31,6 @@ public class ProductController {
     }
 
 
-
     @GetMapping()
     public String index(){
         return "homePage";
