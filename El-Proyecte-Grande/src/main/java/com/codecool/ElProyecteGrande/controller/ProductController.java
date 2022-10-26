@@ -71,20 +71,30 @@ public class ProductController {
     public String addCircuit(@RequestBody String product) throws ParseException, JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         CircuitRequest prod = objectMapper.readValue(product, CircuitRequest.class);
-        System.out.println("DATA FORMAT");
-        System.out.println(prod.getDepartureDate());
-//        SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
-//        Date date=formatter1.parse(prod.getDepartureDate());//TODO
-//        System.out.println("DATA PROCESSED");
-//        System.out.println(date);
+
         CircuitProduct circuitProduct = new CircuitProduct(ProductType.CIRCUIT, prod.getDescription(), prod.getPrice(), prod.getImages(), prod.getLocation(),
                 prod.getItinerary(), prod.getRemainingTickets(), prod.getDepartureDate(), prod.getDays(), prod.getCountries());
         productService.save(circuitProduct);
         return "circuit added successfully";
     }
+
+    @PostMapping("/addResortApi")
+    public String addResort(@RequestBody String product) throws ParseException, JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        ResortRequest prod = objectMapper.readValue(product, ResortRequest.class);
+
+
+
+        ResortProduct resortProduct = new ResortProduct(ProductType.RESORT, prod.getDescription(), prod.getPrice(), prod.getImages(), prod.getLocation(),
+                prod.getItinerary(), prod.getRemainingTickets(), prod.getDepartureDate(), prod.getDays(), prod.getCountry());
+        productService.save(resortProduct);
+        return "circuit added successfully";
+    }
+
     @PostMapping("/addCircuitProduct")
     public String addCircuitProduct(@RequestBody CircuitRequest product) throws ParseException {
-        SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
+//        SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
 //        Date date=formatter1.parse(product.getDepartureDate());
         CircuitProduct newProduct = new CircuitProduct(product.getProductType(),
                 product.getDescription(),product.getPrice(), product.getImages(), product.getLocation(),product.getItinerary(),
@@ -95,10 +105,10 @@ public class ProductController {
 
     @PostMapping("/addResortProduct")
     public String addResortProduct(@RequestBody ResortRequest product) throws ParseException {
-        SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
-        Date date=formatter1.parse(product.getDepartureDate());
+//        SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
+//        Date date=formatter1.parse(product.getDepartureDate());
         ResortProduct newProduct = new ResortProduct(product.getProductType(), product.getDescription(),
-                product.getPrice(), product.getImages(), product.getLocation(), product.getItinerary(), product.getRemainingTickets(), date,
+                product.getPrice(), product.getImages(), product.getLocation(), product.getItinerary(), product.getRemainingTickets(), new Date(),
                 product.getDays(), product.getCountry());
         productService.save(newProduct);
         return "resort added successfully";

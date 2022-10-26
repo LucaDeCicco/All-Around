@@ -5,8 +5,7 @@ import com.codecool.ElProyecteGrande.enums.ProductType;
 import com.codecool.ElProyecteGrande.model.products.Product;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -17,13 +16,16 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "resorts")
+//@Table(name = "resorts")
 public class ResortProduct extends OurProduct {
+
+    @Enumerated(EnumType.STRING)
     private Country country;
 
     public ResortProduct(ProductType productType, String description, int price, List<String> images, String location, String itinerary, int remainingTickets, Date departureDate, int days, Country country) {
         super(productType, description, price, images, location, itinerary, remainingTickets, departureDate, days);
         this.country = country;
+        System.out.println(country);
     }
 
     public Country getCountry() {

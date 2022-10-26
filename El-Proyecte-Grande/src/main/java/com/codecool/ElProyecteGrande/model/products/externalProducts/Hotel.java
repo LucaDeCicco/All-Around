@@ -6,6 +6,8 @@ import com.codecool.ElProyecteGrande.model.products.Product;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -15,8 +17,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "resorts")
+//@Table(name = "resorts")
 public class Hotel extends Product {
+
+    @Enumerated(EnumType.STRING)
 
     private Country country;
 
