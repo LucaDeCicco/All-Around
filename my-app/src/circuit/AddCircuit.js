@@ -38,13 +38,6 @@ function AddCircuit() {
     }
 
     const uploadCircuits = async () => {
-        console.log("Circuit Files")
-        console.log(description)
-        console.log(price)
-        console.log(itinerary)
-        console.log(remainingTickets)
-        console.log(days)
-        console.log(images)
         const req = await fetch("http://localhost:8888/addCircuitApi", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
