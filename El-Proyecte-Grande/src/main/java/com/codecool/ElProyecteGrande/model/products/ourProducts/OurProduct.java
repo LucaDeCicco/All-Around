@@ -5,6 +5,7 @@ import com.codecool.ElProyecteGrande.model.products.Product;
 
 import javax.persistence.Entity;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public abstract class OurProduct extends Product {
@@ -17,8 +18,8 @@ public abstract class OurProduct extends Product {
     public OurProduct() {
     }
 
-    public OurProduct(ProductType productType, String description, int price, String location, String itinerary, int remainingTickets, Date departureDate, int days) {
-        super(productType, description, price);
+    public OurProduct(ProductType productType, String description, int price, List<String> images, String location, String itinerary, int remainingTickets, Date departureDate, int days) {
+        super(productType, description, price, images);
         this.location = location;
         this.itinerary = itinerary;
         this.remainingTickets = remainingTickets;

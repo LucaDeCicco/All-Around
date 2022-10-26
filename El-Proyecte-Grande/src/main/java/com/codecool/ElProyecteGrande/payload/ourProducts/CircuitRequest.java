@@ -25,6 +25,9 @@ public class CircuitRequest {
     private int price;
 
     @NotBlank
+    private List<String> images;
+
+    @NotBlank
     private String location;
 
     @NotBlank
@@ -83,5 +86,9 @@ public class CircuitRequest {
 
     public List<Country> getCountries() {
         return countries;
+    }
+
+    public List<String> getImages() {
+        return images;
     }
 }

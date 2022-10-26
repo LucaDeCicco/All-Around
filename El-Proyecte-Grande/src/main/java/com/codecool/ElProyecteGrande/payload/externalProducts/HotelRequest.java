@@ -4,6 +4,7 @@ import com.codecool.ElProyecteGrande.enums.Country;
 import com.codecool.ElProyecteGrande.enums.ProductType;
 
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 public class HotelRequest {
 
@@ -18,6 +19,9 @@ public class HotelRequest {
 
     @NotBlank
     private int price;
+
+    @NotBlank
+    private List<String> images;
 
     @NotBlank
     private Country country;
@@ -55,5 +59,9 @@ public class HotelRequest {
 
     public String getUrl() {
         return url;
+    }
+
+    public List<String> getImages() {
+        return images;
     }
 }

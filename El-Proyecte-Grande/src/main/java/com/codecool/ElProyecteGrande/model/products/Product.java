@@ -2,11 +2,13 @@ package com.codecool.ElProyecteGrande.model.products;
 
 //import javax.persistence.*;
 
+import com.codecool.ElProyecteGrande.enums.Country;
 import com.codecool.ElProyecteGrande.enums.ProductType;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -27,24 +29,17 @@ public abstract class Product {
     private String description;
     private int price;
 
+    @ElementCollection
+    private List<String> images;
 
 
-    public Product(ProductType productType, String description, int price) {
+
+    public Product(ProductType productType, String description, int price, List<String> images) {
         this.productType = productType;
         this.description = description;
         this.price = price;
+        this.images = images;
     }
-
-//    public Product() {
-//    }
-//
-//    public Product(Long id, ProductType productType, String description, int price) {
-//        this.id = id;
-//        this.productType = productType;
-//        this.description = description;
-//        this.price = price;
-//
-//    }
 
     public Long getId() {
         return id;
@@ -76,6 +71,14 @@ public abstract class Product {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 }
 

@@ -5,6 +5,7 @@ import com.codecool.ElProyecteGrande.enums.ProductType;
 
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
+import java.util.List;
 
 public class ResortRequest {
 
@@ -19,6 +20,9 @@ public class ResortRequest {
 
     @NotBlank
     private int price;
+
+    @NotBlank
+    private List<String> images;
 
     @NotBlank
     private String location;
@@ -77,5 +81,9 @@ public class ResortRequest {
 
     public Country getCountry() {
         return country;
+    }
+
+    public List<String> getImages() {
+        return images;
     }
 }

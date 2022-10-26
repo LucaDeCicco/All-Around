@@ -7,6 +7,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,8 +24,8 @@ public class Hotel extends Product {
 
     private String url;
 
-    public Hotel(ProductType productType, String description, int price, Country country, String location, String url) {
-        super(productType, description, price);
+    public Hotel(ProductType productType, String description, int price, List<String>images, Country country, String location, String url) {
+        super(productType, description, price, images);
         this.country = country;
         this.location = location;
         this.url = url;

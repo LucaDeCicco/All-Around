@@ -8,6 +8,7 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.List;
 
 
 @Getter
@@ -20,8 +21,8 @@ import java.util.Date;
 public class ResortProduct extends OurProduct {
     private Country country;
 
-    public ResortProduct(ProductType productType, String description, int price, String location, String itinerary, int remainingTickets, Date departureDate, int days, Country country) {
-        super(productType, description, price, location, itinerary, remainingTickets, departureDate, days);
+    public ResortProduct(ProductType productType, String description, int price, List<String> images, String location, String itinerary, int remainingTickets, Date departureDate, int days, Country country) {
+        super(productType, description, price, images, location, itinerary, remainingTickets, departureDate, days);
         this.country = country;
     }
 

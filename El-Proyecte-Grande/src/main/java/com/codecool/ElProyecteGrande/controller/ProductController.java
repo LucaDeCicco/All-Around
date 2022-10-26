@@ -51,24 +51,34 @@ public class ProductController {
         while (matcher.find()) {
             list.add(matcher.group());
         }
-        for (Object o : list) {
-            System.out.println(String.valueOf(o));
-            System.out.println("/////////////////");
-            System.out.println("/////////////////");
-            System.out.println("/////////////////");
-            System.out.println("/////////////////");
-            System.out.println("/////////////////");
-        }
+//        for (Object o : list) {
+//            System.out.println(String.valueOf(o));
+//            System.out.println("/////////////////");
+//            System.out.println("/////////////////");
+//            System.out.println("/////////////////");
+//            System.out.println("/////////////////");
+//            System.out.println("/////////////////");
+//        }
         return "circuit added successfully";
     }
 
 
+    @PostMapping("/addCircuit")
+    public String addCircuit(@RequestBody CircuitRequest product) throws ParseException {
+        SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
+        Date date=formatter1.parse(product.getDepartureDate());
+        CircuitProduct newProduct = new CircuitProduct(product.getProductType(),
+                product.getDescription(),product.getPrice(), product.getImages(), product.getLocation(),product.getItinerary(),
+                product.getRemainingTickets(),date, product.getDays(), product.getCountries());
+        productService.save(newProduct);
+        return "circuit added successfully";
+    }
     @PostMapping("/addCircuitProduct")
     public String addCircuitProduct(@RequestBody CircuitRequest product) throws ParseException {
         SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
         Date date=formatter1.parse(product.getDepartureDate());
         CircuitProduct newProduct = new CircuitProduct(product.getProductType(),
-                product.getDescription(),product.getPrice(),product.getLocation(),product.getItinerary(),
+                product.getDescription(),product.getPrice(), product.getImages(), product.getLocation(),product.getItinerary(),
                 product.getRemainingTickets(),date, product.getDays(), product.getCountries());
         productService.save(newProduct);
         return "circuit added successfully";
@@ -79,7 +89,7 @@ public class ProductController {
         SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
         Date date=formatter1.parse(product.getDepartureDate());
         ResortProduct newProduct = new ResortProduct(product.getProductType(), product.getDescription(),
-                product.getPrice(), product.getLocation(), product.getItinerary(), product.getRemainingTickets(), date,
+                product.getPrice(), product.getImages(), product.getLocation(), product.getItinerary(), product.getRemainingTickets(), date,
                 product.getDays(), product.getCountry());
         productService.save(newProduct);
         return "resort added successfully";
@@ -88,6 +98,7 @@ public class ProductController {
     @PostMapping("/addHotelProduct")
     public String addHotelProduct(@RequestBody HotelRequest product){
         Hotel newProduct = new Hotel(product.getProductType(), product.getDescription(), product.getPrice(),
+                product.getImages(),
                 product.getCountry(), product.getLocation(), product.getUrl());
         productService.save(newProduct);
         return "hotel added successfully";
