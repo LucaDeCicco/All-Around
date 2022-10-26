@@ -77,6 +77,10 @@ public class ProductController {
         System.out.println(prod);
         System.out.println(prod.getDescription());
         System.out.println(prod.getPrice());
+        for (String image : prod.getImages()) {
+            System.out.println("IMAGE");
+            System.out.println(image);
+        }
 
         return "circuit added successfully";
     }
