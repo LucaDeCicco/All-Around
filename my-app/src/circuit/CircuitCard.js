@@ -10,7 +10,6 @@ function AirbnbCardCircuit({data}) {
         // imageUrl: '/src/images/circuits/1/1.jpg',//TODO
         imageAlt: 'Rear view of modern home with pool',
         days: data.days,
-        // baths: 2,
         title: data.countries,
         formattedPrice: data.price,
         // reviewCount: 34,
@@ -25,9 +24,9 @@ function AirbnbCardCircuit({data}) {
         <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' style={circuitPointer}>
             {/*<Image src={property.imageUrl} alt={property.imageAlt}/>*/}
             <img src={Myimage} alt={property.imageAlt}/>
-            <div>
-                <img src={data.images[0]} alt="React Logo" />
-            </div>
+            {/*<div>*/}
+            {/*    <img src={data.images[0]} alt="React Logo" />*/}
+            {/*</div>*/}
 
             <Box p='6'>
                 <Box display='flex' alignItems='baseline'>
@@ -60,7 +59,7 @@ function AirbnbCardCircuit({data}) {
                 <Box>
                     {property.formattedPrice}
                     <Box as='span' color='gray.600' fontSize='sm'>
-                        / wk
+                        $ / person
                     </Box>
                 </Box>
 

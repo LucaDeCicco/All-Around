@@ -1,11 +1,11 @@
 // import {Badge, Box} from "@chakra-ui/react";
 // import Myimage from "../images/circuits/1/1.jpg";
 // import {StarIcon} from "@chakra-ui/icons";
-import {useParams} from "react-router-dom";
+// import {useParams} from "react-router-dom";
 
 function CircuitDescription({data}) {
 
-    const {id} = useParams();
+    // const {id} = useParams();
 
     // const property = {
     //     // imageUrl: '/src/images/circuits/1/1.jpg',//TODO
@@ -24,7 +24,7 @@ function CircuitDescription({data}) {
 
     return (
         <>
-            <div>DESCRIERE Circuit {id}</div>
+            <div>DESCRIERE Circuit {data.description}</div>
         </>
     )
 }

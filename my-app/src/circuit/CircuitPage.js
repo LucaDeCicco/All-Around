@@ -1,17 +1,42 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import CircuitCarousel from "./CircuitCarousel";
 import CircuitDescription from "./CircuitDescription";
 import {useParams} from "react-router-dom";
 
 function CircuitPage() {
-
     const {id} = useParams();
-        return (
-            <>
-                <CircuitCarousel data={id}/>
-                <CircuitDescription data={id}/>
-            </>
-        );
+
+
+    const [circuits, setCircuits] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const fetcher = async () => {
+            let request = await fetch("http://localhost:8888/allMemCircuitProducts")
+            let result = await request.json();
+
+            setCircuits(result);
+            setLoading(false)
+        };
+
+        fetcher();
+    }, [loading])
+
+
+        if (circuits){
+            for (let circuit of circuits) {
+                if (circuit.id===parseInt(id)){
+                    return (
+                        <>
+                            <CircuitCarousel data={circuit}/>
+                            <CircuitDescription data={circuit}/>
+                        </>
+                    );
+                }
+            }
+
+        }
+
 }
 
 export default CircuitPage;

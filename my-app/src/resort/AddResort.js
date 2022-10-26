@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import MultipleSelectCheckmarks from "../components/MultipleSelect";
+// import MultipleSelectCheckmarks from "../components/MultipleSelect";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -16,7 +16,7 @@ import Checkbox from "@mui/material/Checkbox";
 import ListItemText from "@mui/material/ListItemText";
 import FormControl from "@mui/material/FormControl";
 
-function AddCircuit() {
+function AddResort() {
 
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
@@ -49,12 +49,12 @@ function AddCircuit() {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [images, setImages] = useState([]);
-    const [itinerary, setItinerary] = useState('');
+    const [location, setLocation] = useState('');
     const [remainingTickets, setTickets] = useState('');
     // DEPARTURE DATE //TODO
     const [departureDate, setDepartureDate] = useState(null);
     const [days, setDays] = useState('');
-    const [countries, setSelectedCountries] = useState([]);
+    const [country, setCountry] = useState('');
 
 
     const handleChangeDescription = event => {
@@ -64,7 +64,7 @@ function AddCircuit() {
         setPrice(event.target.value);
     };
     const handleChangeItinerary = event => {
-        setItinerary(event.target.value);
+        setLocation(event.target.value);
     };
     const handleChangeTickets = event => {
         setTickets(event.target.value);
@@ -78,21 +78,15 @@ function AddCircuit() {
         }
     }
     const handleChangeSelectedCountries = (event) => {
-        const {
-            target: { value },
-        } = event;
-        setSelectedCountries(
-            // On autofill we get a stringified value.
-            typeof value === 'string' ? value.split(',') : value,
-        );
+        setCountry(event.target.value);
     };
 
-    const uploadCircuits = async () => {
-        const req = await fetch("http://localhost:8888/addCircuitApi", {
+    const uploadResorts = async () => {
+        const req = await fetch("http://localhost:8888/addResortApi", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             mode: "no-cors",
-            body: JSON.stringify({description,price,itinerary,remainingTickets,days,images,countries, departureDate}),
+            body: JSON.stringify({description,price,location,remainingTickets,days,images,country, departureDate}),
         });
 
         if (req.ok) {
@@ -117,9 +111,9 @@ function AddCircuit() {
                 <br/>
                 <br/>
 
-                <Form.Group className="mb-3" name="itinerary" onChange={handleChangeItinerary} value={itinerary}>
-                    <Form.Label>Itinerary</Form.Label>
-                    <Form.Control placeholder="itinerary..." />
+                <Form.Group className="mb-3" name="location" onChange={handleChangeItinerary} value={location}>
+                    <Form.Label>Location</Form.Label>
+                    <Form.Control placeholder="location..." />
                 </Form.Group>
                 <Form.Group className="mb-3" name="tickets" onChange={handleChangeTickets} value={remainingTickets}>
                     <Form.Label>Remaining Tickets:</Form.Label>
@@ -144,22 +138,22 @@ function AddCircuit() {
                     <Form.Label>Days</Form.Label>
                     <Form.Control placeholder="10" />
                 </Form.Group>
+
                 <FormControl sx={{ m: 1, width: 300 }}>
                     <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
                     <Select
                         labelId="demo-multiple-checkbox-label"
                         id="demo-multiple-checkbox"
-                        multiple
-                        value={countries}
+                        value={country}
                         onChange={handleChangeSelectedCountries}
                         input={<OutlinedInput label="Tag" />}
-                        renderValue={(selected) => selected.join(', ')}
+                        renderValue={(selected) => selected}
                         MenuProps={MenuProps}
                     >
-                        {allCountries.map((country) => (
-                            <MenuItem key={country} value={country}>
-                                <Checkbox checked={countries.indexOf(country) > -1} />
-                                <ListItemText primary={country} />
+                        {allCountries.map((iterationCountry) => (
+                            <MenuItem key={iterationCountry} value={iterationCountry}>
+                                <Checkbox checked={country.indexOf(iterationCountry) > -1} />
+                                <ListItemText primary={iterationCountry} />
                             </MenuItem>
                         ))}
                     </Select>
@@ -170,7 +164,7 @@ function AddCircuit() {
                 <br/>
 
 
-                <Button variant="primary" onClick={uploadCircuits}>
+                <Button variant="primary" onClick={uploadResorts}>
                     Submit
                 </Button>
             </Form>
@@ -179,4 +173,4 @@ function AddCircuit() {
 
 }
 
-export default AddCircuit;
+export default AddResort;

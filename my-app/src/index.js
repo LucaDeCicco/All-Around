@@ -13,6 +13,7 @@ import Resorts from "./resort/Resorts";
 import ResortPage from "./resort/ResortPage";
 import AddImage from "./AddImage";
 import AddCircuit from "./circuit/AddCircuit";
+import AddResort from "./resort/AddResort";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -27,6 +28,7 @@ root.render(
           <Route path="/resort/:id" element={<ResortPage />}/>
         <Route path="/addImage" element={<AddImage/>}/>
         <Route path="/addCircuit" element={<AddCircuit/>}/>
+        <Route path="/AddResort" element={<AddResort/>}/>
       </Routes>
     </BrowserRouter>
     <StickyFooter />

@@ -1,11 +1,6 @@
 import Carousel from 'react-bootstrap/Carousel';
-import Myimage1 from "../images/circuits/1/2.jpg";
-import Myimage2 from "../images/circuits/1/3.jpg";
-import Myimage3 from "../images/circuits/1/4.jpg";
-import {useParams} from "react-router-dom";
 
-function CarouselFadeExampleCircuit() {
-    const {id} = useParams();
+function CarouselFadeExampleCircuit({data}) {
 
     const carrouselDimensions={
         marginLeft:"20em",
@@ -20,52 +15,28 @@ function CarouselFadeExampleCircuit() {
     return (
         <div style={carrouselDimensions}>
         <Carousel fade>
-            <Carousel.Item>
-                <img
-                    className="d-block w-100"
-                    // className="imageDimensions"
-                    src={Myimage1}
-                    alt="First slide"
-                    style={imageDimensions}
-                />
-                {/*<img src={Myimage1}/>*/}
-                <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-                <img
-                    className="d-block w-100"
-                    // className="imageDimensions"
-                    src={Myimage2}
-                    alt="Second slide"
-                    style={imageDimensions}
-                />
-                {/*<img src={Myimage2}/>*/}
-
-                <Carousel.Caption>
-                    <h3>Second slide label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-                <img
-                    className="d-block w-100"
-                    // className="imageDimensions"
-                    src={Myimage3}
-                    alt="Third slide"
-                    style={imageDimensions}
-                />
-                {/*<img src={Myimage3}/>*/}
-
-                <Carousel.Caption>
-                    <h3>Third slide label</h3>
-                    <p>
-                        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                    </p>
-                </Carousel.Caption>
-            </Carousel.Item>
+            {(() => {
+                const images = [];
+                let index = 0;
+                for (let image of data.images) {
+                    index++;
+                    images.push(
+                        <Carousel.Item key={index}>
+                            <img
+                                className="d-block w-100"
+                                // className="imageDimensions"
+                                src={image}
+                                alt="First slide"
+                                style={imageDimensions}
+                            />
+                            <Carousel.Caption>
+                                <h3>First slide label</h3>
+                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                    )}
+                return images;
+            })()}
         </Carousel>
         </div>
     );
