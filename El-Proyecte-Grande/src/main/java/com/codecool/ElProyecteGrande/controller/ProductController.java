@@ -6,6 +6,7 @@ import com.codecool.ElProyecteGrande.model.products.Product;
 import com.codecool.ElProyecteGrande.model.products.externalProducts.Hotel;
 import com.codecool.ElProyecteGrande.model.products.ourProducts.CircuitProduct;
 import com.codecool.ElProyecteGrande.model.products.ourProducts.ResortProduct;
+import com.codecool.ElProyecteGrande.payload.AddImageRequestTest;
 import com.codecool.ElProyecteGrande.payload.externalProducts.HotelRequest;
 import com.codecool.ElProyecteGrande.payload.ourProducts.CircuitRequest;
 import com.codecool.ElProyecteGrande.payload.ourProducts.ResortRequest;
@@ -18,6 +19,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("/")
@@ -34,6 +38,28 @@ public class ProductController {
     @GetMapping()
     public String index(){
         return "homePage";
+    }
+
+
+    @PostMapping("/addImageApi")
+    public String addImageApi(@RequestBody String addImage) throws ParseException {
+        Pattern pattern = Pattern.compile("data:image.+?=");
+//        Matcher matcher = pattern.matcher(addImage);
+        ArrayList list = new ArrayList();
+        //Matching the compiled pattern in the String
+        Matcher matcher = pattern.matcher(addImage);
+        while (matcher.find()) {
+            list.add(matcher.group());
+        }
+        for (Object o : list) {
+            System.out.println(String.valueOf(o));
+            System.out.println("/////////////////");
+            System.out.println("/////////////////");
+            System.out.println("/////////////////");
+            System.out.println("/////////////////");
+            System.out.println("/////////////////");
+        }
+        return "circuit added successfully";
     }
 
 
