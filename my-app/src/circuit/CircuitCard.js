@@ -25,6 +25,9 @@ function AirbnbCardCircuit({data}) {
         <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' style={circuitPointer}>
             {/*<Image src={property.imageUrl} alt={property.imageAlt}/>*/}
             <img src={Myimage} alt={property.imageAlt}/>
+            <div>
+                <img src={data.images[0]} alt="React Logo" />
+            </div>
 
             <Box p='6'>
                 <Box display='flex' alignItems='baseline'>
