@@ -7,33 +7,35 @@ import FileBase64 from "react-file-base64";
 function AddCircuit() {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-    // ADD IMAGES //TODO
+    const [images, setImages] = useState([]);
     const [itinerary, setItinerary] = useState('');
     const [remainingTickets, setTickets] = useState('');
     // DEPARTURE DATE //TODO
     const [days, setDays] = useState('');
     // IMPLEMENT ADD COUNTRIES //TODO
 
+
     const handleChangeDescription = event => {
         setDescription(event.target.value);
-        console.log('description:', description);
     };
     const handleChangePrice = event => {
         setPrice(event.target.value);
-        console.log('price:', price);
     };
     const handleChangeItinerary = event => {
         setItinerary(event.target.value);
-        console.log('itinerary:', itinerary);
     };
     const handleChangeTickets = event => {
         setTickets(event.target.value);
-        console.log('tickets:', remainingTickets);
     };
     const handleChangeDays = event => {
         setDays(event.target.value);
-        console.log('days:', days);
     };
+
+    const uploadImages = (files) => {
+        for (let file of files) {
+            images.push(file.base64);
+        }
+    }
 
     const uploadCircuits = async () => {
         console.log("Circuit Files")
@@ -42,11 +44,12 @@ function AddCircuit() {
         console.log(itinerary)
         console.log(remainingTickets)
         console.log(days)
+        console.log(images)
         const req = await fetch("http://localhost:8888/addCircuitApi", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             mode: "no-cors",
-            body: JSON.stringify({description,price,itinerary,remainingTickets,days}),
+            body: JSON.stringify({description,price,itinerary,remainingTickets,days,images}),
         });
 
         if (req.ok) {
@@ -55,21 +58,7 @@ function AddCircuit() {
         }
     }
 
-    const upload = async (files) => {
-        console.log("files")
-        console.log(files)
-        const req = await fetch("http://localhost:8888/addImageApi", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            mode: "no-cors",
-            body: JSON.stringify({ images: files.map((f) => f.base64) }),
-        });
 
-        if (req.ok) {
-            const res = await req.json();
-            console.log("uploaded files");
-        }
-    };
     return (
         <Form>
             <Form.Group className="mb-3" name="description" onChange={handleChangeDescription} value={description}>
@@ -81,8 +70,8 @@ function AddCircuit() {
                 <Form.Control placeholder="100$" />
             </Form.Group>
 
-            {/*<label>Add Images</label>*/}
-            {/*<FileBase64 multiple={true} onDone={upload} />*/} //TODO
+            <label>Add Images</label>
+            <FileBase64 multiple={true} onDone={uploadImages} />
 
             <Form.Group className="mb-3" name="itinerary" onChange={handleChangeItinerary} value={itinerary}>
                 <Form.Label>Itinerary</Form.Label>
