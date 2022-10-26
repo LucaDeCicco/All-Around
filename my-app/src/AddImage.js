@@ -21,7 +21,7 @@ function AddImage() {
     const upload = async (files) => {
         console.log("files")
         console.log(files)
-        const req = await fetch("/backend/", {
+        const req = await fetch("http://localhost:8888/addImageApi", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             mode: "no-cors",
@@ -36,7 +36,7 @@ function AddImage() {
 
     return (
         <>
-            {poze.length ? poze.map((p, i) => <img src={p} key={i} />) : null}
+            {/*{poze.length ? poze.map((p, i) => <img src={p} key={i} />) : null}*/}
             <FileBase64 multiple={true} onDone={upload} />
         </>
     );
