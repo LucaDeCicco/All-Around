@@ -8,20 +8,35 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import MultipleSelectCheckmarks from "../components/MultipleSelect";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import MenuItem from "@mui/material/MenuItem";
+import Checkbox from "@mui/material/Checkbox";
+import ListItemText from "@mui/material/ListItemText";
+import FormControl from "@mui/material/FormControl";
 
 function AddCircuit() {
+
+    const ITEM_HEIGHT = 48;
+    const ITEM_PADDING_TOP = 8;
+    const MenuProps = {
+        PaperProps: {
+            style: {
+                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+                width: 250,
+            },
+        },
+    };
+
 
     const [countries, setCountries] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    console.log("CEVA")
     useEffect(() => {
         const fetcher = async () => {
-            console.log("FETCH")
             let request = await fetch("http://localhost:8888/util/countries")
             let result = await request.json();
-            console.log("RESULT OF FETCH")
-            console.log(result)
 
             setCountries(result);
             setLoading(false)
@@ -38,10 +53,8 @@ function AddCircuit() {
     const [remainingTickets, setTickets] = useState('');
     // DEPARTURE DATE //TODO
     const [value, setValue] = useState(null);
-
-
     const [days, setDays] = useState('');
-    // IMPLEMENT ADD COUNTRIES //TODO
+    const [selectedCountries, setSelectedCountries] = useState([]);
 
 
     const handleChangeDescription = event => {
@@ -59,19 +72,27 @@ function AddCircuit() {
     const handleChangeDays = event => {
         setDays(event.target.value);
     };
-
     const uploadImages = (files) => {
         for (let file of files) {
             images.push(file.base64);
         }
     }
+    const handleChangeSelectedCountries = (event) => {
+        const {
+            target: { value },
+        } = event;
+        setSelectedCountries(
+            // On autofill we get a stringified value.
+            typeof value === 'string' ? value.split(',') : value,
+        );
+    };
 
     const uploadCircuits = async () => {
         const req = await fetch("http://localhost:8888/addCircuitApi", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             mode: "no-cors",
-            body: JSON.stringify({description,price,itinerary,remainingTickets,days,images}),
+            body: JSON.stringify({description,price,itinerary,remainingTickets,days,images,selectedCountries}),
         });
 
         if (req.ok) {
@@ -123,8 +144,26 @@ function AddCircuit() {
                     <Form.Label>Days</Form.Label>
                     <Form.Control placeholder="10" />
                 </Form.Group>
-                {/*//IMPLEMENT ADD COUNTRIES */} //TODO
-                <MultipleSelectCheckmarks data={countries}/>
+                <FormControl sx={{ m: 1, width: 300 }}>
+                    <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
+                    <Select
+                        labelId="demo-multiple-checkbox-label"
+                        id="demo-multiple-checkbox"
+                        multiple
+                        value={selectedCountries}
+                        onChange={handleChangeSelectedCountries}
+                        input={<OutlinedInput label="Tag" />}
+                        renderValue={(selected) => selected.join(', ')}
+                        MenuProps={MenuProps}
+                    >
+                        {countries.map((country) => (
+                            <MenuItem key={country} value={country}>
+                                <Checkbox checked={selectedCountries.indexOf(country) > -1} />
+                                <ListItemText primary={country} />
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
 
                 <br/>
                 <br/>

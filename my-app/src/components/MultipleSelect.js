@@ -20,22 +20,9 @@ const MenuProps = {
     },
 };
 
-const names = [
-    'Oliver Hansen',
-    'Van Henry',
-    'April Tucker',
-    'Ralph Hubbard',
-    'Omar Alexander',
-    'Carlos Abbott',
-    'Miriam Wagner',
-    'Bradley Wilkerson',
-    'Virginia Andrews',
-    'Kelly Snyder',
-];
+
 
 export default function MultipleSelectCheckmarks({data}) {
-    console.log("DATABUUUUN")
-    console.log(data)
 
     const [personName, setPersonName] = React.useState([]);
 
@@ -47,6 +34,8 @@ export default function MultipleSelectCheckmarks({data}) {
             // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         );
+        console.log("personName")
+        console.log(personName)
     };
 
     return (
