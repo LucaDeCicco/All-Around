@@ -71,8 +71,12 @@ public class ProductController {
     public String addCircuit(@RequestBody String product) throws ParseException, JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         CircuitRequest prod = objectMapper.readValue(product, CircuitRequest.class);
+        System.out.println("DATA FORMAT");
+        System.out.println(prod.getDepartureDate());
 //        SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
 //        Date date=formatter1.parse(prod.getDepartureDate());//TODO
+//        System.out.println("DATA PROCESSED");
+//        System.out.println(date);
         CircuitProduct circuitProduct = new CircuitProduct(ProductType.CIRCUIT, prod.getDescription(), prod.getPrice(), prod.getImages(), prod.getLocation(),
                 prod.getItinerary(), prod.getRemainingTickets(), new Date(), prod.getDays(), prod.getCountries());
         productService.save(circuitProduct);
