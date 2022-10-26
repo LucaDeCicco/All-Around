@@ -3,46 +3,46 @@ package com.codecool.ElProyecteGrande.payload.ourProducts;
 import com.codecool.ElProyecteGrande.enums.Country;
 import com.codecool.ElProyecteGrande.enums.ProductType;
 
-import javax.validation.constraints.NotBlank;
+//import javax.validation.constraints.NotBlank;
 import java.util.Date;
 import java.util.List;
 
 public class CircuitRequest {
 
-    @NotBlank
+//    @NotBlank
     private Long id;
 
-    @NotBlank
+//    @NotBlank
     private ProductType productType;
 
-//    @NotBlank
+////    @NotBlank
 //    private String productType;
 
-    @NotBlank
+//    @NotBlank
     private String description;
 
-    @NotBlank
+//    @NotBlank
     private int price;
 
-    @NotBlank
+//    @NotBlank
     private List<String> images;
 
-    @NotBlank
+//    @NotBlank
     private String location;
 
-    @NotBlank
+//    @NotBlank
     private String itinerary;
 
-    @NotBlank
+//    @NotBlank
     private int remainingTickets;
 
-    @NotBlank
+//    @NotBlank
     private String departureDate;
 
-    @NotBlank
+//    @NotBlank
     private int days;
 
-    @NotBlank
+//    @NotBlank
     private List<Country> countries;
 
     public Long getId() {

@@ -11,6 +11,10 @@ import com.codecool.ElProyecteGrande.payload.externalProducts.HotelRequest;
 import com.codecool.ElProyecteGrande.payload.ourProducts.CircuitRequest;
 import com.codecool.ElProyecteGrande.payload.ourProducts.ResortRequest;
 import com.codecool.ElProyecteGrande.service.ProductService;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,14 +67,17 @@ public class ProductController {
     }
 
 
-    @PostMapping("/addCircuit")
-    public String addCircuit(@RequestBody CircuitRequest product) throws ParseException {
-        SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
-        Date date=formatter1.parse(product.getDepartureDate());
-        CircuitProduct newProduct = new CircuitProduct(product.getProductType(),
-                product.getDescription(),product.getPrice(), product.getImages(), product.getLocation(),product.getItinerary(),
-                product.getRemainingTickets(),date, product.getDays(), product.getCountries());
-        productService.save(newProduct);
+    @PostMapping("/addCircuitApi")
+    public String addCircuit(@RequestBody String product) throws ParseException, JsonProcessingException {
+        System.out.println("AJUNGE AICI");
+        System.out.println(product);
+        ObjectMapper objectMapper = new ObjectMapper();
+        CircuitRequest prod = objectMapper.readValue(product, CircuitRequest.class);
+        System.out.println("PROCESAT");
+        System.out.println(prod);
+        System.out.println(prod.getDescription());
+        System.out.println(prod.getPrice());
+
         return "circuit added successfully";
     }
     @PostMapping("/addCircuitProduct")
