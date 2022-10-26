@@ -78,17 +78,17 @@ public class ProductController {
 //        System.out.println("DATA PROCESSED");
 //        System.out.println(date);
         CircuitProduct circuitProduct = new CircuitProduct(ProductType.CIRCUIT, prod.getDescription(), prod.getPrice(), prod.getImages(), prod.getLocation(),
-                prod.getItinerary(), prod.getRemainingTickets(), new Date(), prod.getDays(), prod.getCountries());
+                prod.getItinerary(), prod.getRemainingTickets(), prod.getDepartureDate(), prod.getDays(), prod.getCountries());
         productService.save(circuitProduct);
         return "circuit added successfully";
     }
     @PostMapping("/addCircuitProduct")
     public String addCircuitProduct(@RequestBody CircuitRequest product) throws ParseException {
         SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
-        Date date=formatter1.parse(product.getDepartureDate());
+//        Date date=formatter1.parse(product.getDepartureDate());
         CircuitProduct newProduct = new CircuitProduct(product.getProductType(),
                 product.getDescription(),product.getPrice(), product.getImages(), product.getLocation(),product.getItinerary(),
-                product.getRemainingTickets(),date, product.getDays(), product.getCountries());
+                product.getRemainingTickets(),new Date(), product.getDays(), product.getCountries());
         productService.save(newProduct);
         return "circuit added successfully";
     }

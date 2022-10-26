@@ -37,7 +37,7 @@ public class CircuitRequest {
     private int remainingTickets;
 
 //    @NotBlank
-    private String departureDate;
+    private Date departureDate;
 
 //    @NotBlank
     private int days;
@@ -76,7 +76,7 @@ public class CircuitRequest {
         return remainingTickets;
     }
 
-    public String getDepartureDate() {
+    public Date getDepartureDate() {
         return departureDate;
     }
 
