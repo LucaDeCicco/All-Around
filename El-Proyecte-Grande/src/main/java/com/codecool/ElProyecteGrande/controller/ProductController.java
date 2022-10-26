@@ -69,19 +69,13 @@ public class ProductController {
 
     @PostMapping("/addCircuitApi")
     public String addCircuit(@RequestBody String product) throws ParseException, JsonProcessingException {
-        System.out.println("AJUNGE AICI");
-        System.out.println(product);
         ObjectMapper objectMapper = new ObjectMapper();
         CircuitRequest prod = objectMapper.readValue(product, CircuitRequest.class);
-        System.out.println("PROCESAT");
-        System.out.println(prod);
-        System.out.println(prod.getDescription());
-        System.out.println(prod.getPrice());
-        for (String image : prod.getImages()) {
-            System.out.println("IMAGE");
-            System.out.println(image);
-        }
-
+//        SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
+//        Date date=formatter1.parse(prod.getDepartureDate());//TODO
+        CircuitProduct circuitProduct = new CircuitProduct(ProductType.CIRCUIT, prod.getDescription(), prod.getPrice(), prod.getImages(), prod.getLocation(),
+                prod.getItinerary(), prod.getRemainingTickets(), new Date(), prod.getDays(), prod.getCountries());
+        productService.save(circuitProduct);
         return "circuit added successfully";
     }
     @PostMapping("/addCircuitProduct")

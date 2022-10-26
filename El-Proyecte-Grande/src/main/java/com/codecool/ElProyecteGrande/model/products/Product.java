@@ -30,6 +30,7 @@ public abstract class Product {
     private int price;
 
     @ElementCollection
+    @Column(name = "text", length=10485760)
     private List<String> images;
 
 
