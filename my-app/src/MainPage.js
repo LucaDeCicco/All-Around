@@ -27,7 +27,7 @@ class MainPage extends Component {
     };
     const buttonStyle={
         width: '50%',
-        height: "150vh",
+        height: "145vh",
         fontSize:'70px',
         top: "50%",
     };
