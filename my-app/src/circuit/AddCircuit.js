@@ -130,9 +130,24 @@ function AddCircuit() {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                         label="Basic example"
+                        // value = {(() => {
+                        //     let dates = "ceva";
+                        //     if (departureDate.length>0){
+                        //         dates = "";
+                        //         for (const departureDateElement of departureDate) {
+                        //             dates+=departureDateElement.toString();
+                        //             console.log("DATES")
+                        //             console.log(dates)
+                        //         }
+                        //     }
+                        //     return dates;
+                        // })()}
                         value={departureDate}
+                        // multiple
                         onChange={(newValue) => {
                             setDepartureDate(newValue);
+                            // departureDate.push(newValue)
+                            console.log(departureDate)
                         }}
                         renderInput={(params) => <TextField {...params} />}
                     />

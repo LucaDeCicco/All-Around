@@ -7,13 +7,16 @@ import StickyFooter from './Footer';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"
 import NavBar from "./NavBar";
-// import CircuitCarousel from "./circuit/CircuitCarousel";
 import CircuitPage from "./circuit/CircuitPage";
 import Resorts from "./resort/Resorts";
 import ResortPage from "./resort/ResortPage";
 import AddImage from "./AddImage";
 import AddCircuit from "./circuit/AddCircuit";
 import AddResort from "./resort/AddResort";
+// import NewFooter from "./components/NewFooter";
+import {newFooter} from "./components/NewFooter";
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -30,8 +33,10 @@ root.render(
         <Route path="/addCircuit" element={<AddCircuit/>}/>
         <Route path="/AddResort" element={<AddResort/>}/>
       </Routes>
+        <StickyFooter />
+        {/*{newFooter()}*/}
     </BrowserRouter>
-    <StickyFooter />
+
   </React.StrictMode>
 );
 
