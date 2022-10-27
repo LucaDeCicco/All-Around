@@ -81,14 +81,20 @@ public class ProductController {
     @PostMapping("/addResortApi")
     public String addResort(@RequestBody String product) throws ParseException, JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-
         ResortRequest prod = objectMapper.readValue(product, ResortRequest.class);
-
-
-
         ResortProduct resortProduct = new ResortProduct(ProductType.RESORT, prod.getDescription(), prod.getPrice(), prod.getImages(), prod.getLocation(),
                 prod.getItinerary(), prod.getRemainingTickets(), prod.getDepartureDate(), prod.getDays(), prod.getCountry());
         productService.save(resortProduct);
+        return "circuit added successfully";
+    }
+
+    @PostMapping("/addHotelApi")
+    public String addHotel(@RequestBody String product) throws ParseException, JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        HotelRequest prod = objectMapper.readValue(product, HotelRequest.class);
+        Hotel hotelProduct = new Hotel(ProductType.HOTEL, prod.getDescription(), prod.getPrice(), prod.getImages(), prod.getCountry(),
+                prod.getLocation(), prod.getUrl());
+        productService.save(hotelProduct);
         return "circuit added successfully";
     }
 
