@@ -19,7 +19,8 @@ function NavBar() {
                         {/* <Nav.Link href="/circuits">Circuits</Nav.Link> */}
                     <NavLink style={{ textDecoration: 'none' }} to="/resorts"><Button variant="text" color={"secondary"}><b>RESORTS</b></Button></NavLink>
                         {/* <Nav.Link href="/resorts">Resorts</Nav.Link> */}
-                        <Nav.Link href="#Features">Features</Nav.Link>
+                        {/*<Nav.Link href="#Features">Features</Nav.Link>*/}
+                    <NavLink style={{ textDecoration: 'none' }} to="/hotels"><Button variant="text" color={"info"}><b>HOTELS</b></Button></NavLink>
                     </Nav>
                 </Container>
             </Navbar>

@@ -15,6 +15,9 @@ import AddCircuit from "./circuit/AddCircuit";
 import AddResort from "./resort/AddResort";
 // import NewFooter from "./components/NewFooter";
 import {newFooter} from "./components/NewFooter";
+import Hotels from "./hotels/Hotels";
+import HotelPage from "./hotels/HotelPage";
+import AddHotel from "./hotels/AddHotel";
 
 
 
@@ -29,9 +32,12 @@ root.render(
           <Route path="/circuit/:id" element={<CircuitPage />}/>
         <Route path="resorts" element={<Resorts />}/>
           <Route path="/resort/:id" element={<ResortPage />}/>
+        <Route path="hotels" element={<Hotels />}/>
+          <Route path="/hotel/:id" element={<HotelPage />}/>
         <Route path="/addImage" element={<AddImage/>}/>
         <Route path="/addCircuit" element={<AddCircuit/>}/>
         <Route path="/AddResort" element={<AddResort/>}/>
+        <Route path="/AddHotel" element={<AddHotel/>}/>
       </Routes>
         <StickyFooter />
         {/*{newFooter()}*/}
