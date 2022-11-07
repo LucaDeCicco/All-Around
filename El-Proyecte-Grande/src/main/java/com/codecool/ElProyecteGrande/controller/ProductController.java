@@ -6,24 +6,18 @@ import com.codecool.ElProyecteGrande.model.products.Product;
 import com.codecool.ElProyecteGrande.model.products.externalProducts.Hotel;
 import com.codecool.ElProyecteGrande.model.products.ourProducts.CircuitProduct;
 import com.codecool.ElProyecteGrande.model.products.ourProducts.ResortProduct;
-import com.codecool.ElProyecteGrande.payload.AddImageRequestTest;
 import com.codecool.ElProyecteGrande.payload.externalProducts.HotelRequest;
 import com.codecool.ElProyecteGrande.payload.ourProducts.CircuitRequest;
 import com.codecool.ElProyecteGrande.payload.ourProducts.ResortRequest;
 import com.codecool.ElProyecteGrande.service.ProductService;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,12 +32,10 @@ public class ProductController {
         this.productService = productService;
     }
 
-
     @GetMapping()
-    public String index(){
+    public String index() {
         return "homePage";
     }
-
 
     @PostMapping("/addImageApi")
     public String addImageApi(@RequestBody String addImage) throws ParseException {
@@ -67,10 +59,16 @@ public class ProductController {
     }
 
 
-    @PostMapping("/addCircuitApi")
-    public String addCircuit(@RequestBody String product) throws ParseException, JsonProcessingException {
+    @PostMapping("/add-circuit")
+    public String addCircuit(@RequestBody String product) {
+        System.out.println(product);
         ObjectMapper objectMapper = new ObjectMapper();
-        CircuitRequest prod = objectMapper.readValue(product, CircuitRequest.class);
+        CircuitRequest prod;
+        try {
+            prod = objectMapper.readValue(product, CircuitRequest.class);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
 
         CircuitProduct circuitProduct = new CircuitProduct(ProductType.CIRCUIT, prod.getDescription(), prod.getPrice(), prod.getImages(), prod.getLocation(),
                 prod.getItinerary(), prod.getRemainingTickets(), prod.getDepartureDate(), prod.getDays(), prod.getCountries());
@@ -78,13 +76,17 @@ public class ProductController {
         return "circuit added successfully";
     }
 
-    @PostMapping("/addResortApi")
+    @PostMapping(value = "/addResortApi")
     public String addResort(@RequestBody String product) throws ParseException, JsonProcessingException {
+        System.out.println("ADDRESORTAPI");
+        System.out.println(product);
+//        System.out.println(product.getDescription());
+//        System.out.println(product.getProductType());
         ObjectMapper objectMapper = new ObjectMapper();
-        ResortRequest prod = objectMapper.readValue(product, ResortRequest.class);
-        ResortProduct resortProduct = new ResortProduct(ProductType.RESORT, prod.getDescription(), prod.getPrice(), prod.getImages(), prod.getLocation(),
-                prod.getItinerary(), prod.getRemainingTickets(), prod.getDepartureDate(), prod.getDays(), prod.getCountry());
-        productService.save(resortProduct);
+//        ResortRequest prod = objectMapper.readValue(product, ResortRequest.class);
+//        ResortProduct resortProduct = new ResortProduct(ProductType.RESORT, product.getDescription(), product.getPrice(), product.getImages(), product.getLocation(),
+//                product.getItinerary(), product.getRemainingTickets(), product.getDepartureDate(), product.getDays(), product.getCountry());
+//        productService.save(resortProduct);
         return "circuit added successfully";
     }
 
@@ -103,8 +105,8 @@ public class ProductController {
 //        SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
 //        Date date=formatter1.parse(product.getDepartureDate());
         CircuitProduct newProduct = new CircuitProduct(product.getProductType(),
-                product.getDescription(),product.getPrice(), product.getImages(), product.getLocation(),product.getItinerary(),
-                product.getRemainingTickets(),new Date(), product.getDays(), product.getCountries());
+                product.getDescription(), product.getPrice(), product.getImages(), product.getLocation(), product.getItinerary(),
+                product.getRemainingTickets(), new Date(), product.getDays(), product.getCountries());
         productService.save(newProduct);
         return "circuit added successfully";
     }
@@ -121,7 +123,7 @@ public class ProductController {
     }
 
     @PostMapping("/addHotelProduct")
-    public String addHotelProduct(@RequestBody HotelRequest product){
+    public String addHotelProduct(@RequestBody HotelRequest product) {
         Hotel newProduct = new Hotel(product.getProductType(), product.getDescription(), product.getPrice(),
                 product.getImages(),
                 product.getCountry(), product.getLocation(), product.getUrl());
@@ -130,15 +132,15 @@ public class ProductController {
     }
 
     @GetMapping("allMemProducts")
-    public List<Product> getAllProducts(){
+    public List<Product> getAllProducts() {
         return productService.findAll();
     }
 
     @GetMapping("allMemCircuitProducts")
-    public List<Product> getAllCircuitProducts(){
+    public List<Product> getAllCircuitProducts() {
         List<Product> circuitProducts = new ArrayList<>();
         for (Product product : productService.findAll()) {
-            if (product.getProductType()== ProductType.CIRCUIT){
+            if (product.getProductType() == ProductType.CIRCUIT) {
                 circuitProducts.add(product);
             }
         }
@@ -146,10 +148,10 @@ public class ProductController {
     }
 
     @GetMapping("allMemResortProducts")
-    public List<Product> getAllResortProducts(){
+    public List<Product> getAllResortProducts() {
         List<Product> resortProducts = new ArrayList<>();
         for (Product product : productService.findAll()) {
-            if (product.getProductType()==ProductType.RESORT){
+            if (product.getProductType() == ProductType.RESORT) {
                 resortProducts.add(product);
             }
         }
@@ -157,10 +159,10 @@ public class ProductController {
     }
 
     @GetMapping("allMemHotelProducts")
-    public List<Product> getAllHotelProducts(){
+    public List<Product> getAllHotelProducts() {
         List<Product> hotelProducts = new ArrayList<>();
         for (Product product : productService.findAll()) {
-            if (product.getProductType()==ProductType.HOTEL){
+            if (product.getProductType() == ProductType.HOTEL) {
                 hotelProducts.add(product);
             }
         }
