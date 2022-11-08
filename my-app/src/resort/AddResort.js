@@ -4,9 +4,9 @@ import React, {useEffect} from "react";
 import {useState} from 'react';
 import FileBase64 from "react-file-base64";
 import TextField from '@mui/material/TextField';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
+import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
+import {DatePicker} from '@mui/x-date-pickers/DatePicker';
 // import MultipleSelectCheckmarks from "../components/MultipleSelect";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
@@ -56,6 +56,7 @@ function AddResort() {
     const [days, setDays] = useState('');
     const [country, setCountry] = useState('');
 
+    let body = {description, price, location, remainingTickets, days, images, country, departureDate};
 
     const handleChangeDescription = event => {
         setDescription(event.target.value);
@@ -84,9 +85,11 @@ function AddResort() {
     const uploadResorts = async () => {
         const req = await fetch("http://localhost:8888/addResortApi", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                'Content-Type': 'application/json'
+            },
             mode: "no-cors",
-            body: JSON.stringify({description,price,location,remainingTickets,days,images,country, departureDate}),
+            body: body,
         });
 
         if (req.ok) {
@@ -94,30 +97,30 @@ function AddResort() {
             console.log("uploaded files");
         }
     }
-    if (allCountries){
+    if (allCountries) {
         return (
             <Form>
                 <Form.Group className="mb-3" name="description" onChange={handleChangeDescription} value={description}>
                     <Form.Label>Description</Form.Label>
-                    <Form.Control placeholder="description..." />
+                    <Form.Control placeholder="description..."/>
                 </Form.Group>
                 <Form.Group className="mb-3" name="price" onChange={handleChangePrice} value={price}>
                     <Form.Label>Price</Form.Label>
-                    <Form.Control placeholder="100$" />
+                    <Form.Control placeholder="100$"/>
                 </Form.Group>
 
                 <label>Add Images</label>
-                <FileBase64 multiple={true} onDone={uploadImages} />
+                <FileBase64 multiple={true} onDone={uploadImages}/>
                 <br/>
                 <br/>
 
                 <Form.Group className="mb-3" name="location" onChange={handleChangeItinerary} value={location}>
                     <Form.Label>Location</Form.Label>
-                    <Form.Control placeholder="location..." />
+                    <Form.Control placeholder="location..."/>
                 </Form.Group>
                 <Form.Group className="mb-3" name="tickets" onChange={handleChangeTickets} value={remainingTickets}>
                     <Form.Label>Remaining Tickets:</Form.Label>
-                    <Form.Control placeholder="50" />
+                    <Form.Control placeholder="50"/>
                 </Form.Group>
 
                 <label>Departure Date</label><br/>
@@ -136,24 +139,24 @@ function AddResort() {
 
                 <Form.Group className="mb-3" name="days" onChange={handleChangeDays} value={days}>
                     <Form.Label>Days</Form.Label>
-                    <Form.Control placeholder="10" />
+                    <Form.Control placeholder="10"/>
                 </Form.Group>
 
-                <FormControl sx={{ m: 1, width: 300 }}>
+                <FormControl sx={{m: 1, width: 300}}>
                     <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
                     <Select
                         labelId="demo-multiple-checkbox-label"
                         id="demo-multiple-checkbox"
                         value={country}
                         onChange={handleChangeSelectedCountries}
-                        input={<OutlinedInput label="Tag" />}
+                        input={<OutlinedInput label="Tag"/>}
                         renderValue={(selected) => selected}
                         MenuProps={MenuProps}
                     >
                         {allCountries.map((iterationCountry) => (
                             <MenuItem key={iterationCountry} value={iterationCountry}>
-                                <Checkbox checked={country.indexOf(iterationCountry) > -1} />
-                                <ListItemText primary={iterationCountry} />
+                                <Checkbox checked={country.indexOf(iterationCountry) > -1}/>
+                                <ListItemText primary={iterationCountry}/>
                             </MenuItem>
                         ))}
                     </Select>

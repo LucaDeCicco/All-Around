@@ -33,9 +33,24 @@ function AddCircuit() {
     const [allCountries, setAllCountries] = useState(null);
     const [loading, setLoading] = useState(false);
 
+    let headers = new Headers();
+
+
+
+    headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+    // headers.append('Access-Control-Allow-Credentials', 'true');
+
+
+
     useEffect(() => {
+
         const fetcher = async () => {
-            let request = await fetch("http://localhost:8888/util/countries")
+            let request = await fetch("http://localhost:8888/util/countries", {
+                // mode: "no-cors", /*daca pun asta vine null*/
+                // method: "GET",
+                headers: {"Access-Control-Allow-Origin": "http://localhost:300"}
+
+            })
             let result = await request.json();
 
             setAllCountries(result);
@@ -88,13 +103,16 @@ function AddCircuit() {
     };
 
     const uploadCircuits = async () => {
-        const req = await fetch("http://localhost:8888/addCircuitApi", {
+        console.log("INAINTE DE FETCH")
+        const req = await fetch("http://localhost:8888/add-circuit", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            mode: "no-cors",
+            headers: {"Access-Control-Allow-Origin": "http://localhost:300"},
+            // headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "http://localhost:300" },
+            // mode: "no-cors",
             body: JSON.stringify({description,price,itinerary,remainingTickets,days,images,countries, departureDate}),
         });
-
+        console.log("CONTROL")
+        console.log(req)
         if (req.ok) {
             const res = await req.json();
             console.log("uploaded files");

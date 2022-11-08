@@ -8,7 +8,7 @@ import { Button } from '@mui/material';
 function NavBar() {
     return (
         <>
-            <Navbar bg="success" variant="dark">
+            <Navbar bg="dark" variant="dark">
                 <Container>
                     <img src={Logo} width={80} height={64} alt={""}/>
                     &nbsp;
