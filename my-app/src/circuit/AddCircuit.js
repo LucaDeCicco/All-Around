@@ -102,10 +102,12 @@ function AddCircuit() {
     };
 
     const uploadCircuits = async () => {
-        console.log("INAINTE DE FETCH")
+        const user = JSON.parse(localStorage.getItem('user'));
+        let token = user.token
         const req = await fetch("http://localhost:8888/add-circuit", {
             method: "POST",
-            headers: {"Access-Control-Allow-Origin": "http://localhost:300"},
+            headers: {Authorization: 'Bearer ' + token},
+            // headers: {"Access-Control-Allow-Origin": "http://localhost:300"},
             // headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "http://localhost:300" },
             // mode: "no-cors",
             body: JSON.stringify({description,price,itinerary,remainingTickets,days,images,countries, departureDate}),

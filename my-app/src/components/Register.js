@@ -45,12 +45,27 @@ function Register() {
     };
 
     const addUser = async () => {
-        return axios.post(API_URL + "signup", {
+        let response = await axios.post(API_URL + "signup", {
             name,
             email,
             password,
             role: ["ROLE_USER"]
         });
+            if (response) {
+                console.log("ok")
+                let username = name
+                const loginResponse = await axios
+                    .post(API_URL + "signin", {
+                        username,
+                        password,
+                    });
+                if (loginResponse.data.token) {
+                    localStorage.setItem("user", JSON.stringify(loginResponse.data));
+                    window.location.replace("/");
+                    // window.location.replace("/profile");
+
+                }
+            }
     }
 
     return (

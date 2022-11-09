@@ -11,7 +11,11 @@ function Circuits() {
 
     useEffect(() => {
         const fetcher = async () => {
-            let request = await fetch("http://localhost:8888/allMemCircuitProducts")
+            const user = JSON.parse(localStorage.getItem('user'));
+            let token = user.token
+            let request = await fetch("http://localhost:8888/allMemCircuitProducts", {
+                headers: {Authorization: 'Bearer ' + token},
+            })
             let result = await request.json();
             setData(result);
             setLoading(false)
