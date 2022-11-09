@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("/")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000", methods = {RequestMethod.PUT, RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST})
 public class ProductController {
 
     private final ProductService productService;

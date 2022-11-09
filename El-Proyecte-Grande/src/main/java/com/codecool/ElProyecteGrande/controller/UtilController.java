@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/util")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 public class UtilController {
 
     @GetMapping("/countries")
