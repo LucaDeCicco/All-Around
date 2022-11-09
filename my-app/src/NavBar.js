@@ -2,7 +2,7 @@ import {Container, Nav, Navbar} from "react-bootstrap";
 import Logo from "./images/Logo.png";
 import { NavLink } from 'react-router-dom';
 import { Button } from '@mui/material';
-
+import ProfileDrawer from "./components/ProfileDrawer";
 
 
 function NavBar() {
@@ -22,6 +22,7 @@ function NavBar() {
                         {/*<Nav.Link href="#Features">Features</Nav.Link>*/}
                     <NavLink style={{ textDecoration: 'none' }} to="/hotels"><Button variant="text" color={"info"}><b>HOTELS</b></Button></NavLink>
                     </Nav>
+                    <ProfileDrawer/>
                 </Container>
             </Navbar>
             <br />

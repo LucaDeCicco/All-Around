@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import axios from 'axios';
 import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
@@ -18,12 +19,38 @@ import {
 }
     from 'mdb-react-ui-kit';
 
+const API_URL = "http://localhost:8888/api/auth/";
+
 function Register() {
     const iconStyle = {
         height: "1.5em",
         width: "2em"
         // backgroundColor: "red"
 
+    }
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState([]);
+
+
+    const handleChangeName = event => {
+        setName(event.target.value);
+    };
+    const handleChangeEmail = event => {
+        setEmail(event.target.value);
+    };
+    const handleChangePassword = event => {
+        setPassword(event.target.value);
+    };
+
+    const addUser = async () => {
+        return axios.post(API_URL + "signup", {
+            name,
+            email,
+            password,
+            role: ["ROLE_USER"]
+        });
     }
 
     return (
@@ -38,17 +65,17 @@ function Register() {
 
                             <div className="d-flex flex-row align-items-center mb-4 ">
                                 <PersonIcon style={iconStyle}/>
-                                <MDBInput placeholder='Your Name' id='form1' type='text' className='w-100'/>
+                                <MDBInput placeholder='Username' id='form1' type='text' className='w-100' onChange={handleChangeName}/>
                             </div>
 
                             <div className="d-flex flex-row align-items-center mb-4">
                                 <EmailIcon style={iconStyle}/>
-                                <MDBInput placeholder='Your Email' id='form2' type='email'/>
+                                <MDBInput placeholder='Your Email' id='form2' type='email' onChange={handleChangeEmail}/>
                             </div>
 
                             <div className="d-flex flex-row align-items-center mb-4">
                                 <LockIcon style={iconStyle}/>
-                                <MDBInput placeholder='Password' id='form3' type='password'/>
+                                <MDBInput placeholder='Password' id='form3' type='password' onChange={handleChangePassword}/>
                             </div>
 
                             <div className="d-flex flex-row align-items-center mb-4">
@@ -60,7 +87,8 @@ function Register() {
                                 <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Subscribe to our newsletter' />
                             </div>
 
-                            <MDBBtn className='mb-4' size='lg'>Register</MDBBtn>
+                            {/*<MDBBtn className='mb-4' size='lg'>Register</MDBBtn>*/}
+                            <button type="button" className="btn btn-primary" onClick={addUser}>Register</button>
 
                         </MDBCol>
 

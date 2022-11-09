@@ -66,7 +66,6 @@ function AddCircuit() {
     const [images, setImages] = useState([]);
     const [itinerary, setItinerary] = useState('');
     const [remainingTickets, setTickets] = useState('');
-    // DEPARTURE DATE //TODO
     const [departureDate, setDepartureDate] = useState(null);
     const [days, setDays] = useState('');
     const [countries, setSelectedCountries] = useState([]);

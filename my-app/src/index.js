@@ -19,6 +19,7 @@ import Hotels from "./hotels/Hotels";
 import HotelPage from "./hotels/HotelPage";
 import AddHotel from "./hotels/AddHotel";
 import Register from "./components/Register";
+import Login from "./components/Login";
 
 
 
@@ -40,6 +41,7 @@ root.render(
         <Route path="/AddResort" element={<AddResort/>}/>
         <Route path="/AddHotel" element={<AddHotel/>}/>
         <Route path="/register" element={<Register/>}/>
+        <Route path="/login" element={<Login/>}/>
       </Routes>
         <StickyFooter />
         {/*{newFooter()}*/}
