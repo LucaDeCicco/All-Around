@@ -59,7 +59,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .and()
                 .authorizeRequests().antMatchers("/addImageApi").permitAll()
                 .and()
-                .authorizeRequests().antMatchers("/add-circuit").permitAll()
+                .authorizeRequests().antMatchers("allMemCircuitProducts").hasRole("USER")
+                .and()
+                .authorizeRequests().antMatchers("/add-circuit").hasRole("ADMIN")
                 .and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll();
 //                .antMatchers("/api/test/**").permitAll()

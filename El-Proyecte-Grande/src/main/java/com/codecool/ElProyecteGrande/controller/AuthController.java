@@ -72,10 +72,7 @@ public class AuthController {
                     .badRequest()
                     .body("Error: Email is already in use!");
         }
-        System.out.println("TESTTTTTT");
-        System.out.println(signUpRequest.getUsername());
-        System.out.println(signUpRequest.getPassword());
-        System.out.println(signUpRequest.getRole());
+
         // Create new user's account
         AppUser user = new AppUser(signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
@@ -116,5 +113,6 @@ public class AuthController {
         userRepository.save(user);
 
         return ResponseEntity.ok("User registered successfully!");
+
     }
 }
