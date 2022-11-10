@@ -17,18 +17,19 @@ function AirbnbCardCircuit({data}) {
     }
 
     const circuitPointer={
-        cursor: "pointer"
+        cursor: "pointer",
+        backgroundColor:'#B7C8B5'
     };
 
     return (
-        <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' style={circuitPointer}>
+        <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
             {/*<Image src={property.imageUrl} alt={property.imageAlt}/>*/}
             <img src={Myimage} alt={property.imageAlt}/>
             {/*<div>*/}
             {/*    <img src={data.images[0]} alt="React Logo" />*/}
             {/*</div>*/}
 
-            <Box p='6'>
+            <Box p='6' style={{backgroundColor:'#B7C8B5'}}>
                 <Box display='flex' alignItems='baseline'>
                     <Badge borderRadius='full' px='2' colorScheme='teal'>
                         Circuit

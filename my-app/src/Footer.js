@@ -29,8 +29,8 @@ export default function StickyFooter() {
 
     }
     const logoStyle = {
-        marginLeft: "2em",
-        marginTop: "1em"
+        marginLeft: "1em",
+        // marginTop: "1em"
     }
 
   return (
@@ -48,21 +48,19 @@ export default function StickyFooter() {
           py: 3,
           px: 2,
           mt: 'auto',
-          // backgroundColor: (theme) =>
-          //   theme.palette.mode === 'light'
-          //     ? theme.palette.grey[200]
-          //     : theme.palette.grey[800],
-            backgroundColor: '#B7C8B5',
-            marginTop: "???px"
+          backgroundColor: '#ADB5BD',
+          marginTop: "???px"
         }}
       >
-        <Container maxWidth="sm">
-          <Typography variant="body1">
-              E-mail: luca14.decicco@gmail.com
-
-          </Typography>
-          <Copyright />
-          <div key={"icons"} style={logosStyle}>
+        <Container maxWidth="sm" style={{textAlign: 'center', display: 'flex'}}>
+            <div style={{display: 'inline-block', verticalAlign: 'middle'}}>
+              <Typography variant="body1">
+                  E-mail: luca14.decicco@gmail.com
+              </Typography>
+                <Copyright />
+            </div>
+          {/*<div key={"icons"} style={logosStyle}>*/}
+          <div key={"icons"} style={{display: 'inline-block', alignSelf: 'start'}}>
               <FacebookIcon style={logoStyle}/>
               <InstagramIcon style={logoStyle}/>
               <InfoIcon style={logoStyle}/>

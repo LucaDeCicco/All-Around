@@ -114,10 +114,12 @@ function AddCircuit() {
         });
         console.log("CONTROL")
         console.log(req)
-        if (req.ok) {
-            const res = await req.json();
-            console.log("uploaded files");
-        }
+        // if (req.ok) {
+        //     const res = await req.json();
+        //     console.log("uploaded files");
+        //
+        // }
+        window.location.replace("/circuits");
     }
     if (allCountries){
         return (

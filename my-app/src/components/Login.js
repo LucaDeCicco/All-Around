@@ -42,7 +42,7 @@ function Login() {
     };
 
     return (
-        <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
+        <MDBContainer className="p-3 my-5 d-flex flex-column w-50" style={{backgroundColor: 'white'}}>
 
             <MDBInput wrapperClass='mb-4' placeholder='Username' id='form1' onChange={handleChangeUsername}/>
             <MDBInput wrapperClass='mb-4' placeholder='Password' id='form2' type='password' onChange={handleChangePassword}/>

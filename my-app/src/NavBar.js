@@ -19,23 +19,23 @@ function NavBar() {
 
     return (
         <>
-            {/*<Navbar style={{backgroundColor:'#B7C8B5'}}>*/}
-            <Navbar bg='dark'>
+            <Navbar style={{backgroundColor:'#6C757D'}}>
+            {/*<Navbar bg='dark'>*/}
                 <Container>
                     <img src={Logo} width={80} height={64} alt={""}/>
                     &nbsp;
                     &nbsp;
                     <Navbar.Brand href="/">All Around</Navbar.Brand>
                     <Nav className="me-auto">
-                    <NavLink style={{ textDecoration: 'none' }} to="/circuits"><Button variant="text" color={"warning"}><b>CIRCUITS</b></Button></NavLink>
-                    <NavLink style={{ textDecoration: 'none' }} to="/resorts"><Button variant="text" color={"secondary"}><b>RESORTS</b></Button></NavLink>
-                    <NavLink style={{ textDecoration: 'none' }} to="/hotels"><Button variant="text" color={"info"}><b>HOTELS</b></Button></NavLink>
+                    <NavLink style={{ textDecoration: 'none' }} to="/circuits"><Button variant="text"><b style={{color:'#212529'}}>CIRCUITS</b></Button></NavLink>
+                    <NavLink style={{ textDecoration: 'none' }} to="/resorts"><Button variant="text" color={"secondary"}><b style={{color:'#343A40'}}>RESORTS</b></Button></NavLink>
+                    <NavLink style={{ textDecoration: 'none' }} to="/hotels"><Button variant="text" color={"info"}><b style={{color:'#ADB5BD'}}>HOTELS</b></Button></NavLink>
                     </Nav>
                     <ProfileDrawer/>
                     {currentUser ? (
-                        <b style={{color:"white"}}>{currentUser.username}</b>
+                        <b style={{color:"black"}}>{currentUser.username}</b>
                     ) : (
-                        <a href={"/login"} style={{textDecoration: "none"}}><b style={{color:"white"}}>Login</b></a>
+                        <a href={"/login"} style={{textDecoration: "none"}}><b style={{color:"black"}}>Login</b></a>
                     )}
                 </Container>
             </Navbar>

@@ -44,11 +44,11 @@ function Circuits() {
             <div className="circuits" style={container}>
 
                 <ChakraProvider>
-                    <SimpleGrid columns={3} spacing={3}>
+                    <SimpleGrid columns={3} spacing={115}>
                     {data.map((circuit, index) => {
                         return (
-                            <Link key={`circuit_${index}`} to={`/circuit/${circuit.id}`}>
-                                <div onClick={handleClick(circuit)}>
+                            <Link key={`circuit_${index}`} to={`/circuit/${circuit.id}`} style={{maxHeight: 'fit-content'}}>
+                                <div onClick={handleClick(circuit)} className={"test"} style={{maxHeight: 'fit-content'}}>
                                     <AirbnbCard data={circuit}/>
                                 </div>
                             </Link>

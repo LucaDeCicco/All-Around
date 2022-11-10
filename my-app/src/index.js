@@ -24,13 +24,13 @@ import Login from "./components/Login";
 
 
 // document.body.style.backgroundColor = rgb(197, 235, 195);
-document.body.style.backgroundColor='rgb(197,235,195)';
+document.body.style.backgroundColor='#CED4DA';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
         <NavBar/>
-      <div style={{minHeight: "100vh"}}>
+      <div style={{minHeight: "70vh"}}>
         <Routes>
           <Route index element={<MainPage />} />
           <Route path="circuits" element={<Circuits />}/>
