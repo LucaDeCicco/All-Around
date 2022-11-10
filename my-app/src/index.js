@@ -23,26 +23,30 @@ import Login from "./components/Login";
 
 
 
+// document.body.style.backgroundColor = rgb(197, 235, 195);
+document.body.style.backgroundColor='rgb(197,235,195)';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
         <NavBar/>
-      <Routes>
-        <Route index element={<MainPage />} />
-        <Route path="circuits" element={<Circuits />}/>
-          <Route path="/circuit/:id" element={<CircuitPage />}/>
-        <Route path="resorts" element={<Resorts />}/>
-          <Route path="/resort/:id" element={<ResortPage />}/>
-        <Route path="hotels" element={<Hotels />}/>
-          <Route path="/hotel/:id" element={<HotelPage />}/>
-        <Route path="/addImage" element={<AddImage/>}/>
-        <Route path="/addCircuit" element={<AddCircuit/>}/>
-        <Route path="/AddResort" element={<AddResort/>}/>
-        <Route path="/AddHotel" element={<AddHotel/>}/>
-        <Route path="/register" element={<Register/>}/>
-        <Route path="/login" element={<Login/>}/>
-      </Routes>
+      <div style={{minHeight: "100vh"}}>
+        <Routes>
+          <Route index element={<MainPage />} />
+          <Route path="circuits" element={<Circuits />}/>
+            <Route path="/circuit/:id" element={<CircuitPage />}/>
+          <Route path="resorts" element={<Resorts />}/>
+            <Route path="/resort/:id" element={<ResortPage />}/>
+          <Route path="hotels" element={<Hotels />}/>
+            <Route path="/hotel/:id" element={<HotelPage />}/>
+          <Route path="/addImage" element={<AddImage/>}/>
+          <Route path="/addCircuit" element={<AddCircuit/>}/>
+          <Route path="/AddResort" element={<AddResort/>}/>
+          <Route path="/AddHotel" element={<AddHotel/>}/>
+          <Route path="/register" element={<Register/>}/>
+          <Route path="/login" element={<Login/>}/>
+        </Routes>
+      </div>
         <StickyFooter />
         {/*{newFooter()}*/}
     </BrowserRouter>

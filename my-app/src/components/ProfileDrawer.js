@@ -14,17 +14,22 @@ import PersonIcon from '@mui/icons-material/Person';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import {useEffect, useState} from "react";
+import InfoIcon from '@mui/icons-material/Info';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 
 export default function ProfileDrawer() {
 
     const [currentUser, setCurrentUser] = useState(undefined);
+    const [currentUserRoles, setCurrentUserRoles] = useState([]);
+
 
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("user"));
         if (user) {
             setCurrentUser(user);
+            setCurrentUserRoles(user.roles)
         }
     }, []);
 
@@ -51,6 +56,15 @@ export default function ProfileDrawer() {
 
         setState({ ...state, [anchor]: open });
     };
+
+    const checkIfAdmin = () => {
+        for (const currentUserRole of currentUserRoles) {
+            if (currentUserRole === "ROLE_ADMIN"){
+                return true
+            }
+        }
+        return false
+    }
 
 
     const list = (anchor) => (
@@ -80,8 +94,36 @@ export default function ProfileDrawer() {
                         </ListItemButton>
                     </ListItem>
                 )}
+
+                <Divider />
+                {checkIfAdmin() ? (
+                    <ListItem>
+                        <ListItemButton>
+                            <PersonIcon style={{marginRight:"1em"}}/>
+                            <ListItemText primary={"Profile"} />
+                        </ListItemButton>
+                    </ListItem>
+                ):(<></>)}
+
+                <Divider />
+                <ListItem>
+                    <ListItemButton>
+                        <InfoIcon style={{marginRight:"1em"}}/>
+                        <ListItemText primary={"About Us"} />
+                    </ListItemButton>
+                </ListItem>
+
+                <Divider />
+                {checkIfAdmin() ? (
+                    <ListItem>
+                        <ListItemButton>
+                            <AdminPanelSettingsIcon style={{marginRight:"1em"}}/>
+                            <ListItemText primary={"Admin Panel"} />
+                        </ListItemButton>
+                    </ListItem>
+                ):(<></>)}
             </List>
-            <Divider />
+
         </Box>
     );
 

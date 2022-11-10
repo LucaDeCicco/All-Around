@@ -43,7 +43,6 @@ function Resorts() {
     if (data!=null){
         return (
             <div className="circuits" style={container}>
-
                 <ChakraProvider>
                     <SimpleGrid columns={3} spacing={3}>
                         {data.map((resort, index) => {
