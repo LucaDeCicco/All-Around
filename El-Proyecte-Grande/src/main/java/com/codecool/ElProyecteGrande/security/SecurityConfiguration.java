@@ -52,22 +52,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests().anyRequest().permitAll();
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-//                .and()
-                .authorizeRequests().antMatchers("/addImageApi").permitAll()
-                .and()
-                .authorizeRequests().antMatchers("allMemCircuitProducts").hasRole("USER")
-                .and()
-                .authorizeRequests().antMatchers("/add-circuit").hasRole("ADMIN")
-                .and()
-                .authorizeRequests().antMatchers("/api/auth/**").permitAll();
-//                .antMatchers("/api/test/**").permitAll()
-//                .antMatchers("/files/**").permitAll()
-//                .anyRequest().authenticated();
-
+                .authorizeRequests().antMatchers("/api/auth/**").permitAll()
+                .antMatchers("/util/countries").permitAll()
+                .antMatchers("/").permitAll()
+                .anyRequest().authenticated();
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }

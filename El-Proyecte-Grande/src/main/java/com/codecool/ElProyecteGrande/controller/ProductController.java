@@ -12,6 +12,7 @@ import com.codecool.ElProyecteGrande.payload.ourProducts.ResortRequest;
 import com.codecool.ElProyecteGrande.service.ProductService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -38,28 +39,20 @@ public class ProductController {
     }
 
     @PostMapping("/addImageApi")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public String addImageApi(@RequestBody String addImage) throws ParseException {
         Pattern pattern = Pattern.compile("data:image.+?=");
-//        Matcher matcher = pattern.matcher(addImage);
         ArrayList list = new ArrayList();
-        //Matching the compiled pattern in the String
         Matcher matcher = pattern.matcher(addImage);
         while (matcher.find()) {
             list.add(matcher.group());
         }
-//        for (Object o : list) {
-//            System.out.println(String.valueOf(o));
-//            System.out.println("/////////////////");
-//            System.out.println("/////////////////");
-//            System.out.println("/////////////////");
-//            System.out.println("/////////////////");
-//            System.out.println("/////////////////");
-//        }
         return "circuit added successfully";
     }
 
 
     @PostMapping("/add-circuit")
+    @PreAuthorize("hasRole('ADMIN')")
     public String addCircuit(@RequestBody String product) {
         System.out.println(product);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -78,15 +71,7 @@ public class ProductController {
 
     @PostMapping(value = "/addResortApi")
     public String addResort(@RequestBody String product) throws ParseException, JsonProcessingException {
-        System.out.println("ADDRESORTAPI");
-        System.out.println(product);
-//        System.out.println(product.getDescription());
-//        System.out.println(product.getProductType());
         ObjectMapper objectMapper = new ObjectMapper();
-//        ResortRequest prod = objectMapper.readValue(product, ResortRequest.class);
-//        ResortProduct resortProduct = new ResortProduct(ProductType.RESORT, product.getDescription(), product.getPrice(), product.getImages(), product.getLocation(),
-//                product.getItinerary(), product.getRemainingTickets(), product.getDepartureDate(), product.getDays(), product.getCountry());
-//        productService.save(resortProduct);
         return "circuit added successfully";
     }
 
@@ -137,6 +122,7 @@ public class ProductController {
     }
 
     @GetMapping("allMemCircuitProducts")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public List<Product> getAllCircuitProducts() {
         List<Product> circuitProducts = new ArrayList<>();
         for (Product product : productService.findAll()) {

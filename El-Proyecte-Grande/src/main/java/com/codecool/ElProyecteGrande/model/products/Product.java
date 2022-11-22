@@ -26,6 +26,8 @@ public abstract class Product {
 
     @Enumerated(EnumType.STRING)
     private ProductType productType;
+
+    @Column(name = "text", length=10485760)
     private String description;
     private int price;
 
