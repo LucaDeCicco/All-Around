@@ -3,8 +3,11 @@ import MyVideo from '../src/videos/video.mp4'
 
 const Video = () => {
     const videoStyle = {
-        height: "10em",
-        width: "10em"
+        display: "block",
+        height: "30em",
+        width: "50em",
+        marginLeft: "auto",
+        marginRight: "auto"
     }
     return (
         <div className='video'>

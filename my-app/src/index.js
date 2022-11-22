@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import MainPage from './MainPage';
@@ -13,45 +13,62 @@ import ResortPage from "./resort/ResortPage";
 import AddImage from "./AddImage";
 import AddCircuit from "./circuit/AddCircuit";
 import AddResort from "./resort/AddResort";
-// import NewFooter from "./components/NewFooter";
-import {newFooter} from "./components/NewFooter";
 import Hotels from "./hotels/Hotels";
 import HotelPage from "./hotels/HotelPage";
 import AddHotel from "./hotels/AddHotel";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import Info from "./components/Info";
+import AdminPage from "./components/AdminPage";
+import ProfilePage from "./components/ProfilePage";
+import App from "./App";
+
+// const [loading, setLoading] = useState(false);
 
 
 
-// document.body.style.backgroundColor = rgb(197, 235, 195);
 document.body.style.backgroundColor='#CED4DA';
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-        <NavBar/>
-      <div style={{minHeight: "70vh"}}>
-        <Routes>
-          <Route index element={<MainPage />} />
-          <Route path="circuits" element={<Circuits />}/>
-            <Route path="/circuit/:id" element={<CircuitPage />}/>
-          <Route path="resorts" element={<Resorts />}/>
-            <Route path="/resort/:id" element={<ResortPage />}/>
-          <Route path="hotels" element={<Hotels />}/>
-            <Route path="/hotel/:id" element={<HotelPage />}/>
-          <Route path="/addImage" element={<AddImage/>}/>
-          <Route path="/addCircuit" element={<AddCircuit/>}/>
-          <Route path="/AddResort" element={<AddResort/>}/>
-          <Route path="/AddHotel" element={<AddHotel/>}/>
-          <Route path="/register" element={<Register/>}/>
-          <Route path="/login" element={<Login/>}/>
-        </Routes>
-      </div>
-        <StickyFooter />
-        {/*{newFooter()}*/}
-    </BrowserRouter>
 
-  </React.StrictMode>
+// root.render(
+//   <React.StrictMode>
+//     <BrowserRouter>
+//         <NavBar/>
+//       <div style={{minHeight: "80vh"}}>
+//         <Routes>
+//           <Route index element={<MainPage />} />
+//           <Route path="circuits" element={<Circuits />}/>
+//             <Route path="/circuit/:id" element={<CircuitPage />}/>
+//           <Route path="resorts" element={<Resorts />}/>
+//             <Route path="/resort/:id" element={<ResortPage />}/>
+//           <Route path="hotels" element={<Hotels />}/>
+//             <Route path="/hotel/:id" element={<HotelPage />}/>
+//           <Route path="/addImage" element={<AddImage/>}/>
+//           <Route path="/addCircuit" element={<AddCircuit/>}/>
+//           <Route path="/AddResort" element={<AddResort/>}/>
+//           <Route path="/AddHotel" element={<AddHotel/>}/>
+//           <Route path="/register" element={<Register/>}/>
+//           <Route path="/login" element={<Login/>}/>
+//           <Route path="/info" element={<Info/>}/>
+//           <Route path="/admin" element={<AdminPage/>}/>
+//           <Route path="/profile" element={<ProfilePage/>}/>
+//         </Routes>
+//       </div>
+//         <StickyFooter />
+//         {/*{newFooter()}*/}
+//     </BrowserRouter>
+//
+//   </React.StrictMode>
+// );
+
+
+root.render(
+    <React.StrictMode>
+      <BrowserRouter>
+          <App />
+      </BrowserRouter>
+
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -12,6 +12,11 @@ function CarouselFadeExampleCircuit({data}) {
         // width: "50em",
         // align: "center"
     }
+
+    for (const datum of data.images) {
+        console.log(datum)
+    }
+
     return (
         <div style={carrouselDimensions}>
         <Carousel fade>

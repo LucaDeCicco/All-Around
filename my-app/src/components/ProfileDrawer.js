@@ -16,6 +16,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import {useEffect, useState} from "react";
 import InfoIcon from '@mui/icons-material/Info';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import ProfilePage from "./ProfilePage";
 
 
 export default function ProfileDrawer() {
@@ -49,6 +50,18 @@ export default function ProfileDrawer() {
         window.location.replace("/login");
     };
 
+    const infoPageRedirect = () => {
+        window.location.replace("/info");
+    }
+
+    const adminPageRedirect = () => {
+        window.location.replace("/admin");
+    }
+
+    const profilePageRedirect = () => {
+        window.location.replace("/profile")
+    }
+
     const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
@@ -62,6 +75,13 @@ export default function ProfileDrawer() {
             if (currentUserRole === "ROLE_ADMIN"){
                 return true
             }
+        }
+        return false
+    }
+
+    const checkIfLogIn = () => {
+        if (currentUser){
+            return true
         }
         return false
     }
@@ -96,9 +116,9 @@ export default function ProfileDrawer() {
                 )}
 
                 <Divider />
-                {checkIfAdmin() ? (
+                {checkIfLogIn() ? (
                     <ListItem>
-                        <ListItemButton>
+                        <ListItemButton onClick={profilePageRedirect}>
                             <PersonIcon style={{marginRight:"1em"}}/>
                             <ListItemText primary={"Profile"} />
                         </ListItemButton>
@@ -107,7 +127,7 @@ export default function ProfileDrawer() {
 
                 <Divider />
                 <ListItem>
-                    <ListItemButton>
+                    <ListItemButton onClick={infoPageRedirect}>
                         <InfoIcon style={{marginRight:"1em"}}/>
                         <ListItemText primary={"About Us"} />
                     </ListItemButton>
@@ -116,7 +136,7 @@ export default function ProfileDrawer() {
                 <Divider />
                 {checkIfAdmin() ? (
                     <ListItem>
-                        <ListItemButton>
+                        <ListItemButton onClick={adminPageRedirect}>
                             <AdminPanelSettingsIcon style={{marginRight:"1em"}}/>
                             <ListItemText primary={"Admin Panel"} />
                         </ListItemButton>

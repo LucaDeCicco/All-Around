@@ -12,11 +12,16 @@ function CircuitPage() {
 
     useEffect(() => {
         const fetcher = async () => {
-            let request = await fetch("http://localhost:8888/allMemCircuitProducts")
-            let result = await request.json();
-
-            setCircuits(result);
-            setLoading(false)
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user){
+                let token = user.token
+                let request = await fetch("http://localhost:8888/allMemCircuitProducts",{
+                    headers: {Authorization: 'Bearer ' + token}
+                })
+                let result = await request.json();
+                setCircuits(result);
+                setLoading(false)
+            }
         };
 
         fetcher();

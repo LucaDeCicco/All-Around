@@ -3,7 +3,7 @@ import {ChakraProvider} from '@chakra-ui/react'
 import {useEffect, useState} from 'react'
 import { SimpleGrid } from '@chakra-ui/react'
 import {Link} from "react-router-dom";
-
+import circuitsBackground from "C:/Codecool/repository/ADVANCED/weekpair2/el-proyecte-grande-sprint-2-java-LucaDeCicco/my-app/src/images/circuitsBackground.jpg";
 function Circuits() {
 
     const [data, setData] = useState(null);
@@ -12,13 +12,17 @@ function Circuits() {
     useEffect(() => {
         const fetcher = async () => {
             const user = JSON.parse(localStorage.getItem('user'));
-            let token = user.token
-            let request = await fetch("http://localhost:8888/allMemCircuitProducts", {
-                headers: {Authorization: 'Bearer ' + token},
-            })
-            let result = await request.json();
-            setData(result);
-            setLoading(false)
+            if (user){
+                let token = user.token
+                let request = await fetch("http://localhost:8888/allMemCircuitProducts", {
+                    headers: {Authorization: 'Bearer ' + token},
+                })
+                let result = await request.json();
+                setData(result);
+                setLoading(false)
+                let background = document.querySelector(`body`)
+                background.style.background = `url(${circuitsBackground})`
+            }
         };
 
         fetcher();

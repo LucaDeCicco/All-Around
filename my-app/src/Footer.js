@@ -29,8 +29,7 @@ export default function StickyFooter() {
 
     }
     const logoStyle = {
-        marginLeft: "1em",
-        // marginTop: "1em"
+        color: "black"
     }
 
   return (
@@ -52,22 +51,35 @@ export default function StickyFooter() {
           marginTop: "???px"
         }}
       >
-        <Container maxWidth="sm" style={{textAlign: 'center', display: 'flex'}}>
-            <div style={{display: 'inline-block', verticalAlign: 'middle'}}>
+        <Container maxWidth="sm" style={{textAlign: 'center', display:"flex"}}>
+            <div className={"emailFooter"} style={{display: 'inline-block', verticalAlign: 'middle', marginRight:"2em"}}>
               <Typography variant="body1">
                   E-mail: luca14.decicco@gmail.com
               </Typography>
                 <Copyright />
             </div>
           {/*<div key={"icons"} style={logosStyle}>*/}
-          <div key={"icons"} style={{display: 'inline-block', alignSelf: 'start'}}>
-              <FacebookIcon style={logoStyle}/>
-              <InstagramIcon style={logoStyle}/>
-              <InfoIcon style={logoStyle}/>
-          </div>
+          {/*<div key={"icons"} style={{display: 'inline-block', alignSelf: 'start', marginLeft:'2em'}}>*/}
+          {/*        <a href="/ceva">ceva</a>*/}
+          {/*        <FacebookIcon style={logoStyle}/>*/}
+          {/*        <InstagramIcon style={logoStyle}/>*/}
+          {/*        <InfoIcon style={logoStyle}/>*/}
+          {/*</div>*/}
+            <div style={{display: 'inline-block', alignSelf: 'start', marginLeft:'2em'}}>
+                <div style={{marginRight: "2em", display: 'inline-block', alignSelf: 'start'}}>
+                    <a href={"https://www.facebook.com/CodecoolOfficial"}><FacebookIcon style={logoStyle}/></a>
+                </div>
+                <div style={{marginRight: "2em", display: 'inline-block', alignSelf: 'start'}}>
+                    <a href={"https://www.instagram.com/codecool_official/?hl=en"}><InstagramIcon style={logoStyle}/></a>
+                </div>
+                <div style={{marginRight: "2em", display: 'inline-block', alignSelf: 'start'}}>
+                    <a href={"/info"}><InfoIcon style={logoStyle}/></a>
+                </div>
+            </div>
 
         </Container>
       </Box>
+
     </Box>
   );
 }
