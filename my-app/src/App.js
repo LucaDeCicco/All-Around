@@ -24,6 +24,7 @@ import StickyFooter from "./Footer";
 import { useDispatch, useSelector } from "react-redux";
 import ForgotPassword from "./components/forgotPassword";
 import ChangeForgotPassword from "./components/ChangeForgotPassword";
+import Login2 from "./components/Login2";
 // import circuitsBackground from "*.jpg";
 // import { logout } from "./actions/auth";
 //
@@ -70,7 +71,8 @@ function App() {
                         <Route path="/AddResort" element={<AddResort/>}/>
                         <Route path="/AddHotel" element={<AddHotel/>}/>
                         <Route path="/register" element={<Register/>}/>
-                        <Route path="/login" element={<Login/>}/>
+                        <Route path="/login" element={<Login2/>}/>
+                        {/*<Route path="/login" element={<Login/>}/>*/}
                         <Route path="/info" element={<Info/>}/>
                         <Route path="/admin" element={<AdminPage/>}/>
                         <Route path="/profile" element={<ProfilePage/>}/>
