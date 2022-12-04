@@ -7,7 +7,6 @@ import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import MultipleSelectCheckmarks from "../components/MultipleSelect";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -35,12 +34,7 @@ function AddCircuit() {
 
     let headers = new Headers();
 
-
-
     headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
-    // headers.append('Access-Control-Allow-Credentials', 'true');
-
-
 
     useEffect(() => {
 
@@ -151,18 +145,7 @@ function AddCircuit() {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                         label="Basic example"
-                        // value = {(() => {
-                        //     let dates = "ceva";
-                        //     if (departureDate.length>0){
-                        //         dates = "";
-                        //         for (const departureDateElement of departureDate) {
-                        //             dates+=departureDateElement.toString();
-                        //             console.log("DATES")
-                        //             console.log(dates)
-                        //         }
-                        //     }
-                        //     return dates;
-                        // })()}
+
                         value={departureDate}
                         // multiple
                         onChange={(newValue) => {
