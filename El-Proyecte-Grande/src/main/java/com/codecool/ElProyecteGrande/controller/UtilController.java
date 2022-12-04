@@ -5,12 +5,21 @@ import com.codecool.ElProyecteGrande.enums.Country;
 import com.codecool.ElProyecteGrande.enums.ProductType;
 import com.codecool.ElProyecteGrande.model.AppUser;
 import com.codecool.ElProyecteGrande.model.products.Product;
+import com.codecool.ElProyecteGrande.payload.email.ChangePasswordRequest;
 import com.codecool.ElProyecteGrande.payload.email.RegisterEmail;
+import com.codecool.ElProyecteGrande.payload.security.JwtResponse;
+import com.codecool.ElProyecteGrande.security.UserPrincipal;
+import com.codecool.ElProyecteGrande.security.jwt.JwtUtils;
 import com.codecool.ElProyecteGrande.service.UserRepository;
 import com.codecool.ElProyecteGrande.service.emailServices.EmailSenderService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/util")
@@ -25,12 +35,16 @@ import java.util.*;
 public class UtilController {
 
     @Autowired
+    JwtUtils jwtUtils;
+    @Autowired
+    AuthenticationManager authenticationManager;
+    @Autowired
     PasswordEncoder encoder;
     @Autowired
     UserRepository userRepository;
-
     @Autowired
     private EmailSenderService senderService;
+
 
     @GetMapping("/countries")
     public List<Country> getAllHotelProducts(){
@@ -44,7 +58,7 @@ public class UtilController {
     @PostMapping("/sendMail")
     public void sendMail() throws MessagingException {
         System.out.println("ruta de a trimite email");
-        senderService.sendEmail("discalicau.dariana@colegiuec.ro",
+        senderService.sendEmail("luca14.decicco@gmail.com",
                 "this is subject",
                 "<h1>this is body<h1/> <button>test</button");
     }
@@ -55,7 +69,6 @@ public class UtilController {
                 registerEmail.getName(),
                 "Register");
     }
-
 
     public static String passwordGenerator(){
         List<String> uppercaseLetters = List.of("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""));
@@ -107,5 +120,38 @@ public class UtilController {
         user.setPassword(encoder.encode(newPassword));
         userRepository.save(user);
         senderService.sendEmailForgotPassword(registerEmail.getEmail(), newPassword);
+    }
+
+    @PostMapping("/changePassword")
+    public ResponseEntity<?> changePassword(@Valid @RequestBody ChangePasswordRequest changePasswordRequest){
+//        String email = changePasswordRequest.getEmail();
+        String oldPassword = changePasswordRequest.getOldPassword();
+        String newPassword = changePasswordRequest.getNewPassword();
+
+        AppUser user = userRepository.findByEmail(changePasswordRequest.getEmail()).orElseThrow(() -> new UsernameNotFoundException("User Not Found with email: " +
+                changePasswordRequest.getEmail()));
+        if (encoder.matches(oldPassword, user.getPassword())){
+            System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
+            System.out.println("Old password is good");
+            user.setPassword(encoder.encode(newPassword));
+            userRepository.save(user);
+
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(user.getUsername(), changePasswordRequest.getNewPassword()));
+
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            String jwt = jwtUtils.generateJwtToken(authentication);
+            System.out.println(jwt);
+            UserPrincipal userDetails = (UserPrincipal) authentication.getPrincipal();
+            List<String> roles = userDetails.getAuthorities().stream()
+                    .map(item -> item.getAuthority())
+                    .collect(Collectors.toList());
+            return ResponseEntity.ok(new JwtResponse(jwt,
+                    userDetails.getId(),
+                    userDetails.getUsername(),
+                    userDetails.getEmail(),
+                    roles));
+        }
+        return null;
     }
 }

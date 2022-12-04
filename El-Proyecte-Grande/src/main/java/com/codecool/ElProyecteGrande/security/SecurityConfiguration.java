@@ -60,6 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/util/sendMail").permitAll()
                 .antMatchers("/util/registerSendMail").permitAll()
                 .antMatchers("/util/forgotPassword").permitAll()
+                .antMatchers("/util/changePassword").permitAll()
                 .antMatchers("/").permitAll()
                 .anyRequest().authenticated();
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
