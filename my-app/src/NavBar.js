@@ -33,9 +33,9 @@ function NavBar() {
                     </Nav>
                     <ProfileDrawer/>
                     {currentUser ? (
-                        <b style={{color:"black"}}>{currentUser.username}</b>
+                        <b style={{color:"black", marginLeft:"1em"}}>{currentUser.username}</b>
                     ) : (
-                        <a href={"/login"} style={{textDecoration: "none"}}><b style={{color:"black"}}>Login</b></a>
+                        <a href={"/login"} style={{textDecoration: "none", marginLeft:"1em"}}><b style={{color:"black"}}>Login</b></a>
                     )}
                 </Container>
             </Navbar>

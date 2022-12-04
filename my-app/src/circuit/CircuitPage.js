@@ -32,10 +32,10 @@ function CircuitPage() {
             for (let circuit of circuits) {
                 if (circuit.id===parseInt(id)){
                     return (
-                        <>
+                        <div style={{textAlign:"center"}}>
                             <CircuitCarousel data={circuit}/>
                             <CircuitDescription data={circuit}/>
-                        </>
+                        </div>
                     );
                 }
             }

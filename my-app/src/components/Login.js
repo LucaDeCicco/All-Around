@@ -34,6 +34,7 @@ function Login() {
             });
         if (response.data.token) {
             localStorage.setItem("user", JSON.stringify(response.data));
+            // sessionStorage
             window.location.replace("/");
             // window.location.replace("/profile");
 
@@ -49,7 +50,7 @@ function Login() {
 
             <div className="d-flex justify-content-between mx-3 mb-4">
                 <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
-                <a href="!#">Forgot password?</a>
+                <a href="/forgotPassword">Forgot password?</a>
             </div>
 
             {/*<MDBBtn className="mb-4" onClick={loginUser}>Sign in</MDBBtn>*/}

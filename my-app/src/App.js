@@ -22,6 +22,8 @@ import ProfilePage from "./components/ProfilePage";
 import StickyFooter from "./Footer";
 // import circuitsBackground from "*.jpg";
 import { useDispatch, useSelector } from "react-redux";
+import ForgotPassword from "./components/forgotPassword";
+import ChangeForgotPassword from "./components/ChangeForgotPassword";
 // import circuitsBackground from "*.jpg";
 // import { logout } from "./actions/auth";
 //
@@ -72,6 +74,8 @@ function App() {
                         <Route path="/info" element={<Info/>}/>
                         <Route path="/admin" element={<AdminPage/>}/>
                         <Route path="/profile" element={<ProfilePage/>}/>
+                        <Route path="/forgotPassword" element={<ForgotPassword/>}/>
+                        <Route path="/changeForgotPassword" element={<ChangeForgotPassword/>}/>
                   </Routes>
             </div>
             <StickyFooter />

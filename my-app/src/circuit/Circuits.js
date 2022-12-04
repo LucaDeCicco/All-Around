@@ -3,7 +3,8 @@ import {ChakraProvider} from '@chakra-ui/react'
 import {useEffect, useState} from 'react'
 import { SimpleGrid } from '@chakra-ui/react'
 import {Link} from "react-router-dom";
-import circuitsBackground from "C:/Codecool/repository/ADVANCED/weekpair2/el-proyecte-grande-sprint-2-java-LucaDeCicco/my-app/src/images/circuitsBackground.jpg";
+// import skyBackground from "C:/Codecool/repository/ADVANCED/weekpair2/el-proyecte-grande-sprint-2-java-LucaDeCicco/my-app/src/images/circuitsBackground.jpg";
+import skyBackground from "C:/Codecool/repository/ADVANCED/weekpair2/el-proyecte-grande-sprint-2-java-LucaDeCicco/my-app/src/images/skyBackground5.jpg";
 function Circuits() {
 
     const [data, setData] = useState(null);
@@ -21,7 +22,8 @@ function Circuits() {
                 setData(result);
                 setLoading(false)
                 let background = document.querySelector(`body`)
-                background.style.background = `url(${circuitsBackground})`
+                background.style.background = `url(${skyBackground}) no-repeat center center fixed`
+                // background.style.padding = `100%`
             }
         };
 

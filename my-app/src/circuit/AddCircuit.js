@@ -119,7 +119,7 @@ function AddCircuit() {
         //     console.log("uploaded files");
         //
         // }
-        window.location.replace("/circuits");
+        // window.location.replace("/circuits");
     }
     if (allCountries){
         return (

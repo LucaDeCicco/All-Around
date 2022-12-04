@@ -151,7 +151,16 @@ export default function ProfileDrawer() {
         <div>
             {['right'].map((anchor) => (
                 <React.Fragment key={anchor}>
-                    <Button onClick={toggleDrawer(anchor, true)}><PersonIcon style={{color:'black'}}/></Button>
+                    <button className={"ceva"} onClick={toggleDrawer(anchor, true)} ref={(node) => {
+                        if (node) {
+                            node.style.setProperty("width", "24px", "important");
+                            node.style.setProperty("padding", "0", "important");
+                            node.style.setProperty("background", "transparent", "important");
+                            node.style.setProperty("border-style", "none", "important");
+                        }
+                    }}>
+                        <PersonIcon style={{color:'black'}}/>
+                    </button>
                     <Drawer
                         anchor={anchor}
                         open={state[anchor]}

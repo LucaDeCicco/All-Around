@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {NavLink} from "react-router-dom";
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
+import axios from "axios";
 function AdminPage() {
     const [currentUser, setCurrentUser] = useState(undefined);
     const [currentUserRoles, setCurrentUserRoles] = useState([]);
@@ -24,6 +25,11 @@ function AdminPage() {
         return false
     }
 
+    const sendEmail = async () => {
+        let response = await axios.post("http://localhost:8888/util/sendMail");
+    }
+
+
     if (!checkIfAdmin()){
         return (
             <>
@@ -39,7 +45,8 @@ function AdminPage() {
             {/*<br/>*/}
             {/*<NavLink to={"/addCircuit"}>Add Circuit</NavLink>*/}
             <br/>
-            <a href={"/addCircuit"}>Add Circuit</a>
+            <a href={"/addCircuit"}>Add Circuit</a><br></br>
+            <button onClick={sendEmail}>Send Email!</button>
         </>
     )
 }

@@ -25,8 +25,6 @@ function Register() {
     const iconStyle = {
         height: "1.5em",
         width: "2em"
-        // backgroundColor: "red"
-
     }
 
     const [name, setName] = useState('');
@@ -52,6 +50,10 @@ function Register() {
             role: ["ROLE_USER"]
         });
             if (response) {
+                await axios.post("http://localhost:8888/util/registerSendMail",{
+                    email,
+                    name
+                });
                 console.log("ok")
                 let username = name
                 const loginResponse = await axios
@@ -93,14 +95,14 @@ function Register() {
                                 <MDBInput placeholder='Password' id='form3' type='password' onChange={handleChangePassword}/>
                             </div>
 
-                            <div className="d-flex flex-row align-items-center mb-4">
-                                <KeyIcon style={iconStyle}/>
-                                <MDBInput placeholder='Repeat your password' id='form4' type='password'/>
-                            </div>
+                            {/*<div className="d-flex flex-row align-items-center mb-4">*/}
+                            {/*    <KeyIcon style={iconStyle}/>*/}
+                            {/*    <MDBInput placeholder='Repeat your password' id='form4' type='password'/>*/}
+                            {/*</div>*/}
 
-                            <div className='mb-4'>
-                                <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Subscribe to our newsletter' />
-                            </div>
+                            {/*<div className='mb-4'>*/}
+                            {/*    <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Subscribe to our newsletter' />*/}
+                            {/*</div>*/}
 
                             {/*<MDBBtn className='mb-4' size='lg'>Register</MDBBtn>*/}
                             <button type="button" className="btn btn-primary" onClick={addUser}>Register</button>

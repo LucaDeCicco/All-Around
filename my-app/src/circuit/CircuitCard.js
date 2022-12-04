@@ -6,11 +6,18 @@ import Myimage from '../images/circuits/1/1.jpg'
 
 function AirbnbCardCircuit({data}) {
 
+    let countriesData = data.countries
+    let countries = ""
+    for (const country of countriesData) {
+        countries += country
+        countries += " "
+    }
+
     const property = {
         // imageUrl: '/src/images/circuits/1/1.jpg',//TODO
         imageAlt: 'Rear view of modern home with pool',
         days: data.days,
-        title: data.countries,
+        title: countries,
         formattedPrice: data.price,
         // reviewCount: 34,
         rating: 4,
@@ -22,9 +29,9 @@ function AirbnbCardCircuit({data}) {
     };
 
     return (
-        <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+        <Box maxW='sm' borderRadius='lg' overflow='hidden'>
             {/*<Image src={property.imageUrl} alt={property.imageAlt}/>*/}
-            <img src={Myimage} alt={property.imageAlt}/>
+            <img src={data.images[0]} alt={property.imageAlt}/>
             {/*<div>*/}
             {/*    <img src={data.images[0]} alt="React Logo" />*/}
             {/*</div>*/}
