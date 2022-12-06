@@ -28,6 +28,10 @@ public class ResortProduct extends OurProduct {
         System.out.println(country);
     }
 
+//    public ResortProduct(String description, int price, List<String> images, String location, int remainingTickets, Date departureDate, int days, Country country) {
+//        super(description, price, images, location, remainingTickets, departureDate, days);
+//    }
+
     public Country getCountry() {
         return country;
     }

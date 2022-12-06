@@ -9,12 +9,6 @@ import java.util.List;
 public class HotelRequest {
 
     @NotBlank
-    private Long id;
-
-    @NotBlank
-    private ProductType productType;
-
-    @NotBlank
     private String description;
 
     @NotBlank
@@ -29,17 +23,12 @@ public class HotelRequest {
     @NotBlank
     private String location;
 
-    @NotBlank
-    private String url;
+//    @NotBlank
+//    private String url;
 
 
-    public Long getId() {
-        return id;
-    }
 
-    public ProductType getProductType() {
-        return productType;
-    }
+
 
     public String getDescription() {
         return description;
@@ -57,9 +46,9 @@ public class HotelRequest {
         return location;
     }
 
-    public String getUrl() {
-        return url;
-    }
+//    public String getUrl() {
+//        return url;
+//    }
 
     public List<String> getImages() {
         return images;

@@ -10,6 +10,7 @@ import com.codecool.ElProyecteGrande.payload.email.RegisterEmail;
 import com.codecool.ElProyecteGrande.payload.security.JwtResponse;
 import com.codecool.ElProyecteGrande.security.UserPrincipal;
 import com.codecool.ElProyecteGrande.security.jwt.JwtUtils;
+import com.codecool.ElProyecteGrande.service.ProductService;
 import com.codecool.ElProyecteGrande.service.UserRepository;
 import com.codecool.ElProyecteGrande.service.emailServices.EmailSenderService;
 import lombok.AllArgsConstructor;
@@ -44,6 +45,9 @@ public class UtilController {
     UserRepository userRepository;
     @Autowired
     private EmailSenderService senderService;
+
+    @Autowired
+    ProductService productService;
 
 
     @GetMapping("/countries")
@@ -154,4 +158,21 @@ public class UtilController {
         }
         return null;
     }
+
+    @GetMapping("/search/{toSearch}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public List<Product> getAllSearchedProducts(@PathVariable String toSearch) {
+        System.out.println("ZZZZZZZZZZZZZZZZZZZ------------ZZZZZZZZZZZZZZ");
+        System.out.println(toSearch);
+        List<Product> searchedProducts = new ArrayList<>();
+        for (Product product : productService.findAll()) {
+            System.out.println("YYYYYYYYYYYYYYYYY_________________YYYYYYYYYYYYYY");
+            System.out.println(String.valueOf(product.getProductType()).toLowerCase());
+            if (String.valueOf(product.getProductType()).toLowerCase().contains(toSearch.toLowerCase())) {
+                searchedProducts.add(product);
+            }
+        }
+        return searchedProducts;
+    }
+
 }

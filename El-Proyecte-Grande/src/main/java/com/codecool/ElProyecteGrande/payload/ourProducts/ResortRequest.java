@@ -10,12 +10,6 @@ import java.util.List;
 public class ResortRequest {
 
     @NotBlank
-    private Long id;
-
-    @NotBlank
-    private ProductType productType;
-
-    @NotBlank
     private String description;
 
     @NotBlank
@@ -27,8 +21,8 @@ public class ResortRequest {
     @NotBlank
     private String location;
 
-    @NotBlank
-    private String itinerary;
+//    @NotBlank
+//    private String itinerary;
 
     @NotBlank
     private int remainingTickets;
@@ -43,14 +37,6 @@ public class ResortRequest {
     private Country country;
 
 
-    public Long getId() {
-        return id;
-    }
-
-    public ProductType getProductType() {
-        return productType;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -63,9 +49,9 @@ public class ResortRequest {
         return location;
     }
 
-    public String getItinerary() {
-        return itinerary;
-    }
+//    public String getItinerary() {
+//        return itinerary;
+//    }
 
     public int getRemainingTickets() {
         return remainingTickets;

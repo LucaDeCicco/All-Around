@@ -61,6 +61,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/util/registerSendMail").permitAll()
                 .antMatchers("/util/forgotPassword").permitAll()
                 .antMatchers("/util/changePassword").permitAll()
+                .antMatchers("/addHotelProduct").permitAll()
                 .antMatchers("/").permitAll()
                 .anyRequest().authenticated();
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
