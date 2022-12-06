@@ -1,7 +1,3 @@
-// import logo from './logo.svg';
-// import mainPage from "./images/mainPage.jpg";
-// import React from 'react';
-// import ReactDOM from 'react-dom/client';
 import AirbnbCard from './ResortCard'
 import {ChakraProvider} from '@chakra-ui/react'
 import {useEffect, useState} from 'react'
@@ -43,7 +39,7 @@ function Resorts() {
 
     if (data!=null){
         return (
-            <div className="circuits" style={container}>
+            <div className="resorts" style={container}>
                 <ChakraProvider>
                     <SimpleGrid columns={3} spacing={115}>
                         {data.map((resort, index) => {

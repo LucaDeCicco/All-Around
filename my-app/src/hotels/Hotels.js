@@ -12,10 +12,16 @@ function Hotels() {
 
     useEffect(() => {
         const fetcher = async () => {
-            let request = await fetch("http://localhost:8888/allMemHotelProducts")
-            let result = await request.json();
-            setData(result);
-            setLoading(false)
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user){
+                let token = user.token
+                let request = await fetch("http://localhost:8888/allMemHotelProducts",{
+                    headers: {Authorization: 'Bearer ' + token},
+                })
+                let result = await request.json();
+                setData(result);
+                setLoading(false)
+            }
         };
 
         fetcher();
@@ -24,7 +30,7 @@ function Hotels() {
     const container={
         marginLeft: "10em",
         marginRight: "10em",
-        marginBottom: "10em",
+        marginBottom: "5em",
 
     };
 
@@ -41,7 +47,7 @@ function Hotels() {
             <div className="hotels" style={container}>
 
                 <ChakraProvider>
-                    <SimpleGrid columns={3} spacing={3}>
+                    <SimpleGrid columns={3} spacing={115}>
                         {data.map((hotel, index) => {
                             return (
                                 <Link key={`hotel_${index}`} to={`/hotel/${hotel.id}`}>

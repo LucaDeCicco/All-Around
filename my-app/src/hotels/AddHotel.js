@@ -71,11 +71,14 @@ function AddHotel() {
     };
 
     const uploadHotels = async () => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        let token = user.token
         const req = await fetch("http://localhost:8888/addHotelApi", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            mode: "no-cors",
-            body: JSON.stringify({description,price,images,country,location,url}),
+            headers: { "Content-Type": "application/json",
+                Authorization: 'Bearer ' + token
+            },
+            body: JSON.stringify({description:description,price:price,images:images,country:country,location:location,url:url}),
         });
 
         if (req.ok) {

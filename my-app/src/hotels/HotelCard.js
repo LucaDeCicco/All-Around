@@ -16,12 +16,13 @@ function AirbnbCardHotel({data}) {
     }
 
     const circuitPointer={
-        cursor: "pointer"
+        cursor: "pointer",
+        backgroundColor:'#B7C8B5'
     };
 
     return (
         <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' style={circuitPointer}>
-            <img src={Myimage} alt={property.imageAlt}/>
+            <img src={data.images[0]} alt={property.imageAlt} style={{maxHeight: "214px", minWidth:"323px", minHeight:"214px", maxWidth:"323px"}}/>
 
             <Box p='6'>
                 <Box display='flex' alignItems='baseline'>

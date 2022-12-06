@@ -13,11 +13,16 @@ function HotelPage() {
 
     useEffect(() => {
         const fetcher = async () => {
-            let request = await fetch("http://localhost:8888/allMemHotelProducts")
-            let result = await request.json();
-
-            setHotels(result);
-            setLoading(false)
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user){
+                let token = user.token
+                let request = await fetch("http://localhost:8888/allMemHotelProducts",{
+                    headers: {Authorization: 'Bearer ' + token}
+                })
+                let result = await request.json();
+                setHotels(result);
+                setLoading(false)
+            }
         };
 
         fetcher();
@@ -28,10 +33,10 @@ function HotelPage() {
         for (let hotel of hotels) {
             if (hotel.id===parseInt(id)){
                 return (
-                    <>
+                    <div style={{textAlign:"center"}}>
                         <HotelCarousel data={hotel}/>
                         <HotelDescription data={hotel}/>
-                    </>
+                    </div>
                 );
             }
         }
