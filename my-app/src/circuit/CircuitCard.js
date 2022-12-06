@@ -31,7 +31,7 @@ function AirbnbCardCircuit({data}) {
     return (
         <Box maxW='sm' borderRadius='lg' overflow='hidden'>
             {/*<Image src={property.imageUrl} alt={property.imageAlt}/>*/}
-            <img src={data.images[0]} alt={property.imageAlt}/>
+            <img src={data.images[0]} alt={property.imageAlt} style={{maxHeight: "214px", minWidth:"323px", minHeight:"214px", maxWidth:"323px"}}/>
             {/*<div>*/}
             {/*    <img src={data.images[0]} alt="React Logo" />*/}
             {/*</div>*/}

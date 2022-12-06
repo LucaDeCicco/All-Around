@@ -7,26 +7,23 @@ import Myimage from '../images/circuits/1/1.jpg'
 function AirbnbCardResort({data}) {
 
     const property = {
-        // imageUrl: '/src/images/circuits/1/1.jpg',//TODO
         imageAlt: 'Rear view of modern home with pool',
         days: data.days,
-        // baths: 2,
         title: data.country,
         formattedPrice: data.price,
         // reviewCount: 34,
-        rating: 2,
+        rating: 3,
     }
 
     const circuitPointer={
-        cursor: "pointer"
+        cursor: "pointer",
+        backgroundColor:'#B7C8B5'
     };
 
     return (
-        <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' style={circuitPointer}>
-            {/*<Image src={property.imageUrl} alt={property.imageAlt}/>*/}
-            <img src={Myimage} alt={property.imageAlt}/>
-
-            <Box p='6'>
+        <Box maxW='sm' borderRadius='lg' overflow='hidden'>
+            <img src={data.images[0]} alt={property.imageAlt} style={{maxHeight: "214px", minWidth:"323px", minHeight:"214px", maxWidth:"323px"}}/>
+            <Box p='6' style={{backgroundColor:'#B7C8B5'}}>
                 <Box display='flex' alignItems='baseline'>
                     <Badge borderRadius='full' px='2' colorScheme='teal'>
                         Resort
@@ -53,14 +50,12 @@ function AirbnbCardResort({data}) {
                 >
                     {property.title}
                 </Box>
-
                 <Box>
                     {property.formattedPrice}
                     <Box as='span' color='gray.600' fontSize='sm'>
-                        / wk
+                        $ / person
                     </Box>
                 </Box>
-
                 <Box display='flex' mt='2' alignItems='center'>
                     {Array(5)
                         .fill('')

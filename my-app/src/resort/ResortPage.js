@@ -12,13 +12,17 @@ function ResortPage() {
 
     useEffect(() => {
         const fetcher = async () => {
-            let request = await fetch("http://localhost:8888/allMemResortProducts")
-            let result = await request.json();
-
-            setResorts(result);
-            setLoading(false)
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user){
+                let token = user.token
+                let request = await fetch("http://localhost:8888/allMemResortProducts",{
+                    headers: {Authorization: 'Bearer ' + token}
+                })
+                let result = await request.json();
+                setResorts(result);
+                setLoading(false)
+            }
         };
-
         fetcher();
     }, [loading])
 
@@ -27,10 +31,10 @@ function ResortPage() {
         for (let resort of resorts) {
             if (resort.id===parseInt(id)){
                 return (
-                    <>
+                    <div style={{textAlign:"center"}}>
                         <ResortCarousel data={resort}/>
                         <ResortDescription data={resort}/>
-                    </>
+                    </div>
                 );
             }
         }

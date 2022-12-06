@@ -7,7 +7,8 @@ const Video = () => {
         height: "30em",
         width: "50em",
         marginLeft: "auto",
-        marginRight: "auto"
+        marginRight: "auto",
+        marginTop: "2em"
     }
     return (
         <div className='video'>

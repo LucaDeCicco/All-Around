@@ -1,45 +1,21 @@
-// // import {Badge, Box} from "@chakra-ui/react";
-// // import Myimage from "../images/circuits/1/1.jpg";
-// // import {StarIcon} from "@chakra-ui/icons";
-// // import {useParams} from "react-router-dom";
-//
-// function   CircuitDescription({data}) {
-//
-//     // const {id} = useParams();
-//
-//     // const property = {
-//     //     // imageUrl: '/src/images/circuits/1/1.jpg',//TODO
-//     //     imageAlt: 'Rear view of modern home with pool',
-//     //     days: data.days,
-//     //     // baths: 2,
-//     //     title: data.location,
-//     //     formattedPrice: data.price,
-//     //     // reviewCount: 34,
-//     //     rating: 4,
-//     // }
-//
-//     // const circuitPointer={
-//     //     cursor: "pointer"
-//     // };
-//
-//     return (
-//         <>
-//             <div>DESCRIERE Circuit {data.description}</div>
-//         </>
-//     )
-// }
-//
-// export default CircuitDescription;
-
 import Card from 'react-bootstrap/Card';
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 function CircuitDescription({data}) {
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     let countriesData = data.countries
     let countries = ""
     for (const country of countriesData) {
         countries += country
         countries += " "
     }
+
     return (
         <Card style={{ width: '70%', margin:"auto", marginTop:"5em", marginBottom:"5em" }}>
             <Card.Body>
@@ -48,8 +24,34 @@ function CircuitDescription({data}) {
                 <Card.Text>
                     {data.description}
                 </Card.Text>
-                <Card.Link href="#">Card Link</Card.Link>
-                <Card.Link href="#">Another Link</Card.Link>
+                {/*<Card.Link href="#">View itinerary</Card.Link>*/}
+                <>
+                    <Button variant="primary" onClick={handleShow} style={{marginRight:"2em"}}>
+                        View itinerary
+                    </Button>
+
+                    <Modal
+                        show={show}
+                        onHide={handleClose}
+                        backdrop="static"
+                        keyboard={false}
+                    >
+                        <Modal.Header closeButton>
+                            <Modal.Title>Itinerary</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            {data.itinerary}
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Close
+                            </Button>
+                            {/*<Button variant="primary">Understood</Button>*/}
+                        </Modal.Footer>
+                    </Modal>
+                </>
+                {/*<Card.Link href="#">Pay</Card.Link>*/}
+                <Button variant={"success"} style={{marginLeft:"2em"}}>Book</Button>
             </Card.Body>
         </Card>
     );

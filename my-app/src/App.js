@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ForgotPassword from "./components/forgotPassword";
 import ChangeForgotPassword from "./components/ChangeForgotPassword";
 import Login2 from "./components/Login2";
+import SearchResult from "./components/SearchResult";
 // import circuitsBackground from "*.jpg";
 // import { logout } from "./actions/auth";
 //
@@ -78,6 +79,8 @@ function App() {
                         <Route path="/profile" element={<ProfilePage/>}/>
                         <Route path="/forgotPassword" element={<ForgotPassword/>}/>
                         <Route path="/changeForgotPassword" element={<ChangeForgotPassword/>}/>
+                        <Route path="/search/:toSearch" element={<SearchResult />}/>
+
                   </Routes>
             </div>
             <StickyFooter />

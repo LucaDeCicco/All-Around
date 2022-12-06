@@ -41,10 +41,13 @@ function ProfilePage() {
 
 
     return (
+
+
         <div style={{textAlign:"center", backgroundImage: `url(${profileBackground})`, minHeight:"80vh", backgroundRepeat: "repeat-y", backgroundSize:"contain"}}>
             {/*<h1><b>Profile Page</b></h1>*/}
             {/*<br></br>*/}
             {/*<br></br>*/}
+
             <Card style={{ width: '60%',height:"80vh", margin:"auto", marginBottom:"5em", marginLeft:"40%" }}>
                 <Card.Body>
                     <br></br>

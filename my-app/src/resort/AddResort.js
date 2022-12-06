@@ -56,7 +56,6 @@ function AddResort() {
     const [days, setDays] = useState('');
     const [country, setCountry] = useState('');
 
-    let body = {description, price, location, remainingTickets, days, images, country, departureDate};
 
     const handleChangeDescription = event => {
         setDescription(event.target.value);
@@ -83,13 +82,18 @@ function AddResort() {
     };
 
     const uploadResorts = async () => {
-        const req = await fetch("http://localhost:8888/addResortApi", {
+        const user = JSON.parse(localStorage.getItem('user'));
+        let token = user.token
+        // let body = JSON.stringify({description:description, price:price, location, remainingTickets, days, images, country, departureDate})   ;
+        let body = JSON.stringify({description:description, price:price, images:images, location:location, remainingTickets:remainingTickets,  departureDate:departureDate, days:days, country:country})   ;
+        const req = await fetch("http://localhost:8888/add-resort", {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token
             },
-            mode: "no-cors",
-            body: body,
+            // mode: "no-cors",
+            body: JSON.stringify({description:description, price:price, images:images, location:location, remainingTickets:remainingTickets,  departureDate:departureDate, days:days, country:country})
         });
 
         if (req.ok) {

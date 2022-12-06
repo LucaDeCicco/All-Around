@@ -27,7 +27,8 @@ import App from "./App";
 
 
 
-document.body.style.backgroundColor='#CED4DA';
+// document.body.style.backgroundColor='#CED4DA';
+document.body.style.backgroundColor='lightblue';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 // root.render(

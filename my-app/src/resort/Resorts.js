@@ -15,11 +15,16 @@ function Resorts() {
 
     useEffect(() => {
         const fetcher = async () => {
-            let request = await fetch("http://localhost:8888/allMemResortProducts")
-            let result = await request.json();
-
-            setData(result);
-            setLoading(false)
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user){
+                let token = user.token
+                let request = await fetch("http://localhost:8888/allMemResortProducts",{
+                    headers: {Authorization: 'Bearer ' + token},
+                })
+                let result = await request.json();
+                setData(result);
+                setLoading(false)
+            }
         };
 
         fetcher();
@@ -28,13 +33,9 @@ function Resorts() {
     const container={
         marginLeft: "10em",
         marginRight: "10em",
-        marginBottom: "10em",
+        marginBottom: "5em",
 
     };
-
-    // const circuitDiv={
-    //     cursor: "pointer"
-    // };
 
     const handleClick = (elem) => event => {
         // 👇️ refers to the div element
@@ -44,7 +45,7 @@ function Resorts() {
         return (
             <div className="circuits" style={container}>
                 <ChakraProvider>
-                    <SimpleGrid columns={3} spacing={3}>
+                    <SimpleGrid columns={3} spacing={115}>
                         {data.map((resort, index) => {
                             return (
                                 <Link key={`resort_${index}`} to={`/resort/${resort.id}`}>

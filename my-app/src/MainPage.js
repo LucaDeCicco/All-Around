@@ -5,6 +5,9 @@ import { Button } from '@mui/material';
 // import Circuits from "./Circuits";
 import { NavLink } from 'react-router-dom';
 import Video from "./Video";
+import FlipCard from "./test/FlipCard";
+import AppFlipCard from "./test/AppFlipCard";
+import MapFlipCard from "./test/mapFlipCard";
 
 class MainPage extends Component {
   render() {
@@ -44,6 +47,9 @@ class MainPage extends Component {
 
           </div>
           <Video />
+            {/*<FlipCard />*/}
+            <AppFlipCard />
+            {/*<MapFlipCard />*/}
         </>
     );
   }
