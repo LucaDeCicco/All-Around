@@ -5,6 +5,9 @@ import com.codecool.ElProyecteGrande.enums.Country;
 import com.codecool.ElProyecteGrande.enums.ProductType;
 import com.codecool.ElProyecteGrande.model.AppUser;
 import com.codecool.ElProyecteGrande.model.products.Product;
+import com.codecool.ElProyecteGrande.model.products.externalProducts.Hotel;
+import com.codecool.ElProyecteGrande.model.products.ourProducts.CircuitProduct;
+import com.codecool.ElProyecteGrande.model.products.ourProducts.ResortProduct;
 import com.codecool.ElProyecteGrande.payload.email.ChangePasswordRequest;
 import com.codecool.ElProyecteGrande.payload.email.RegisterEmail;
 import com.codecool.ElProyecteGrande.payload.security.JwtResponse;
@@ -170,6 +173,31 @@ public class UtilController {
             System.out.println(String.valueOf(product.getProductType()).toLowerCase());
             if (String.valueOf(product.getProductType()).toLowerCase().contains(toSearch.toLowerCase())) {
                 searchedProducts.add(product);
+            }
+            else {
+                boolean canAddProduct = true;
+                if (product.getProductType()==ProductType.CIRCUIT){
+                    CircuitProduct circuitProduct = (CircuitProduct) product;
+                    for (Country country : circuitProduct.getCountries()) {
+                        if (String.valueOf(country).toLowerCase().contains(toSearch.toLowerCase())){
+                            if (canAddProduct){
+                                searchedProducts.add(product);
+                                canAddProduct = false;
+                            }
+                        }
+                    }
+                }
+                if (product.getProductType()==ProductType.RESORT){
+                    ResortProduct resortProduct = (ResortProduct) product;
+                    if (String.valueOf(resortProduct.getCountry()).toLowerCase().contains(toSearch.toLowerCase()))
+                        searchedProducts.add(product);
+                }
+                if (product.getProductType()==ProductType.HOTEL){
+                    Hotel hotel = (Hotel) product;
+                    if (String.valueOf(hotel.getCountry()).toLowerCase().contains(toSearch.toLowerCase())){
+                        searchedProducts.add(product);
+                    }
+                }
             }
         }
         return searchedProducts;
