@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-//@Table(name = "resorts")
+//@Table(name = "hotels")
 public class Hotel extends Product {
 
     @Enumerated(EnumType.STRING)
@@ -32,30 +32,6 @@ public class Hotel extends Product {
         super(productType, description, price, images);
         this.country = country;
         this.location = location;
-        this.url = url;
-    }
-
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
         this.url = url;
     }
 }

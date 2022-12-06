@@ -61,7 +61,6 @@ public class ProductController {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-
         CircuitProduct circuitProduct = new CircuitProduct(ProductType.CIRCUIT, prod.getDescription(), prod.getPrice(), prod.getImages(), prod.getLocation(),
                 prod.getItinerary(), prod.getRemainingTickets(), prod.getDepartureDate(), prod.getDays(), prod.getCountries());
         productService.save(circuitProduct);
@@ -102,61 +101,17 @@ public class ProductController {
         return resortProducts;
     }
 
-
-
-
-
-
-
-
-
-    /////////////////////////////////////////////////////////////////////////
-
-
-
-
-
     @PostMapping("/addHotelApi")
-    public String addHotel(@RequestBody String product) throws ParseException, JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        HotelRequest prod = objectMapper.readValue(product, HotelRequest.class);
-//        Hotel hotelProduct = new Hotel(ProductType.HOTEL, prod.getDescription(), prod.getPrice(), prod.getImages(), prod.getCountry(),
-//                prod.getLocation(), prod.getUrl());
-//        productService.save(hotelProduct);
+    @PreAuthorize("hasRole('ADMIN')")
+    public String addHotel(@RequestBody HotelRequest product) throws ParseException, JsonProcessingException {
+        Hotel hotelProduct = new Hotel(ProductType.HOTEL, product.getDescription(), product.getPrice(), product.getImages(), product.getCountry(),
+                product.getLocation(), product.getUrl());
+        productService.save(hotelProduct);
         return "circuit added successfully";
     }
-
-    @PostMapping("/addCircuitProduct")
-//    @PreAuthorize("hasRole('ADMIN')")
-    public String addCircuitProduct(@RequestBody CircuitRequest product) throws ParseException {
-//        SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
-//        Date date=formatter1.parse(product.getDepartureDate());
-        CircuitProduct newProduct = new CircuitProduct(product.getProductType(),
-                product.getDescription(), product.getPrice(), product.getImages(), product.getLocation(), product.getItinerary(),
-                product.getRemainingTickets(), new Date(), product.getDays(), product.getCountries());
-        productService.save(newProduct);
-        return "circuit added successfully";
-    }
-
-    @PostMapping("/addHotelProduct")
-    public String addHotelProduct(@RequestBody HotelRequest product) {
-//        Hotel newProduct = new Hotel(product.getProductType(), product.getDescription(), product.getPrice(),
-//                product.getImages(),
-//                product.getCountry(), product.getLocation(), product.getUrl());
-//        productService.save(newProduct);
-        return "hotel added successfully";
-    }
-
-    @GetMapping("allMemProducts")
-    public List<Product> getAllProducts() {
-        return productService.findAll();
-    }
-
-
-
-
 
     @GetMapping("allMemHotelProducts")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public List<Product> getAllHotelProducts() {
         List<Product> hotelProducts = new ArrayList<>();
         for (Product product : productService.findAll()) {
@@ -165,6 +120,11 @@ public class ProductController {
             }
         }
         return hotelProducts;
+    }
+
+    @GetMapping("allMemProducts")
+    public List<Product> getAllProducts() {
+        return productService.findAll();
     }
 
 }
