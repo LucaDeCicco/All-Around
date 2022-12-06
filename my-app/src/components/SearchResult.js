@@ -3,6 +3,8 @@ import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import {ChakraProvider, SimpleGrid} from "@chakra-ui/react";
 import AirbnbCard from "../circuit/CircuitCard";
+import AirbnbCardResort from "../resort/ResortCard";
+import AirbnbCardHotel from "../hotels/HotelCard";
 
 
 
@@ -64,7 +66,22 @@ export default function SearchResult() {
                                 return (
                                     <Link key={`circuit_${index}`} to={`/${product.productType.toLowerCase()}/${product.id}`} style={{maxHeight: 'fit-content'}}>
                                         <div onClick={handleClick(product)} className={"test"} style={{maxHeight: 'fit-content'}}>
-                                            <AirbnbCard data={product}/>
+                                            {product.productType.toLowerCase()==="circuit" ? (
+                                                <AirbnbCard data={product}/>
+                                            ) : (
+                                                <></>
+                                            )}
+                                            {product.productType.toLowerCase()==="resort" ? (
+                                                <AirbnbCardResort data={product} />
+                                            ) : (
+                                                <></>
+                                            )}
+                                            {product.productType.toLowerCase()==="hotel" ? (
+                                                <AirbnbCardHotel data={product} />
+                                            ) : (
+                                                <></>
+                                            )}
+
                                         </div>
                                     </Link>
                                 );

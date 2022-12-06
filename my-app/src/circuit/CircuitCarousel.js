@@ -13,10 +13,6 @@ function CarouselFadeExampleCircuit({data}) {
         // align: "center"
     }
 
-    for (const datum of data.images) {
-        console.log(datum)
-    }
-
     return (
         <div style={carrouselDimensions}>
         <Carousel fade>
@@ -35,8 +31,8 @@ function CarouselFadeExampleCircuit({data}) {
                                 style={imageDimensions}
                             />
                             <Carousel.Caption>
-                                <h3>First slide label</h3>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                {/*<h3>First slide label</h3>*/}
+                                {/*<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>*/}
                             </Carousel.Caption>
                         </Carousel.Item>
                     )}
