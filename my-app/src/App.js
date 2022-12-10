@@ -24,6 +24,7 @@ import ChangeForgotPassword from "./components/ChangeForgotPassword";
 import Login2 from "./components/Login2";
 import SearchResult from "./components/SearchResult";
 import Luca from "./components/teste/Luca";
+import Visibility from "./components/teste/Visibility";
 
 function    App() {
       // const [loading, setLoading] = useState(false);
@@ -84,6 +85,7 @@ function    App() {
                         <Route path="/search/:toSearch/:page" element={<SearchResult />}/>
                         {/*<Route path="/chatGpt" element={<HelloDariana />}/>*/}
                         <Route path="/chatGpt2" element={<Luca />}/>
+                        <Route path="/visibility" element={<Visibility />}/>
 
                   </Routes>
             </div>

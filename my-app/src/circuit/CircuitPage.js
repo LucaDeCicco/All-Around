@@ -32,7 +32,7 @@ function CircuitPage() {
             for (let circuit of circuits) {
                 if (circuit.id===parseInt(id)){
                     return (
-                        <div style={{textAlign:"center", backgroundColor:"lightblue"}}>
+                        <div style={{textAlign:"center"}}>
                             <br></br>
                             <CircuitCarousel data={circuit}/>
                             <CircuitDescription data={circuit}/>
