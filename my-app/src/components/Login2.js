@@ -46,17 +46,27 @@ function Login2() {
 
 
     const loginUser = async () => {
+        console.log("loginUser")
         const response = await axios
             .post(API_URL + "signin", {
                 username,
                 password,
             });
+        console.log("response")
+        console.log(response)
         if (response.data.token) {
             localStorage.setItem("user", JSON.stringify(response.data));
             // sessionStorage
             window.location.replace("/");
             // window.location.replace("/profile");
 
+        }
+        if (response){
+            console.log("if")
+        }
+        else {
+            alert("username or password is incorrect")
+            console.log("else")
         }
         return response.data;
     };

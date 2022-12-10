@@ -41,6 +41,12 @@ function Register() {
     const handleChangePassword = event => {
         setPassword(event.target.value);
     };
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            // Call the function here
+            addUser();
+        }
+    };
 
     const addUser = async () => {
         let response = await axios.post(API_URL + "signup", {
@@ -82,17 +88,17 @@ function Register() {
 
                             <div className="d-flex flex-row align-items-center mb-4 ">
                                 <PersonIcon style={iconStyle}/>
-                                <MDBInput placeholder='Username' id='form1' type='text' className='w-100' onChange={handleChangeName}/>
+                                <MDBInput placeholder='Username' id='form1' type='text' className='w-100' onChange={handleChangeName} onKeyDown={handleKeyDown}/>
                             </div>
 
                             <div className="d-flex flex-row align-items-center mb-4">
                                 <EmailIcon style={iconStyle}/>
-                                <MDBInput placeholder='Your Email' id='form2' type='email' onChange={handleChangeEmail}/>
+                                <MDBInput placeholder='Your Email' id='form2' type='email' onChange={handleChangeEmail} onKeyDown={handleKeyDown}/>
                             </div>
 
                             <div className="d-flex flex-row align-items-center mb-4">
                                 <LockIcon style={iconStyle}/>
-                                <MDBInput placeholder='Password' id='form3' type='password' onChange={handleChangePassword}/>
+                                <MDBInput placeholder='Password' id='form3' type='password' onChange={handleChangePassword} onKeyDown={handleKeyDown}/>
                             </div>
 
                             {/*<div className="d-flex flex-row align-items-center mb-4">*/}

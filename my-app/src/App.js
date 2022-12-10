@@ -81,6 +81,7 @@ function    App() {
                         <Route path="/forgotPassword" element={<ForgotPassword/>}/>
                         <Route path="/changeForgotPassword" element={<ChangeForgotPassword/>}/>
                         <Route path="/search/:toSearch" element={<SearchResult />}/>
+                        <Route path="/search/:toSearch/:page" element={<SearchResult />}/>
                         {/*<Route path="/chatGpt" element={<HelloDariana />}/>*/}
                         <Route path="/chatGpt2" element={<Luca />}/>
 
