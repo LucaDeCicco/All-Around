@@ -3,7 +3,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import React, {useState} from "react";
-import axios from "axios";
+import   axios from "axios";
 
 const API_URL = "http://localhost:8888/api/auth/";
 

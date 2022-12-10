@@ -15,22 +15,20 @@ import AddCircuit from "./circuit/AddCircuit";
 import AddResort from "./resort/AddResort";
 import AddHotel from "./hotels/AddHotel";
 import Register from "./components/Register";
-import Login from "./components/Login";
 import Info from "./components/Info";
 import AdminPage from "./components/AdminPage";
 import ProfilePage from "./components/ProfilePage";
 import StickyFooter from "./Footer";
-// import circuitsBackground from "*.jpg";
-import { useDispatch, useSelector } from "react-redux";
 import ForgotPassword from "./components/forgotPassword";
 import ChangeForgotPassword from "./components/ChangeForgotPassword";
 import Login2 from "./components/Login2";
 import SearchResult from "./components/SearchResult";
-// import circuitsBackground from "*.jpg";
-// import { logout } from "./actions/auth";
-//
-function App() {
+import Luca from "./components/teste/Luca";
+
+function    App() {
       // const [loading, setLoading] = useState(false);
+
+
 
       const parseJwt = (token) => {
             try {
@@ -62,10 +60,13 @@ function App() {
                   <Routes>
                         <Route index element={<MainPage />} />
                         <Route path="circuits" element={<Circuits />}/>
+                        <Route path="circuits/:page" element={<Circuits />}/>
                         <Route path="/circuit/:id" element={<CircuitPage />}/>
                         <Route path="resorts" element={<Resorts />}/>
+                        <Route path="resorts/:page" element={<Resorts />}/>
                         <Route path="/resort/:id" element={<ResortPage />}/>
                         <Route path="hotels" element={<Hotels />}/>
+                        <Route path="hotels/:page" element={<Hotels />}/>
                         <Route path="/hotel/:id" element={<HotelPage />}/>
                         <Route path="/addImage" element={<AddImage/>}/>
                         <Route path="/addCircuit" element={<AddCircuit/>}/>
@@ -80,6 +81,8 @@ function App() {
                         <Route path="/forgotPassword" element={<ForgotPassword/>}/>
                         <Route path="/changeForgotPassword" element={<ChangeForgotPassword/>}/>
                         <Route path="/search/:toSearch" element={<SearchResult />}/>
+                        {/*<Route path="/chatGpt" element={<HelloDariana />}/>*/}
+                        <Route path="/chatGpt2" element={<Luca />}/>
 
                   </Routes>
             </div>

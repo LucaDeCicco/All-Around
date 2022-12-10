@@ -22,7 +22,15 @@ function NavBar() {
 
     return (
         <>
-            <Navbar style={{backgroundColor:'#6C757D'}}>
+            {/*<Navbar style={{backgroundColor:'#FCFDAF'}}>*/}
+            {/*<Navbar style={{backgroundColor:'#6C757D'}}>*/}
+            {/*<Navbar style={{backgroundColor:'#EFD780'}}>*/}
+            {/*<Navbar style={{backgroundColor:'linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c)'}}>*/}
+            {/*<Navbar style={{backgroundColor:'linear-gradient(blue, lightblue)'}}>*/}
+            {/*<Navbar style={{background: 'linear-gradient(to right, red, blue)'}}>*/}
+            <Navbar style={{background: 'linear-gradient(to right, lightblue, pink)'}}>
+            {/*<Navbar style={{background: 'linear-gradient(to right, orange, purple)'}}>*/}
+            {/*<Navbar style={{backgroundColor:'#FCFDAF'}}>*/}
             {/*<Navbar bg='dark'>*/}
                 <Container>
                     <img src={Logo} width={80} height={64} alt={""}/>
@@ -30,9 +38,9 @@ function NavBar() {
                     &nbsp;
                     <Navbar.Brand href="/">All Around</Navbar.Brand>
                     <Nav className="me-auto">
-                    <NavLink style={{ textDecoration: 'none' }} to="/circuits"><Button variant="text"><b style={{color:'#212529'}}>CIRCUITS</b></Button></NavLink>
-                    <NavLink style={{ textDecoration: 'none' }} to="/resorts"><Button variant="text" color={"secondary"}><b style={{color:'#343A40'}}>RESORTS</b></Button></NavLink>
-                    <NavLink style={{ textDecoration: 'none' }} to="/hotels"><Button variant="text" color={"info"}><b style={{color:'#ADB5BD'}}>HOTELS</b></Button></NavLink>
+                    <NavLink style={{ textDecoration: 'none' }} to="/circuits"><Button variant="text"><b style={{color:'#c07e27'}}>CIRCUITS</b></Button></NavLink>
+                    <NavLink style={{ textDecoration: 'none' }} to="/resorts"><Button variant="text" color={"secondary"}><b style={{color:'#c07e27'}}>RESORTS</b></Button></NavLink>
+                    <NavLink style={{ textDecoration: 'none' }} to="/hotels"><Button variant="text" color={"info"}><b style={{color:'#c07e27'}}>HOTELS</b></Button></NavLink>
 
                         {/*<Search />*/}
                     </Nav>

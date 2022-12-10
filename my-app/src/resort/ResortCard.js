@@ -23,7 +23,7 @@ function AirbnbCardResort({data}) {
     return (
         <Box maxW='sm' borderRadius='lg' overflow='hidden'>
             <img src={data.images[0]} alt={property.imageAlt} style={{maxHeight: "214px", minWidth:"323px", minHeight:"214px", maxWidth:"323px"}}/>
-            <Box p='6' style={{backgroundColor:'#B7C8B5'}}>
+            <Box p='6' style={{background:'linear-gradient(white, #CBC3E3)'}}>
                 <Box display='flex' alignItems='baseline'>
                     <Badge borderRadius='full' px='2' colorScheme='teal'>
                         Resort

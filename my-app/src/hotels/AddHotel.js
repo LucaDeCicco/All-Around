@@ -82,7 +82,7 @@ function AddHotel() {
         });
 
         if (req.ok) {
-            const res = await req.json();
+            // const res = await req.json();
             console.log("uploaded files");
         }
     }

@@ -13,7 +13,7 @@ function SearchModal() {
 
     return (
         <>
-            <Button variant="secondary" onClick={handleShow}>
+            <Button variant="secondary" onClick={handleShow} style={{backgroundColor:"transparent",  border:"none", padding:"0"}}>
                 <SearchIcon></SearchIcon>
             </Button>
 

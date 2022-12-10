@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
 import axios from 'axios';
@@ -18,6 +18,11 @@ import LockIcon from "@mui/icons-material/Lock";
 const API_URL = "http://localhost:8888/api/auth/";
 
 function Login2() {
+
+    // useEffect(()=>{
+    //     handleKeyDown();
+    // })
+
     const iconStyle = {
         height: "1.5em",
         width: "2em"
@@ -31,6 +36,12 @@ function Login2() {
     };
     const handleChangePassword = event => {
         setPassword(event.target.value);
+    };
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            // Call the function here
+            loginUser();
+        }
     };
 
 
@@ -62,12 +73,12 @@ function Login2() {
 
                             <div className="d-flex flex-row align-items-center mb-4 ">
                                 <PersonIcon style={iconStyle}/>
-                                <MDBInput placeholder='Username' id='form1' type='text' className='w-100' onChange={handleChangeUsername}/>
+                                <MDBInput placeholder='Username' id='form1' type='text' className='w-100' onChange={handleChangeUsername} onKeyDown={handleKeyDown}/>
                             </div>
 
                             <div className="d-flex flex-row align-items-center mb-4">
                                 <LockIcon style={iconStyle}/>
-                                <MDBInput placeholder='Password' id='form3' type='password' onChange={handleChangePassword}/>
+                                <MDBInput placeholder='Password' id='form3' type='password' onChange={handleChangePassword} onKeyDown={handleKeyDown}/>
                             </div>
 
                             <button type="button" className="btn btn-primary" onClick={loginUser}>Log In</button>

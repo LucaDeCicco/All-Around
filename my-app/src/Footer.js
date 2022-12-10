@@ -47,7 +47,8 @@ export default function StickyFooter() {
           py: 3,
           px: 2,
           mt: 'auto',
-          backgroundColor: '#ADB5BD',
+          // backgroundColor: '#ADB5BD',
+          background: 'linear-gradient(to right, lightblue, gray)',
           marginTop: "???px"
         }}
       >

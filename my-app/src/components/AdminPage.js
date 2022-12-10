@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {NavLink} from "react-router-dom";
+import Button from 'react-bootstrap/Button';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import axios from "axios";
 function AdminPage() {
@@ -29,6 +30,17 @@ function AdminPage() {
         let response = await axios.post("http://localhost:8888/util/sendMail");
     }
 
+    const goToAddCircuit = () => {
+        window.location.replace("/addCircuit")
+    }
+
+    const goToAddResort = () => {
+        window.location.replace("/addResort")
+    }
+
+    const goToAddHotel = () => {
+        window.location.replace("/addHotel")
+    }
 
     if (!checkIfAdmin()){
         return (
@@ -41,12 +53,21 @@ function AdminPage() {
 
     return (
         <>
-            <b>Admin Page</b>
-            {/*<br/>*/}
-            {/*<NavLink to={"/addCircuit"}>Add Circuit</NavLink>*/}
-            <br/>
-            <a href={"/addCircuit"}>Add Circuit</a><br></br>
-            <button onClick={sendEmail}>Send Email!</button>
+            <div style={{textAlign:"center"}}>
+                <h1>Admin Page</h1>
+                <br/>
+                <br/>
+                {/*<a href={"/addCircuit"}>Add Circuit</a><br></br>*/}
+                <div style={{textAlign:"center"}}>
+                    <Button onClick={goToAddCircuit}>Add Circuit!</Button>
+                    <div style={{minWidth:"2em", display:"inline-block"}}></div>
+                    <Button onClick={goToAddResort}>Add Resort!</Button>
+                    <div style={{minWidth:"2em", display:"inline-block"}}></div>
+                    <Button onClick={goToAddHotel}>AddHotel!</Button>
+                </div>
+                <br/>
+                <Button variant={"warning"} onClick={sendEmail}>Send Email!</Button>
+            </div>
         </>
     )
 }

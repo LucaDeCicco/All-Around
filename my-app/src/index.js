@@ -26,9 +26,19 @@ import App from "./App";
 // const [loading, setLoading] = useState(false);
 
 
+// background: linear-gradient(
+//     106.37deg,
+//     #ffe1bc 29.63%,
+//     #ffcfd1 51.55%,
+//     #f3c6f1 90.85%
+// );
 
-// document.body.style.backgroundColor='#CED4DA';
-document.body.style.backgroundColor='lightblue';
+// document.body.style.backgroundColor='#F7FFDD';
+// document.body.style.background="linear-gradient(#e66465, #9198e5)";
+// document.body.style.background="linear-gradient(#FCFDAF, #D0E3CC)";
+document.body.style.background="linear-gradient(#D0E3CC, #FCFDAF)";
+
+// document.body.style.backgroundColor='lightblue';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 // root.render(
@@ -61,7 +71,6 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 //
 //   </React.StrictMode>
 // );
-
 
 root.render(
     <React.StrictMode>

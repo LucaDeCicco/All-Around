@@ -42,8 +42,9 @@ const cards = [
 export default function AppFlipCard() {
     return (
         <div className="containerFlipCard">
-            <div className="row h-100">
-                <div className="col d-flex flex-column flex-md-row justify-content-around align-items-center">
+            <div className="row h-50">
+                {/*<div className="col d-flex flex-column flex-md-row justify-content-around align-items-center">*/}
+                <div className="col d-flex" style={{marginLeft:"25%"}}>
                     {cards.map((card) => (
                         <FlipCard key={card.id} card={card} />
                     ))}

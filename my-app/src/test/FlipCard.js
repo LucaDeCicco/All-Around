@@ -31,6 +31,7 @@ function FlipCard({ card }) {
             onClick={handleClick}
             onFocus={handleFocus}
             onBlur={handleBlur}
+
         >
             <div
                 className={cn("flip-card-inner", {

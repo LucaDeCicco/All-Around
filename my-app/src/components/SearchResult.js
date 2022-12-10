@@ -5,6 +5,7 @@ import {ChakraProvider, SimpleGrid} from "@chakra-ui/react";
 import AirbnbCard from "../circuit/CircuitCard";
 import AirbnbCardResort from "../resort/ResortCard";
 import AirbnbCardHotel from "../hotels/HotelCard";
+import { Spinner } from '@chakra-ui/react'
 
 
 
@@ -97,7 +98,10 @@ export default function SearchResult() {
     }
     return (
         <>
-            <h1>Search results...</h1>
+            <div style={{textAlign:"center", verticalAlign:"middle", marginTop:"20%"}}>
+                <Spinner style={{height:"3em", width:"3em"}}/>
+                <p>Search results...</p>
+            </div>
         </>
     );
 }
