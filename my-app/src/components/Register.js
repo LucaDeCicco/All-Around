@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
@@ -29,18 +29,74 @@ function Register() {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState([]);
+    const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+    const [userNames, setUserNames] = useState([]);
+    const [emails, setEmails] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+
+    useEffect(() => {
+        const fetcherUsernames = async () => {
+            let request = await fetch(`http://localhost:8888/util/usernames`)
+            let result = await request.json();
+            setUserNames(result);
+            // setLoading(false)
+        };
+        const fetcherEmails = async () => {
+            let request = await fetch(`http://localhost:8888/util/getEmails`)
+            let result = await request.json();
+            setEmails(result);
+            setLoading(false)
+        };
+
+        fetcherUsernames();
+        fetcherEmails();
+    },[loading])
 
 
     const handleChangeName = event => {
         setName(event.target.value);
+        let sameUsername = false;
+        for (let userName of userNames) {
+            if (userName.toLowerCase()===event.target.value.toLowerCase()){
+                console.log("username used")
+                sameUsername = true;
+            }
+        }
+        if (sameUsername){
+            setErrorMessage("This username is used")
+        }
+        else {
+            setErrorMessage("")
+        }
     };
     const handleChangeEmail = event => {
         setEmail(event.target.value);
+        let sameEmail = false;
+        for (let email of emails) {
+            if (email.toLowerCase()===event.target.value.toLowerCase()){
+                sameEmail = true;
+            }
+        }
+        if (sameEmail){
+            setErrorMessage("This email is used")
+        }
+        else {
+            setErrorMessage("")
+        }
     };
+
     const handleChangePassword = event => {
         setPassword(event.target.value);
+        if (event.target.value.length<6){
+            setErrorMessage("The password must contain at least 6 characters")
+        }
+        else {
+            setErrorMessage("")
+        }
     };
+
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             // Call the function here
@@ -48,7 +104,31 @@ function Register() {
         }
     };
 
+    const validateEmail =()=> {
+        if (!email.includes("@")){
+            setErrorMessage("The email must contain \"@\"")
+        }
+        if (email.split("@")[1]===""){
+            setErrorMessage("The email must have a correct format")
+        }
+    }
+
+    // const validatePassword =()=> {
+    //     let passwordList = password.split("")
+    //     let checkCounter = 0;
+    //     let lowerAlphabet = "abcdefghijklmnopqrstuvwxyz"
+    //     for (let letter of passwordList) {
+    //         if (!lowerAlphabet.includes(letter)){
+    //             checkCounter ++;
+    //         }
+    //     }
+    //     if (checkCounter<2){
+    //         setErrorMessage("Make your password stronger")
+    //     }
+    // }
+
     const addUser = async () => {
+        validateEmail()
         let response = await axios.post(API_URL + "signup", {
             name,
             email,
@@ -84,8 +164,10 @@ function Register() {
                     <MDBRow>
                         <MDBCol md='10' lg='6' className='order-2 order-lg-1 d-flex flex-column align-items-center'>
 
-                            <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                            <p className="text-center h1 fw-bold mb-4 mx-1 mx-md-4 mt-4">Sign up</p>
 
+                            <label style={{color:"red"}}>{errorMessage}</label>
+                            <br/>
                             <div className="d-flex flex-row align-items-center mb-4 ">
                                 <PersonIcon style={iconStyle}/>
                                 <MDBInput placeholder='Username' id='form1' type='text' className='w-100' onChange={handleChangeName} onKeyDown={handleKeyDown}/>

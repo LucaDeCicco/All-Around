@@ -18,35 +18,19 @@ import LockIcon from "@mui/icons-material/Lock";
 const API_URL = "http://localhost:8888/api/auth/";
 
 function Login2() {
+
     const iconStyle = {
         height: "1.5em",
         width: "2em"
     }
-
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    // const [badCredentials, setBadCredentials] = useState(false);
-
     const [isVisible, setIsVisible] = useState(false);
+
     const handleClick = event => {
         // 👇️ toggle visibility
         setIsVisible(current => !current);
     };
-
-    // useEffect(()=>{
-    //     console.log("useEffect")
-    //     if (badCredentials){
-    //         console.log("if badCredentials")
-    //         let bedCredentialsError = document.getElementById("badCredentials")
-    //         console.log(bedCredentialsError)
-    //         bedCredentialsError.style.visibility = "show";
-    //         // setBadCredentials(false);
-    //     }
-    //     else {
-    //         console.log("else badCredentials")
-    //         // setBadCredentials(false);
-    //     }
-    // },[badCredentials])
 
     const handleChangeUsername = event => {
         setUsername(event.target.value);

@@ -47,9 +47,8 @@ class MainPage extends Component {
 
           </div>
           <Video />
-            {/*<FlipCard />*/}
-            <AppFlipCard />
-            {/*<MapFlipCard />*/}
+            {/*<AppFlipCard />*/}
+            {/*//TODO*/}
         </>
     );
   }
