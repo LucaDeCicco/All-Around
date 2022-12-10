@@ -62,9 +62,28 @@ public class UtilController {
         return result;
     }
 
+    @GetMapping("/usernames")
+    public List<String> getAllUserNames(){
+        List<String> allUsernames = new ArrayList<>();
+        List<AppUser> userList = userRepository.findAll();
+        for (AppUser appUser : userList) {
+            allUsernames.add(appUser.getUsername());
+        }
+        return allUsernames;
+    }
+
+    @GetMapping("/getEmails")
+    public List<String> getAllEmails(){
+        List<String> allEmails = new ArrayList<>();
+        List<AppUser> userList = userRepository.findAll();
+        for (AppUser appUser : userList) {
+            allEmails.add(appUser.getEmail());
+        }
+        return allEmails;
+    }
+
     @PostMapping("/sendMail")
     public void sendMail() throws MessagingException {
-        System.out.println("ruta de a trimite email");
         senderService.sendEmail("luca14.decicco@gmail.com",
                 "this is subject",
                 "<h1>this is body<h1/> <button>test</button");
