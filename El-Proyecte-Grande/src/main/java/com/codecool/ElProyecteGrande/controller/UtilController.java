@@ -203,4 +203,52 @@ public class UtilController {
         return searchedProducts;
     }
 
+    @GetMapping("/search/{toSearch}/{pageNumber}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public List<Product> getSearchedProducts(@PathVariable String toSearch, @PathVariable String pageNumber) {
+        int fromProduct = (Integer.parseInt(pageNumber)-1)*9+1;
+        int toProduct = (Integer.parseInt(pageNumber)*9);
+        List<Product> searchedProducts = new ArrayList<>();
+        for (Product product : productService.findAll()) {
+            System.out.println("YYYYYYYYYYYYYYYYY_________________YYYYYYYYYYYYYY");
+            System.out.println(String.valueOf(product.getProductType()).toLowerCase());
+            if (String.valueOf(product.getProductType()).toLowerCase().contains(toSearch.toLowerCase())) {
+                searchedProducts.add(product);
+            }
+            else {
+                boolean canAddProduct = true;
+                if (product.getProductType()==ProductType.CIRCUIT){
+                    CircuitProduct circuitProduct = (CircuitProduct) product;
+                    for (Country country : circuitProduct.getCountries()) {
+                        if (String.valueOf(country).toLowerCase().contains(toSearch.toLowerCase())){
+                            if (canAddProduct){
+                                searchedProducts.add(product);
+                                canAddProduct = false;
+                            }
+                        }
+                    }
+                }
+                if (product.getProductType()==ProductType.RESORT){
+                    ResortProduct resortProduct = (ResortProduct) product;
+                    if (String.valueOf(resortProduct.getCountry()).toLowerCase().contains(toSearch.toLowerCase()))
+                        searchedProducts.add(product);
+                }
+                if (product.getProductType()==ProductType.HOTEL){
+                    Hotel hotel = (Hotel) product;
+                    if (String.valueOf(hotel.getCountry()).toLowerCase().contains(toSearch.toLowerCase())){
+                        searchedProducts.add(product);
+                    }
+                }
+            }
+        }
+        List<Product> result = new ArrayList<>();
+        for (int i = fromProduct-1; i < searchedProducts.size(); i++) {
+            if (i<toProduct){
+                result.add(searchedProducts.get(i));
+            }
+        }
+        return result;
+//        return searchedProducts;
+    }
+
 }
