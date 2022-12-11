@@ -19,7 +19,14 @@ function ForgotPassword() {
         width: "2em"
     }
 
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            sendEmail();
+        }
+    };
+
     const sendEmail = async () => {
+        console.log("send Email")
         await axios.post("http://localhost:8888/util/forgotPassword",{
             email,
         });
@@ -39,7 +46,7 @@ function ForgotPassword() {
                             <br></br>
                             <div className="d-flex flex-row align-items-center mb-4">
                                 <EmailIcon style={iconStyle}/>
-                                <MDBInput placeholder='Your Email' id='form2' type='email' onChange={handleChangeEmail}/>
+                                <MDBInput placeholder='Your Email' id='form2' type='email' onChange={handleChangeEmail} onKeyDown={handleKeyDown}/>
                             </div>
                             <br></br>
                             <button type="button" className="btn btn-warning" onClick={sendEmail}>Send</button>

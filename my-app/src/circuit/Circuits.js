@@ -1,6 +1,6 @@
 import Airbnb1Card from './CircuitCard'
 import {ChakraProvider, Spinner} from '@chakra-ui/react'
-import {useEffect, useState} from 'react'
+import {createContext, useEffect, useState} from 'react'
 import { SimpleGrid } from '@chakra-ui/react'
 import {Link, useParams} from "react-router-dom";
 import AirbnbCardCircuit from "./CircuitCard";
@@ -9,9 +9,11 @@ import Button from "react-bootstrap/Button";
 import Pagination from "../components/Pagination"
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import FilterBar from "./FilterBar";
 
-function Circuits() {
+function Circuits(props) {
     const {page} = useParams();
+    // const {filterCountry} = useParams();
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -48,6 +50,10 @@ function Circuits() {
 
 
     useEffect(() => {
+        // console.log("countryFilterCountry")
+        // console.log(props.countryFilterCriteria)
+
+
         const user = JSON.parse(localStorage.getItem('user'));
         if (user) {
             setCurrentUser(user);
@@ -56,40 +62,63 @@ function Circuits() {
             if (user){
                 let token = user.token
                 if (!page){
-                    let request = await fetch(`http://localhost:8888/allMemCircuitProducts/${1}`, {
-                        headers: {Authorization: 'Bearer ' + token},
-                    })
-                    let result = await request.json();
-                    setData(result);
-                    setLoading(false)
-
-                    let requestNextPage = await fetch(`http://localhost:8888/allMemCircuitProducts/${2}`, {
-                        headers: {Authorization: 'Bearer ' + token},
-                    })
-                    let resultNextPage = await requestNextPage.json();
-                    setDataOfNextPage(resultNextPage);
-                    setLoading(false)
+                    if (props.countryFilterCriteria){
+                        let route = `/filteredCircuitsByCountry/${1}/${props.countryFilterCriteria}`;
+                        let request = await fetch(`http://localhost:8888${route}`, {
+                            headers: {Authorization: 'Bearer ' + token},
+                        })
+                        let result = await request.json();
+                        setData(result);
+                        setLoading(false)
+                        let requestNextPage = await fetch(`http://localhost:8888${route}`, {
+                            headers: {Authorization: 'Bearer ' + token},
+                        })
+                        let resultNextPage = await requestNextPage.json();
+                        setDataOfNextPage(resultNextPage);
+                        setLoading(false)
+                    }
+                    else {
+                        let route = `/allMemCircuitProducts`;
+                        let request = await fetch(`http://localhost:8888${route}/${1}`, {
+                            headers: {Authorization: 'Bearer ' + token},
+                        })
+                        let result = await request.json();
+                        setData(result);
+                        setLoading(false)
+                        let requestNextPage = await fetch(`http://localhost:8888${route}/${2}`, {
+                            headers: {Authorization: 'Bearer ' + token},
+                        })
+                        let resultNextPage = await requestNextPage.json();
+                        setDataOfNextPage(resultNextPage);
+                        setLoading(false)
+                    }
                 }
                 else {
-                    let request = await fetch(`http://localhost:8888/allMemCircuitProducts/${pageNumber}`, {
-                        headers: {Authorization: 'Bearer ' + token},
-                    })
-                    let result = await request.json();
-                    setData(result);
-                    setLoading(false)
+                    if (props.countryFilterCriteria){
+                        // console.log("else")
+                    }
+                    else {
+                        let route = `/allMemCircuitProducts`;
+                        let request = await fetch(`http://localhost:8888${route}/${pageNumber}`, {
+                            headers: {Authorization: 'Bearer ' + token},
+                        })
+                        let result = await request.json();
+                        setData(result);
+                        setLoading(false)
+                        let requestNextPage = await fetch(`http://localhost:8888${route}/${pageNumber+1}`, {
+                            headers: {Authorization: 'Bearer ' + token},
+                        })
+                        let resultNextPage = await requestNextPage.json();
+                        setDataOfNextPage(resultNextPage);
+                        setLoading(false)
 
-                    let requestNextPage = await fetch(`http://localhost:8888/allMemCircuitProducts/${pageNumber+1}`, {
-                        headers: {Authorization: 'Bearer ' + token},
-                    })
-                    let resultNextPage = await requestNextPage.json();
-                    setDataOfNextPage(resultNextPage);
-                    setLoading(false)
+                    }
                 }
             }
         };
 
         fetcher();
-    }, [loading, pageNumber])
+    }, [loading, pageNumber, props.countryFilterCriteria])
 
     const container={
         marginLeft: "10em",
@@ -109,17 +138,29 @@ function Circuits() {
 
     const goNextPage = () => {
         if (page){
+            // if(window.location.pathname.split("/")[2]){
+            //     window.location.replace(`/circuits/${props.filterCountry}/${pageNumber+1}`)
+            // }
             window.location.replace(`/circuits/${pageNumber+1}`)
         }
         else {
+            // if (props.filterCountry===""){
+            //     window.location.replace(`/circuits/2`)
+            // }
             window.location.replace(`/circuits/2`)
         }
     }
     const goPreviousPage = () => {
         if (page){
+            // if (props.filterCountry){
+            //     window.location.replace(`/circuits/${props.filterCountry}/${pageNumber-1}`)
+            // }
             window.location.replace(`/circuits/${pageNumber-1}`)
         }
         else {
+            // if (props.filterCountry){
+            //     window.location.replace(`/circuits/${props.filterCountry}/2`)
+            // }
             window.location.replace(`/circuits/2`)
         }
     }
@@ -128,6 +169,7 @@ function Circuits() {
         if (data){
             return (
                 <>
+                    {/*<h1 style={{textAlign:"center"}}>{props.countryFilterCriteria}</h1>*/}
                     <br></br>
                     <div className="circuits" style={container}>
                         <ChakraProvider>

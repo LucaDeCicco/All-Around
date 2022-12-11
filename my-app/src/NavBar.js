@@ -55,7 +55,7 @@ function NavBar() {
                     )}
                 </Container>
             </Navbar>
-            <br />
+            {/*<br />*/}
         </>
     );
 }

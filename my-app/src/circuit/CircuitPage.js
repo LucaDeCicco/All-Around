@@ -6,20 +6,20 @@ import {useParams} from "react-router-dom";
 function CircuitPage() {
     const {id} = useParams();
 
-
-    const [circuits, setCircuits] = useState(null);
+    const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(false);
+
 
     useEffect(() => {
         const fetcher = async () => {
             const user = JSON.parse(localStorage.getItem('user'));
             if (user){
                 let token = user.token
-                let request = await fetch("http://localhost:8888/allMemCircuitProducts",{
+                let request = await fetch(`http://localhost:8888/getProductById/${id}`,{
                     headers: {Authorization: 'Bearer ' + token}
                 })
                 let result = await request.json();
-                setCircuits(result);
+                setProduct(result);
                 setLoading(false)
             }
         };
@@ -28,20 +28,20 @@ function CircuitPage() {
     }, [loading])
 
 
-        if (circuits){
-            for (let circuit of circuits) {
-                if (circuit.id===parseInt(id)){
+        if (product){
+        //     for (let circuit of circuits) {
+        //         if (circuit.id===parseInt(id)){
                     return (
                         <div style={{textAlign:"center"}}>
                             <br></br>
-                            <CircuitCarousel data={circuit}/>
-                            <CircuitDescription data={circuit}/>
+                            <CircuitCarousel data={product}/>
+                            <CircuitDescription data={product}/>
                             <br></br>
                         </div>
                     );
-                }
-            }
-
+        //         }
+        //     }
+        //
         }
 
 }

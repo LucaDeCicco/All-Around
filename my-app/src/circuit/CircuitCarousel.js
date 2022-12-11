@@ -12,7 +12,6 @@ function CarouselFadeExampleCircuit({data}) {
         // width: "50em",
         // align: "center"
     }
-
     return (
         <div style={carrouselDimensions}>
         <Carousel fade>

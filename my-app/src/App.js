@@ -25,6 +25,8 @@ import Login2 from "./components/Login2";
 import SearchResult from "./components/SearchResult";
 import Luca from "./components/teste/Luca";
 import Visibility from "./components/teste/Visibility";
+import CircuitsPage from "./circuit/CircuitsPage";
+// import CircuitsPage from "./circuit/CircuitsPage";
 
 function    App() {
       // const [loading, setLoading] = useState(false);
@@ -60,8 +62,8 @@ function    App() {
             <div style={{minHeight: "80vh"}}>
                   <Routes>
                         <Route index element={<MainPage />} />
-                        <Route path="circuits" element={<Circuits />}/>
-                        <Route path="circuits/:page" element={<Circuits />}/>
+                        <Route path="circuits" element={<CircuitsPage />}/>
+                        <Route path="circuits/:page" element={<CircuitsPage />}/>
                         <Route path="/circuit/:id" element={<CircuitPage />}/>
                         <Route path="resorts" element={<Resorts />}/>
                         <Route path="resorts/:page" element={<Resorts />}/>

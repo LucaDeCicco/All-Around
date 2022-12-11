@@ -9,7 +9,7 @@ function AirbnbCardHotel({data}) {
     const property = {
         imageAlt: 'Rear view of modern home with pool',
         days: data.days,
-        title: data.countries,
+        title: data.country,
         formattedPrice: data.price,
         // reviewCount: 34,
         rating: 4,
