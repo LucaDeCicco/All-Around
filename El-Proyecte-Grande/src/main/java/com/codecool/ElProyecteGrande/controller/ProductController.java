@@ -1,6 +1,7 @@
 package com.codecool.ElProyecteGrande.controller;
 
 
+import com.codecool.ElProyecteGrande.enums.Country;
 import com.codecool.ElProyecteGrande.enums.ProductType;
 import com.codecool.ElProyecteGrande.model.products.Product;
 import com.codecool.ElProyecteGrande.model.products.externalProducts.Hotel;
@@ -9,6 +10,7 @@ import com.codecool.ElProyecteGrande.model.products.ourProducts.ResortProduct;
 import com.codecool.ElProyecteGrande.payload.externalProducts.HotelRequest;
 import com.codecool.ElProyecteGrande.payload.ourProducts.CircuitRequest;
 import com.codecool.ElProyecteGrande.payload.ourProducts.ResortRequest;
+import com.codecool.ElProyecteGrande.payload.util.FilterCriteriaRequest;
 import com.codecool.ElProyecteGrande.service.ProductService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,6 +22,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -49,6 +52,20 @@ public class ProductController {
             list.add(matcher.group());
         }
         return "circuit added successfully";
+    }
+
+    @GetMapping("getProductById/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public Product getProductById(@PathVariable String id) {
+        Product resultProduct = null;
+        for (Product product : productService.findAll()) {
+//            if (product.getProductType()==ProductType.CIRCUIT){
+                if (product.getId()==Long.parseLong(id)) {
+                    resultProduct = product;
+//                }
+            }
+        }
+        return resultProduct;
     }
 
     @PostMapping("/add-circuit")
@@ -86,7 +103,6 @@ public class ProductController {
     @GetMapping("allMemCircuitProducts/{pageNumber}")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public List<Product> getCircuitProducts(@PathVariable String pageNumber) {
-
         int fromProduct = (Integer.parseInt(pageNumber)-1)*9+1;
         int toProduct = (Integer.parseInt(pageNumber)*9);
         List<Product> circuitProducts = new ArrayList<>();
@@ -101,6 +117,40 @@ public class ProductController {
                 result.add(circuitProducts.get(i));
             }
         }
+        return result;
+    }
+
+    @GetMapping("filteredCircuitsByCountry/{pageNumber}/{country}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public List<Product> getCircuitProductsFilteredByCountry(@PathVariable String pageNumber, @PathVariable String country) {
+        List<Product> result = new ArrayList<>();
+
+        int fromProduct = (Integer.parseInt(pageNumber)-1)*9+1;
+        int toProduct = (Integer.parseInt(pageNumber)*9);
+        List<Product> circuitProducts = new ArrayList<>();
+
+        for (Product product : productService.findAll()) {
+            if (product.getProductType() == ProductType.CIRCUIT) {
+                circuitProducts.add(product);
+            }
+        }
+
+        List<Product> rawResult = new ArrayList<>();
+        for (int i = fromProduct-1; i < circuitProducts.size(); i++) {
+            if (i<toProduct){
+                rawResult.add(circuitProducts.get(i));
+            }
+        }
+
+        for (Product product : rawResult) {
+            CircuitProduct circuitProduct = (CircuitProduct) product;
+            for (Country tempCountry : circuitProduct.getCountries()) {
+                if (Objects.equals(country, tempCountry.getName())){
+                    result.add(product);
+                }
+            }
+        }
+
         return result;
     }
 

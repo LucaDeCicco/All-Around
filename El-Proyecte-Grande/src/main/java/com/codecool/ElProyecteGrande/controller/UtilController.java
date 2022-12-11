@@ -62,6 +62,22 @@ public class UtilController {
         return result;
     }
 
+    @GetMapping("/circuitCountries")
+    public List<Country> getAllCircuitCountries(){
+        List<Country> result = new ArrayList<>();
+        for (Product product : productService.findAll()) {
+            if (product.getProductType()==ProductType.CIRCUIT){
+                CircuitProduct circuitProduct = (CircuitProduct) product;
+                for (Country country : circuitProduct.getCountries()) {
+                    if (!result.contains(country)){
+                        result.add(country);
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
     @GetMapping("/usernames")
     public List<String> getAllUserNames(){
         List<String> allUsernames = new ArrayList<>();
