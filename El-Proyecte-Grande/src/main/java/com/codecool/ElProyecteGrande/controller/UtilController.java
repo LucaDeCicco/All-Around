@@ -62,8 +62,8 @@ public class UtilController {
         return result;
     }
 
-    @GetMapping("/circuitCountries")
-    public List<Country> getAllCircuitCountries(){
+    @GetMapping("/filterCountries")
+    public List<Country> getFilterCountries(){
         List<Country> result = new ArrayList<>();
         for (Product product : productService.findAll()) {
             if (product.getProductType()==ProductType.CIRCUIT){
@@ -72,6 +72,18 @@ public class UtilController {
                     if (!result.contains(country)){
                         result.add(country);
                     }
+                }
+            }
+            if (product.getProductType()==ProductType.RESORT){
+                ResortProduct resortProduct = (ResortProduct) product;
+                if (!result.contains(resortProduct.getCountry())){
+                    result.add(resortProduct.getCountry());
+                }
+            }
+            if (product.getProductType()==ProductType.HOTEL){
+                Hotel hotel = (Hotel) product;
+                if (!result.contains(hotel.getCountry())){
+                    result.add(hotel.getCountry());
                 }
             }
         }

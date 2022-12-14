@@ -136,20 +136,21 @@ public class ProductController {
         }
 
         List<Product> rawResult = new ArrayList<>();
-        for (int i = fromProduct-1; i < circuitProducts.size(); i++) {
-            if (i<toProduct){
-                rawResult.add(circuitProducts.get(i));
-            }
-        }
-
-        for (Product product : rawResult) {
+        for (Product product : circuitProducts) {
             CircuitProduct circuitProduct = (CircuitProduct) product;
             for (Country tempCountry : circuitProduct.getCountries()) {
                 if (Objects.equals(country, tempCountry.getName())){
-                    result.add(product);
+                    rawResult.add(product);
                 }
             }
         }
+
+        for (int i = fromProduct-1; i < rawResult.size(); i++) {
+            if (i<toProduct){
+                result.add(rawResult.get(i));
+            }
+        }
+
 
         return result;
     }
@@ -238,8 +239,150 @@ public class ProductController {
     }
 
     @GetMapping("allMemProducts")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public List<Product> getAllProducts() {
         return productService.findAll();
+    }
+
+    @GetMapping("allMemProducts/{pageNumber}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public List<Product> getProducts(@PathVariable String pageNumber) {
+        int fromProduct = (Integer.parseInt(pageNumber)-1)*9+1;
+        int toProduct = (Integer.parseInt(pageNumber)*9);
+        List<Product> allProducts = productService.findAll();
+        List<Product> result = new ArrayList<>();
+        for (int i = fromProduct-1; i < allProducts.size(); i++) {
+            if (i<toProduct){
+                result.add(allProducts.get(i));
+            }
+        }
+        return result;
+    }
+
+    @PostMapping("/filteredProducts/{pageNumber}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public List<Product> getFilteredProducts(@PathVariable String pageNumber, @RequestBody FilterCriteriaRequest filters) {
+        int fromProduct = (Integer.parseInt(pageNumber)-1)*9+1;
+        int toProduct = (Integer.parseInt(pageNumber)*9);
+        List<Product> allProducts = productService.findAll();
+
+        List<Product> rawResult = new ArrayList<>();
+
+        if (filters.getCountry()!=null){
+//            if (rawResult.size()>0){
+//                List<Product> tempResult = rawResult;
+//            }
+            List<Product> tempResult = new ArrayList<>();
+            for (Product product : allProducts) {
+                if (product.getProductType()==ProductType.CIRCUIT){
+                    CircuitProduct circuitProduct = (CircuitProduct) product;
+                    for (Country country : circuitProduct.getCountries()) {
+                        if (country==filters.getCountry()){
+                            tempResult.add(product);
+                        }
+                    }
+                }
+                if (product.getProductType()==ProductType.RESORT){
+                    ResortProduct resortProduct = (ResortProduct) product;
+                    if (resortProduct.getCountry()==filters.getCountry()){
+                        tempResult.add(product);
+                    }
+                }
+                if (product.getProductType()==ProductType.HOTEL){
+                    Hotel hotel = (Hotel) product;
+                    if (hotel.getCountry()==filters.getCountry()){
+                        tempResult.add(product);
+                    }
+                }
+            }
+            rawResult=tempResult;
+        }
+
+        if (filters.getProductType()!=null){
+            List<Product> notFilteredList = new ArrayList<>();
+            if (rawResult.size()>0){
+                notFilteredList = rawResult;
+            }
+            else {
+                notFilteredList = allProducts;
+            }
+            List<Product> tempResult = new ArrayList<>();
+            for (Product product : notFilteredList) {
+                if (product.getProductType()==filters.getProductType()){
+                    tempResult.add(product);
+                }
+            }
+            rawResult = tempResult;
+        }
+
+
+        List<Product> result = new ArrayList<>();
+        for (int i = fromProduct-1; i < rawResult.size(); i++) {
+            if (i<toProduct){
+                result.add(rawResult.get(i));
+            }
+        }
+        return result;
+
+    }
+
+    @PostMapping("/allFilteredProducts")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public List<Product> getAllFilteredProducts(@RequestBody FilterCriteriaRequest filters) {
+
+        List<Product> allProducts = productService.findAll();
+
+        List<Product> rawResult = new ArrayList<>();
+
+        if (filters.getCountry()!=null){
+//            if (rawResult.size()>0){
+//                List<Product> tempResult = rawResult;
+//            }
+            List<Product> tempResult = new ArrayList<>();
+            for (Product product : allProducts) {
+                if (product.getProductType()==ProductType.CIRCUIT){
+                    CircuitProduct circuitProduct = (CircuitProduct) product;
+                    for (Country country : circuitProduct.getCountries()) {
+                        if (country==filters.getCountry()){
+                            tempResult.add(product);
+                        }
+                    }
+                }
+                if (product.getProductType()==ProductType.RESORT){
+                    ResortProduct resortProduct = (ResortProduct) product;
+                    if (resortProduct.getCountry()==filters.getCountry()){
+                        tempResult.add(product);
+                    }
+                }
+                if (product.getProductType()==ProductType.HOTEL){
+                    Hotel hotel = (Hotel) product;
+                    if (hotel.getCountry()==filters.getCountry()){
+                        tempResult.add(product);
+                    }
+                }
+            }
+            rawResult=tempResult;
+        }
+
+        if (filters.getProductType()!=null){
+            List<Product> notFilteredList = new ArrayList<>();
+            if (rawResult.size()>0){
+                notFilteredList = rawResult;
+            }
+            else {
+                notFilteredList = allProducts;
+            }
+            List<Product> tempResult = new ArrayList<>();
+            for (Product product : notFilteredList) {
+                if (product.getProductType()==filters.getProductType()){
+                    tempResult.add(product);
+                }
+            }
+            rawResult = tempResult;
+        }
+
+        return rawResult;
+
     }
 
 }
