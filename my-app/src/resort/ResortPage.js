@@ -7,7 +7,7 @@ function ResortPage() {
     const {id} = useParams();
 
 
-    const [resorts, setResorts] = useState(null);
+    const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -15,11 +15,11 @@ function ResortPage() {
             const user = JSON.parse(localStorage.getItem('user'));
             if (user){
                 let token = user.token
-                let request = await fetch("http://localhost:8888/allMemResortProducts",{
+                let request = await fetch(`http://localhost:8888/getProductById/${id}`,{
                     headers: {Authorization: 'Bearer ' + token}
                 })
                 let result = await request.json();
-                setResorts(result);
+                setProduct(result);
                 setLoading(false)
             }
         };
@@ -27,20 +27,15 @@ function ResortPage() {
     }, [loading])
 
 
-    if (resorts){
-        for (let resort of resorts) {
-            if (resort.id===parseInt(id)){
+    if (product){
+
                 return (
                     <div style={{textAlign:"center"}}>
-                        <ResortCarousel data={resort}/>
-                        <ResortDescription data={resort}/>
+                        <ResortCarousel data={product}/>
+                        <ResortDescription data={product}/>
                     </div>
                 );
-            }
-        }
-
     }
-
 }
 
 export default ResortPage;

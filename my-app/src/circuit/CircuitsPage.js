@@ -1,4 +1,4 @@
-import FilterBar from "./FilterBar";
+import FilterBar from "../allProducts/FilterBar";
 import Circuits from "./Circuits";
 import {useState} from "react";
 

@@ -13,12 +13,33 @@ import Card from 'react-bootstrap/Card';
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import axios from "axios";
 
 function ResortDescription({data}) {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const payment = async () => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+            let token = user.token
+            axios
+                .get(`http://localhost:8888/pay/${data.id}`, {
+                    headers: {
+                        Authorization: 'Bearer ' + token,
+                    },
+                })
+                .then((r) => {
+                    console.log(r);
+                    window.location.href = r.data;
+                });
+        } else {
+            console.log("user not find")
+        }
+
+    };
 
     return (
         <Card style={{ width: '70%', margin:"auto", marginTop:"5em", marginBottom:"5em" }}>
@@ -55,7 +76,7 @@ function ResortDescription({data}) {
                     </Modal>
                 </>
                 {/*<Card.Link href="#">Pay</Card.Link>*/}
-                <Button variant={"success"} style={{marginLeft:"2em"}}>Book</Button>
+                <Button variant={"success"} style={{marginLeft:"2em"}} onClick={payment}>Book</Button>
             </Card.Body>
         </Card>
     );

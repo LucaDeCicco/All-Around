@@ -23,9 +23,13 @@ import ForgotPassword from "./components/forgotPassword";
 import ChangeForgotPassword from "./components/ChangeForgotPassword";
 import Login2 from "./components/Login2";
 import SearchResult from "./components/SearchResult";
-import Luca from "./components/teste/Luca";
-import Visibility from "./components/teste/Visibility";
+// import Luca from "./components/teste/Luca";
+// import Visibility from "./components/teste/Visibility";
 import CircuitsPage from "./circuit/CircuitsPage";
+import HolidaysPage from "./allProducts/HolidaysPage";
+import SuccessPayment from "./payment/SuccessPayment";
+import FailedPayment from "./payment/FailedPaayment";
+// import HelloDariana from "./components/teste/HelloDariana";
 // import CircuitsPage from "./circuit/CircuitsPage";
 
 function    App() {
@@ -62,8 +66,12 @@ function    App() {
             <div style={{minHeight: "80vh"}}>
                   <Routes>
                         <Route index element={<MainPage />} />
+                        <Route path="holidays" element={<HolidaysPage />}/>
+                        <Route path="holidays/:page" element={<HolidaysPage />}/>
+                        {/*<Route path="holidays/:page/filtered" element={<HolidaysPage />}/>*/}
                         <Route path="circuits" element={<CircuitsPage />}/>
                         <Route path="circuits/:page" element={<CircuitsPage />}/>
+                        <Route path="circuits/:page/:country" element={<CircuitsPage />}/>
                         <Route path="/circuit/:id" element={<CircuitPage />}/>
                         <Route path="resorts" element={<Resorts />}/>
                         <Route path="resorts/:page" element={<Resorts />}/>
@@ -86,8 +94,10 @@ function    App() {
                         <Route path="/search/:toSearch" element={<SearchResult />}/>
                         <Route path="/search/:toSearch/:page" element={<SearchResult />}/>
                         {/*<Route path="/chatGpt" element={<HelloDariana />}/>*/}
-                        <Route path="/chatGpt2" element={<Luca />}/>
-                        <Route path="/visibility" element={<Visibility />}/>
+                        {/*/!*<Route path="/chatGpt2" element={<Luca />}/>*!/*/}
+                        {/*<Route path="/visibility" element={<Visibility />}/>*/}
+                        <Route path="/plata/efectuata" element={<SuccessPayment/>}/>
+                        <Route path="/plata/neefectuata" element={<FailedPayment/>}/>
 
                   </Routes>
             </div>

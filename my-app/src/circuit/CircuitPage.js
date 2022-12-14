@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import CircuitCarousel from "./CircuitCarousel";
 import CircuitDescription from "./CircuitDescription";
 import {useParams} from "react-router-dom";
+import axios from "axios";
 
 function CircuitPage() {
     const {id} = useParams();
@@ -23,14 +24,12 @@ function CircuitPage() {
                 setLoading(false)
             }
         };
-
         fetcher();
     }, [loading])
 
 
+
         if (product){
-        //     for (let circuit of circuits) {
-        //         if (circuit.id===parseInt(id)){
                     return (
                         <div style={{textAlign:"center"}}>
                             <br></br>
@@ -39,9 +38,6 @@ function CircuitPage() {
                             <br></br>
                         </div>
                     );
-        //         }
-        //     }
-        //
         }
 
 }
