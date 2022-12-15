@@ -17,19 +17,13 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "circuits")
 public class CircuitProduct extends OurProduct {
 
     @ElementCollection(targetClass=Country.class)
     @Enumerated(EnumType.STRING) // Possibly optional (I'm not sure) but defaults to ORDINAL.
-    @CollectionTable(name="circuits")
-    @Column(name="countries") // Column name in person_interest
+//    @CollectionTable(name="circuits")
+//    @Column(name="countries") // Column name in person_interest
     Collection<Country> countries;
-
-//    public CircuitProduct(ProductType productType, String description, int price, String location, String itinerary, int remainingTickets, Date departureDate, int days, List<Country> countries) {
-//        super(productType, description, price, location, itinerary, remainingTickets, departureDate, days);
-//        this.countries = countries;
-//    }
 
 
     public CircuitProduct(ProductType productType, String description, int price, List<String>images, String location, String itinerary, int remainingTickets, Date departureDate, int days, Collection<Country> countries) {
