@@ -10,7 +10,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-
 @Getter
 @Setter
 @Builder
@@ -18,19 +17,14 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 public class CircuitProduct extends OurProduct {
-
     @ElementCollection(targetClass=Country.class)
-    @Enumerated(EnumType.STRING) // Possibly optional (I'm not sure) but defaults to ORDINAL.
-//    @CollectionTable(name="circuits")
-//    @Column(name="countries") // Column name in person_interest
+    @Enumerated(EnumType.STRING)
     Collection<Country> countries;
-
 
     public CircuitProduct(ProductType productType, String description, int price, List<String>images, String location, String itinerary, int remainingTickets, Date departureDate, int days, Collection<Country> countries) {
         super(productType, description, price, images, location, itinerary, remainingTickets, departureDate, days);
         this.countries = countries;
     }
-
     public List<Country> getCountries() {
         return (List<Country>) countries;
     }

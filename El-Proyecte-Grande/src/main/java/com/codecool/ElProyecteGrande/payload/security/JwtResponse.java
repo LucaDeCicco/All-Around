@@ -1,9 +1,7 @@
 package com.codecool.ElProyecteGrande.payload.security;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.List;
 
 @Getter

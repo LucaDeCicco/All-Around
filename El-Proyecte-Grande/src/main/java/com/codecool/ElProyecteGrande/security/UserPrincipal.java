@@ -14,18 +14,15 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class UserPrincipal implements UserDetails {
+
     private static final long serialVersionUID = 1L;
-
     private Long id;
-
     private String username;
-
     private String email;
-
     @JsonIgnore
     private String password;
-
     private Collection<? extends GrantedAuthority> authorities;
+
 
     public static UserPrincipal build(AppUser user) {
         List<GrantedAuthority> authorities = user.getRoles().stream()

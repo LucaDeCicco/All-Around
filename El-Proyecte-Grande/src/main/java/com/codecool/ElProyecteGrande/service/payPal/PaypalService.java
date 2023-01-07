@@ -33,10 +33,8 @@ public class PaypalService {
         transaction.setAmount(amount);
         List<Transaction> transactions=new ArrayList<>();
         transactions.add(transaction);
-
         Payer payer=new Payer();
         payer.setPaymentMethod(method);
-
         Payment payment=new Payment();
         payment.setPayer(payer);
         payment.setIntent("SALE");
@@ -45,9 +43,9 @@ public class PaypalService {
         redirectUrls.setCancelUrl(cancelUrl);
         redirectUrls.setReturnUrl(successUrl);
         payment.setRedirectUrls(redirectUrls);
-
         return payment.create(apiContext);
     }
+
     public Payment executePayment(
             String paymentId,
             String payerId

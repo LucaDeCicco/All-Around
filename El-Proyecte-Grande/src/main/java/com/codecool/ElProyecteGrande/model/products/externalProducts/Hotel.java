@@ -17,7 +17,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-//@Table(name = "hotels")
 public class Hotel extends Product {
 
     @Enumerated(EnumType.STRING)

@@ -134,9 +134,7 @@ public class UtilController {
         passwordElements.add(lowercaseLetters);
         passwordElements.add(numbers);
         passwordElements.add(characters);
-
         String password = "";
-
         Random randomChoice = new Random();
         for (int i = 0; i < 2; i++) {
             List<Integer> alreadyPicked = new ArrayList<>();
@@ -161,10 +159,8 @@ public class UtilController {
                 }
             }
         }
-        System.out.println(password);
         return password;
     }
-
 
     @PostMapping("/forgotPassword")
     public void forgotPassword(@Valid @RequestBody RegisterEmail registerEmail) throws MessagingException {
@@ -178,15 +174,12 @@ public class UtilController {
 
     @PostMapping("/changePassword")
     public ResponseEntity<?> changePassword(@Valid @RequestBody ChangePasswordRequest changePasswordRequest){
-//        String email = changePasswordRequest.getEmail();
         String oldPassword = changePasswordRequest.getOldPassword();
         String newPassword = changePasswordRequest.getNewPassword();
 
         AppUser user = userRepository.findByEmail(changePasswordRequest.getEmail()).orElseThrow(() -> new UsernameNotFoundException("User Not Found with email: " +
                 changePasswordRequest.getEmail()));
         if (encoder.matches(oldPassword, user.getPassword())){
-            System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
-            System.out.println("Old password is good");
             user.setPassword(encoder.encode(newPassword));
             userRepository.save(user);
 
@@ -195,7 +188,6 @@ public class UtilController {
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String jwt = jwtUtils.generateJwtToken(authentication);
-            System.out.println(jwt);
             UserPrincipal userDetails = (UserPrincipal) authentication.getPrincipal();
             List<String> roles = userDetails.getAuthorities().stream()
                     .map(item -> item.getAuthority())
@@ -212,12 +204,8 @@ public class UtilController {
     @GetMapping("/search/{toSearch}")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public List<Product> getAllSearchedProducts(@PathVariable String toSearch) {
-        System.out.println("ZZZZZZZZZZZZZZZZZZZ------------ZZZZZZZZZZZZZZ");
-        System.out.println(toSearch);
         List<Product> searchedProducts = new ArrayList<>();
         for (Product product : productService.findAll()) {
-            System.out.println("YYYYYYYYYYYYYYYYY_________________YYYYYYYYYYYYYY");
-            System.out.println(String.valueOf(product.getProductType()).toLowerCase());
             if (String.valueOf(product.getProductType()).toLowerCase().contains(toSearch.toLowerCase())) {
                 searchedProducts.add(product);
             }
@@ -257,8 +245,6 @@ public class UtilController {
         int toProduct = (Integer.parseInt(pageNumber)*9);
         List<Product> searchedProducts = new ArrayList<>();
         for (Product product : productService.findAll()) {
-            System.out.println("YYYYYYYYYYYYYYYYY_________________YYYYYYYYYYYYYY");
-            System.out.println(String.valueOf(product.getProductType()).toLowerCase());
             if (String.valueOf(product.getProductType()).toLowerCase().contains(toSearch.toLowerCase())) {
                 searchedProducts.add(product);
             }
@@ -295,7 +281,5 @@ public class UtilController {
             }
         }
         return result;
-//        return searchedProducts;
     }
-
 }

@@ -4,7 +4,6 @@ import com.codecool.ElProyecteGrande.model.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -28,8 +27,6 @@ public class AppUser {
     @NotBlank
     @Size(max = 20)
     private String username;
-
-
     @NotBlank
     @Size(max = 50)
     @Email

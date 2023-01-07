@@ -1,6 +1,5 @@
 package com.codecool.ElProyecteGrande.controller;
 
-
 import com.codecool.ElProyecteGrande.enums.Country;
 import com.codecool.ElProyecteGrande.enums.ProductType;
 import com.codecool.ElProyecteGrande.model.products.Product;
@@ -30,7 +29,6 @@ import java.util.regex.Pattern;
 @RequestMapping("/")
 @CrossOrigin(origins = "http://localhost:3000", methods = {RequestMethod.PUT, RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST})
 public class ProductController {
-
     private final ProductService productService;
 
     public ProductController(ProductService productService) {
@@ -59,10 +57,8 @@ public class ProductController {
     public Product getProductById(@PathVariable String id) {
         Product resultProduct = null;
         for (Product product : productService.findAll()) {
-//            if (product.getProductType()==ProductType.CIRCUIT){
                 if (product.getId()==Long.parseLong(id)) {
                     resultProduct = product;
-//                }
             }
         }
         return resultProduct;
@@ -78,12 +74,8 @@ public class ProductController {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-//        System.out.println("add-circuit");
-//        System.out.println("countries");
-//        System.out.println(prod.getCountries());
         CircuitProduct circuitProduct = new CircuitProduct(ProductType.CIRCUIT, prod.getDescription(), prod.getPrice(), prod.getImages(), prod.getLocation(),
                 prod.getItinerary(), prod.getRemainingTickets(), prod.getDepartureDate(), prod.getDays(), prod.getCountries());
-        System.out.println(circuitProduct.getCountries());
         productService.save(circuitProduct);
         return "circuit added successfully";
     }
@@ -124,7 +116,6 @@ public class ProductController {
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public List<Product> getCircuitProductsFilteredByCountry(@PathVariable String pageNumber, @PathVariable String country) {
         List<Product> result = new ArrayList<>();
-
         int fromProduct = (Integer.parseInt(pageNumber)-1)*9+1;
         int toProduct = (Integer.parseInt(pageNumber)*9);
         List<Product> circuitProducts = new ArrayList<>();
@@ -134,7 +125,6 @@ public class ProductController {
                 circuitProducts.add(product);
             }
         }
-
         List<Product> rawResult = new ArrayList<>();
         for (Product product : circuitProducts) {
             CircuitProduct circuitProduct = (CircuitProduct) product;
@@ -144,14 +134,11 @@ public class ProductController {
                 }
             }
         }
-
         for (int i = fromProduct-1; i < rawResult.size(); i++) {
             if (i<toProduct){
                 result.add(rawResult.get(i));
             }
         }
-
-
         return result;
     }
 
@@ -265,13 +252,8 @@ public class ProductController {
         int fromProduct = (Integer.parseInt(pageNumber)-1)*9+1;
         int toProduct = (Integer.parseInt(pageNumber)*9);
         List<Product> allProducts = productService.findAll();
-
         List<Product> rawResult = new ArrayList<>();
-
         if (filters.getCountry()!=null){
-//            if (rawResult.size()>0){
-//                List<Product> tempResult = rawResult;
-//            }
             List<Product> tempResult = new ArrayList<>();
             for (Product product : allProducts) {
                 if (product.getProductType()==ProductType.CIRCUIT){
@@ -297,7 +279,6 @@ public class ProductController {
             }
             rawResult=tempResult;
         }
-
         if (filters.getProductType()!=null){
             List<Product> notFilteredList = new ArrayList<>();
             if (rawResult.size()>0){
@@ -314,8 +295,6 @@ public class ProductController {
             }
             rawResult = tempResult;
         }
-
-
         List<Product> result = new ArrayList<>();
         for (int i = fromProduct-1; i < rawResult.size(); i++) {
             if (i<toProduct){
@@ -323,21 +302,14 @@ public class ProductController {
             }
         }
         return result;
-
     }
 
     @PostMapping("/allFilteredProducts")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public List<Product> getAllFilteredProducts(@RequestBody FilterCriteriaRequest filters) {
-
         List<Product> allProducts = productService.findAll();
-
         List<Product> rawResult = new ArrayList<>();
-
         if (filters.getCountry()!=null){
-//            if (rawResult.size()>0){
-//                List<Product> tempResult = rawResult;
-//            }
             List<Product> tempResult = new ArrayList<>();
             for (Product product : allProducts) {
                 if (product.getProductType()==ProductType.CIRCUIT){
@@ -363,7 +335,6 @@ public class ProductController {
             }
             rawResult=tempResult;
         }
-
         if (filters.getProductType()!=null){
             List<Product> notFilteredList = new ArrayList<>();
             if (rawResult.size()>0){
@@ -380,9 +351,6 @@ public class ProductController {
             }
             rawResult = tempResult;
         }
-
         return rawResult;
-
     }
-
 }

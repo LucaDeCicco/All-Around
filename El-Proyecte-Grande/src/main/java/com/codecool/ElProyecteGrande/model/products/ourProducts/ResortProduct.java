@@ -16,21 +16,13 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-//@Table(name = "resorts")
 public class ResortProduct extends OurProduct {
-
     @Enumerated(EnumType.STRING)
     private Country country;
-
     public ResortProduct(ProductType productType, String description, int price, List<String> images, String location, String itinerary, int remainingTickets, Date departureDate, int days, Country country) {
         super(productType, description, price, images, location, itinerary, remainingTickets, departureDate, days);
         this.country = country;
-        System.out.println(country);
     }
-
-//    public ResortProduct(String description, int price, List<String> images, String location, int remainingTickets, Date departureDate, int days, Country country) {
-//        super(description, price, images, location, remainingTickets, departureDate, days);
-//    }
 
     public Country getCountry() {
         return country;

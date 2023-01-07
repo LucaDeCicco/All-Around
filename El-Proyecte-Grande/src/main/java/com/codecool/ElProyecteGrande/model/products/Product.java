@@ -1,12 +1,7 @@
 package com.codecool.ElProyecteGrande.model.products;
 
-//import javax.persistence.*;
-
-import com.codecool.ElProyecteGrande.enums.Country;
 import com.codecool.ElProyecteGrande.enums.ProductType;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.List;
 

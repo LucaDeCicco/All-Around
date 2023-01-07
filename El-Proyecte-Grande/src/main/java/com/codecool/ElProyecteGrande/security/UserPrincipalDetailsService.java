@@ -23,5 +23,4 @@ public class UserPrincipalDetailsService implements UserDetailsService {
 
         return UserPrincipal.build(user);
     }
-
 }

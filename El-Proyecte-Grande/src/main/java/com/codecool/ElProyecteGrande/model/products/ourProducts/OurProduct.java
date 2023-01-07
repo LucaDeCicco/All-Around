@@ -2,21 +2,22 @@ package com.codecool.ElProyecteGrande.model.products.ourProducts;
 
 import com.codecool.ElProyecteGrande.enums.ProductType;
 import com.codecool.ElProyecteGrande.model.products.Product;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
 public abstract class OurProduct extends Product {
     private String location;
     private String itinerary;
     private int remainingTickets;
     private Date departureDate;
     private int days;
-
-    public OurProduct() {
-    }
 
     public OurProduct(ProductType productType, String description, int price, List<String> images, String location, String itinerary, int remainingTickets, Date departureDate, int days) {
         super(productType, description, price, images);

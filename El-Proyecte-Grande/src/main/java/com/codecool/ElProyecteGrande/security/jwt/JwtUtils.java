@@ -13,9 +13,7 @@ import java.util.Date;
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
     private String jwtSecret = "SecretKey";
-//    private int jwtExpirationMs = 86400000;
     private int jwtExpirationMs = 3600000;
-//    private int jwtExpirationMs = 5000;
     public String generateJwtToken(Authentication authentication) {
 
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();

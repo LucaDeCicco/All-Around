@@ -9,49 +9,22 @@ import java.util.List;
 
 public class CircuitRequest {
 
-//    @NotBlank
     private Long id;
-
-//    @NotBlank
     private ProductType productType;
-
-////    @NotBlank
-//    private String productType;
-
-//    @NotBlank
     private String description;
-
-//    @NotBlank
     private int price;
-
-//    @NotBlank
     private List<String> images;
-
-//    @NotBlank
     private String location;
-
-//    @NotBlank
     private String itinerary;
-
-//    @NotBlank
     private int remainingTickets;
-
-//    @NotBlank
     private Date departureDate;
-
-//    @NotBlank
     private int days;
-
-//    @NotBlank
     private List<Country> countries;
 
     public Long getId() {
         return id;
     }
 
-//    public ProductType getProductType() {
-//        return productType;
-//    }
     public ProductType getProductType() {
         return productType;
     }

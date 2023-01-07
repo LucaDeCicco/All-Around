@@ -21,9 +21,6 @@ public class ResortRequest {
     @NotBlank
     private String location;
 
-//    @NotBlank
-//    private String itinerary;
-
     @NotBlank
     private int remainingTickets;
 
@@ -44,23 +41,15 @@ public class ResortRequest {
     public int getPrice() {
         return price;
     }
-
     public String getLocation() {
         return location;
     }
-
-//    public String getItinerary() {
-//        return itinerary;
-//    }
-
     public int getRemainingTickets() {
         return remainingTickets;
     }
-
     public Date getDepartureDate() {
         return departureDate;
     }
-
     public int getDays() {
         return days;
     }

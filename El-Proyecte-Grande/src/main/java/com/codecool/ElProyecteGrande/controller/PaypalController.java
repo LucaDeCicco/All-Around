@@ -21,7 +21,6 @@ import javax.mail.MessagingException;
 @RequestMapping("/pay")
 @CrossOrigin(origins = "http://localhost:3000", methods = {RequestMethod.PUT, RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST})
 public class PaypalController {
-
     @Autowired
     private EmailSenderService senderService;
     public static final String SUCCESS_URL = "http://localhost:3000/plata/efectuata";
@@ -43,10 +42,8 @@ public class PaypalController {
         try {
             Payment payment = paypalService.createPayment(price, "EUR", "paypal",
                     CANCEL_URL, SUCCESS_URL);
-            System.out.println(payment);
             for (Links link : payment.getLinks()) {
                 if (link.getRel().equals("approval_url")) {
-                    System.out.println("aici");
                     return new ResponseEntity<>(link.getHref(), HttpStatus.OK);
                 }
             }
@@ -61,11 +58,8 @@ public class PaypalController {
     public ResponseEntity<String> successPay(@PathVariable String paymentId, @PathVariable String payerId) {
         try {
             Payment payment = paypalService.executePayment(paymentId, payerId);
-            System.out.println("ana");
             ShippingAddress shippingAddress = payment.getTransactions().get(0).getItemList().getShippingAddress();
-            System.out.println(shippingAddress);
             if (payment.getState().equals("approved")) {
-                System.out.println("plata a fost acceptata...");
                 boolean check = false;
                 if (!check){
                     senderService.sendEmail("luca14.decicco@gmail.com",
@@ -75,16 +69,12 @@ public class PaypalController {
                 }
                 return new ResponseEntity<>("Plata a fost un succes", HttpStatus.ACCEPTED);
             } else {
-                System.out.println("ana3");
                 return new ResponseEntity<>("Plata", HttpStatus.NON_AUTHORITATIVE_INFORMATION);
             }
         } catch (PayPalRESTException e) {
-            System.out.println("ana2");
-            System.out.println(e.getMessage());
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
         return new ResponseEntity<>("A aparut o eroare!", HttpStatus.NON_AUTHORITATIVE_INFORMATION);
     }
-
 }

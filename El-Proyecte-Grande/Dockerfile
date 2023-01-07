@@ -6,5 +6,5 @@
 FROM openjdk:18.0.1 AS server
 WORKDIR /app
 COPY ./target/El-Proyecte-Grande-0.0.1-SNAPSHOT.jar ./El-Proyecte-Grande-0.0.1-SNAPSHOT.jar
-EXPOSE 8080
+EXPOSE 8888
 ENTRYPOINT ["java", "-jar", "El-Proyecte-Grande-0.0.1-SNAPSHOT.jar"]
