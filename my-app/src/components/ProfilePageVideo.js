@@ -9,6 +9,7 @@ const ProfilePageVideo = () => {
         marginLeft: "auto",
         marginRight: "auto"
     }
+
     return (
         <div className='video'>
             <video src={MyVideo} style={videoStyle} autoPlay loop muted />

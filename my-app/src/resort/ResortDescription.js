@@ -1,14 +1,3 @@
-// import {useParams} from "react-router-dom";
-// function ResortDescription({data}) {
-//     const {id} = useParams();
-//     return (
-//         <>
-//             <div>DESCRIERE Resort{id}</div>
-//         </>
-//     )
-// }
-// export default ResortDescription;
-
 import Card from 'react-bootstrap/Card';
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
@@ -32,13 +21,9 @@ function ResortDescription({data}) {
                     },
                 })
                 .then((r) => {
-                    console.log(r);
                     window.location.href = r.data;
                 });
-        } else {
-            console.log("user not find")
         }
-
     };
 
     return (
@@ -49,12 +34,10 @@ function ResortDescription({data}) {
                 <Card.Text>
                     {data.description}
                 </Card.Text>
-                {/*<Card.Link href="#">View itinerary</Card.Link>*/}
                 <>
                     <Button variant="primary" onClick={handleShow} style={{marginRight:"2em"}}>
                         View itinerary
                     </Button>
-
                     <Modal
                         show={show}
                         onHide={handleClose}
@@ -71,11 +54,9 @@ function ResortDescription({data}) {
                             <Button variant="secondary" onClick={handleClose}>
                                 Close
                             </Button>
-                            {/*<Button variant="primary">Understood</Button>*/}
                         </Modal.Footer>
                     </Modal>
                 </>
-                {/*<Card.Link href="#">Pay</Card.Link>*/}
                 <Button variant={"success"} style={{marginLeft:"2em"}} onClick={payment}>Book</Button>
             </Card.Body>
         </Card>

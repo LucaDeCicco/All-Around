@@ -6,8 +6,6 @@ import HotelDescription from "./HotelDescription";
 
 function HotelPage() {
     const {id} = useParams();
-
-
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -24,20 +22,17 @@ function HotelPage() {
                 setLoading(false)
             }
         };
-
         fetcher();
     }, [loading])
 
-
     if (product){
-                return (
-                    <div style={{textAlign:"center"}}>
-                        <HotelCarousel data={product}/>
-                        <HotelDescription data={product}/>
-                    </div>
-                );
+        return (
+            <div style={{textAlign:"center"}}>
+                <HotelCarousel data={product}/>
+                <HotelDescription data={product}/>
+            </div>
+        );
     }
-
 }
 
 export default HotelPage;

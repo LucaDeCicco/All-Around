@@ -11,12 +11,9 @@ import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 
 
-
-
 export default function SearchResult() {
     const {toSearch} = useParams();
     const {page} = useParams();
-
     const [currentUser, setCurrentUser] = useState(undefined);
     const [pageNumber, setPageNumber] = useState(parseInt(page));
     const [previousBtn, setPreviousBtn] = useState(null);
@@ -47,7 +44,6 @@ export default function SearchResult() {
             }
         }
     }, [previousBtn, loading, pageNumber, data, dataOfNextPage])
-
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
@@ -86,12 +82,6 @@ export default function SearchResult() {
                     setDataOfNextPage(resultNextPage);
                     setLoading(false)
                 }
-                // let request = await fetch(`http://localhost:8888/util/search/${toSearch}`, {
-                //     headers: {Authorization: 'Bearer ' + token},
-                // })
-                // let result = await request.json();
-                // setData(result);
-                // setLoading(false)
             }
         };
 
@@ -120,6 +110,7 @@ export default function SearchResult() {
             window.location.replace(`/search/${toSearch}/2`)
         }
     }
+
     const goPreviousPage = () => {
         if (page) {
             window.location.replace(`/search/${toSearch}/${pageNumber - 1}`)
@@ -157,7 +148,6 @@ export default function SearchResult() {
                                                 ) : (
                                                     <></>
                                                 )}
-
                                             </div>
                                         </Link>
                                     );

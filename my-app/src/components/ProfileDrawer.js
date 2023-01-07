@@ -1,29 +1,24 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import PersonIcon from '@mui/icons-material/Person';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import {useEffect, useState} from "react";
 import InfoIcon from '@mui/icons-material/Info';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
-import ProfilePage from "./ProfilePage";
 
 
 export default function ProfileDrawer() {
 
     const [currentUser, setCurrentUser] = useState(undefined);
     const [currentUserRoles, setCurrentUserRoles] = useState([]);
-
 
 
     useEffect(() => {
@@ -114,7 +109,6 @@ export default function ProfileDrawer() {
                         </ListItemButton>
                     </ListItem>
                 )}
-
                 <Divider />
                 {checkIfLogIn() ? (
                     <ListItem>
@@ -124,7 +118,6 @@ export default function ProfileDrawer() {
                         </ListItemButton>
                     </ListItem>
                 ):(<></>)}
-
                 <Divider />
                 <ListItem>
                     <ListItemButton onClick={infoPageRedirect}>
@@ -132,7 +125,6 @@ export default function ProfileDrawer() {
                         <ListItemText primary={"About Us"} />
                     </ListItemButton>
                 </ListItem>
-
                 <Divider />
                 {checkIfAdmin() ? (
                     <ListItem>
@@ -143,7 +135,6 @@ export default function ProfileDrawer() {
                     </ListItem>
                 ):(<></>)}
             </List>
-
         </Box>
     );
 
@@ -167,7 +158,6 @@ export default function ProfileDrawer() {
                         onClose={toggleDrawer(anchor, false)}
                     >
                         {list(anchor)}
-
                     </Drawer>
                 </React.Fragment>
             ))}

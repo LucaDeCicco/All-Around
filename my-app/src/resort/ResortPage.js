@@ -5,8 +5,6 @@ import ResortDescription from "./ResortDescription";
 
 function ResortPage() {
     const {id} = useParams();
-
-
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -26,9 +24,7 @@ function ResortPage() {
         fetcher();
     }, [loading])
 
-
     if (product){
-
                 return (
                     <div style={{textAlign:"center"}}>
                         <ResortCarousel data={product}/>

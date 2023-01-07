@@ -1,8 +1,6 @@
 import {Box} from '@chakra-ui/react'
 import {Badge} from '@chakra-ui/react'
 import {StarIcon} from "@chakra-ui/icons";
-import Myimage from '../images/circuits/1/1.jpg'
-
 
 function AirbnbCardCircuit({data}) {
 
@@ -12,7 +10,6 @@ function AirbnbCardCircuit({data}) {
         countries += country
         countries += " "
     }
-
     const property = {
         // imageUrl: '/src/images/circuits/1/1.jpg',//TODO
         imageAlt: 'Rear view of modern home with pool',
@@ -25,19 +22,11 @@ function AirbnbCardCircuit({data}) {
 
     const circuitPointer={
         cursor: "pointer",
-        // backgroundColor:'#B7C8B5'
     };
 
     return (
         <Box maxW='sm' borderRadius='lg' overflow='hidden'>
-            {/*<Image src={property.imageUrl} alt={property.imageAlt}/>*/}
             <img src={data.images[0]} alt={property.imageAlt} style={{maxHeight: "214px", minWidth:"323px", minHeight:"214px", maxWidth:"323px"}}/>
-            {/*<div>*/}
-            {/*    <img src={data.images[0]} alt="React Logo" />*/}
-            {/*</div>*/}
-
-            {/*<Box p='6' style={{backgroundColor:'#B7C8B5'}}>*/}
-            {/*<Box p='6' style={{backgroundColor:'#D0E3CC'}}>*/}
             <Box p='6' style={{background:'linear-gradient(white, #FFD580)'}}>
                 <Box display='flex' alignItems='baseline'>
                     <Badge borderRadius='full' px='2' colorScheme='teal'>
@@ -52,10 +41,8 @@ function AirbnbCardCircuit({data}) {
                         ml='2'
                     >
                         {property.days} days
-                        {/*{property.days} days &bull; {property.baths} baths*/}
                     </Box>
                 </Box>
-
                 <Box
                     mt='1'
                     fontWeight='semibold'
@@ -65,14 +52,12 @@ function AirbnbCardCircuit({data}) {
                 >
                     {property.title}
                 </Box>
-
                 <Box>
                     {property.formattedPrice}
                     <Box as='span' color='gray.600' fontSize='sm'>
                         $ / person
                     </Box>
                 </Box>
-
                 <Box display='flex' mt='2' alignItems='center'>
                     {Array(5)
                         .fill('')
@@ -83,7 +68,6 @@ function AirbnbCardCircuit({data}) {
                             />
                         ))}
                     <Box as='span' ml='2' color='gray.600' fontSize='sm'>
-                        {/*{property.reviewCount} reviews*/}
                     </Box>
                 </Box>
             </Box>

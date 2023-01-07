@@ -2,12 +2,8 @@
 import React, { Component } from 'react';
 import mainPage3 from "C:/Codecool/repository/ADVANCED/weekpair2/el-proyecte-grande-sprint-2-java-LucaDeCicco/my-app/src/images/mainPage3.jpg";
 import { Button } from '@mui/material';
-// import Circuits from "./Circuits";
 import { NavLink } from 'react-router-dom';
 import Video from "./Video";
-import FlipCard from "./test/FlipCard";
-import AppFlipCard from "./test/AppFlipCard";
-import MapFlipCard from "./test/mapFlipCard";
 
 class MainPage extends Component {
   render() {
@@ -21,7 +17,6 @@ class MainPage extends Component {
         backgroundRepeat: 'no-repeat',
         padding: "2rem 2rem",
         textAlign: "center",
-        // opacity: "50%",
     };
     const childDiv={
         alignItems: "center",
@@ -42,13 +37,10 @@ class MainPage extends Component {
             </div>
             <div style={childDiv}>
               <NavLink style={{ textDecoration: 'none' }} to="/resorts"><Button variant="text" color={"secondary"} style={buttonStyle}><b>RESORTS</b></Button></NavLink>
-                {/*<Button variant="text" color={"secondary"} style={buttonStyle}><b>RESORTS</b></Button>*/}
             </div>
 
           </div>
           <Video />
-            {/*<AppFlipCard />*/}
-            {/*//TODO*/}
         </>
     );
   }

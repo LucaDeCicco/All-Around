@@ -12,12 +12,12 @@ export default function Search() {
         setToSearch(event.target.value);
     };
 
-
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             window.location.replace(`/search/${toSearch}`)
         }
     }
+
     return (
         <Box
             sx={{

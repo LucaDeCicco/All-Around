@@ -11,7 +11,6 @@ import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 
 function Hotels() {
     const {page} = useParams();
-
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [currentUser, setCurrentUser] = useState(undefined);
@@ -95,10 +94,6 @@ function Hotels() {
 
     };
 
-    // const circuitDiv={
-    //     cursor: "pointer"
-    // };
-
     const handleClick = (elem) => event => {
         // 👇️ refers to the div element
     };
@@ -115,6 +110,7 @@ function Hotels() {
             window.location.replace(`/hotels/2`)
         }
     }
+
     const goPreviousPage = () => {
         if (page){
             window.location.replace(`/hotels/${pageNumber-1}`)
@@ -172,8 +168,6 @@ function Hotels() {
                 </div>
             )
         }
-
-
 }
 
 export default Hotels;

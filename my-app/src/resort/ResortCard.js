@@ -1,7 +1,6 @@
 import {Box} from '@chakra-ui/react'
 import {Badge} from '@chakra-ui/react'
 import {StarIcon} from "@chakra-ui/icons";
-import Myimage from '../images/circuits/1/1.jpg'
 
 
 function AirbnbCardResort({data}) {
@@ -66,7 +65,6 @@ function AirbnbCardResort({data}) {
                             />
                         ))}
                     <Box as='span' ml='2' color='gray.600' fontSize='sm'>
-                        {/*{property.reviewCount} reviews*/}
                     </Box>
                 </Box>
             </Box>

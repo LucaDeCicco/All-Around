@@ -11,7 +11,6 @@ import AirbnbCardResort from "../resort/ResortCard";
 
 function Holidays(props){
     const {page} = useParams();
-
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [currentUser, setCurrentUser] = useState(undefined);
@@ -19,7 +18,6 @@ function Holidays(props){
     const [previousBtn, setPreviousBtn] = useState(null);
     const [nextBtn, setNextBtn] = useState(null);
     const [dataOfNextPage, setDataOfNextPage] = useState(null);
-    // const [dataOfNextPage, setDataOfNextPage] = useState(null);
 
     const paginationHandler =()=> {
         let previousBtn = document.getElementById("previousBtn")
@@ -36,38 +34,21 @@ function Holidays(props){
         if (nextBtn){
             setNextBtn(nextBtn)
             if(dataOfNextPage){
-                console.log("mama")
-                console.log(props.filters)
                 if (dataOfNextPage.length===0 || data.length===0 ||data.length>20 || props.filters!==1){
                     nextBtn.style.visibility = "hidden";
                 }
                 else {
-                    console.log("trebuie")
                     nextBtn.style.visibility = "show";
                 }
             }
         }
     }
 
-
     useEffect(() => {
         paginationHandler()
     },[previousBtn, loading, pageNumber, data, dataOfNextPage])
 
-
     useEffect(() => {
-        // console.log("loading")
-        // console.log(loading)
-        // console.log("pageNumber")
-        // console.log(pageNumber)
-        // console.log("data")
-        // console.log(data)
-        // console.log("dataOfNextPage")
-        // console.log(dataOfNextPage)
-        // console.log("previousBtn")
-        // console.log(previousBtn)
-        // console.log("props.filter")
-        // console.log(props.filters)
         const user = JSON.parse(localStorage.getItem('user'));
         if (user) {
             setCurrentUser(user);
@@ -77,8 +58,6 @@ function Holidays(props){
                 let token = user.token
                 if (!page){
                         if(props.filters===2||props.filters===3){
-                            // setData([]);
-                            // console.log("...loading...")
                             let request = await fetch(`http://localhost:8888/allFilteredProducts`, {
                                 method: "POST",
                                 headers: {"Content-Type": "application/json",
@@ -87,22 +66,9 @@ function Holidays(props){
                                 },
                                 body: JSON.stringify({country:props.countryFilterCriteria, productType:props.typeFilterCriteria})
                             })
-                            // console.log("after fetch")
                             let result = await request.json();
-                            // console.log("after result")
                             setData(result);
                             setLoading(false)
-                            // let requestNextPage = await fetch(`http://localhost:8888/filteredProducts/${2}`, {
-                            //     method: "POST",
-                            //     headers: {"Content-Type": "application/json",
-                            //         "Access-Control-Allow-Origin": "http://localhost:300",
-                            //         Authorization: 'Bearer ' + token
-                            //     },
-                            //     body: JSON.stringify({country:props.countryFilterCriteria, productType:props.typeFilterCriteria})
-                            // })
-                            // let resultNextPage = await requestNextPage.json();
-                            // setDataOfNextPage(resultNextPage);
-                            // setLoading(false)
                         }
                         else {
                             let route = `/allMemProducts`;
@@ -137,7 +103,6 @@ function Holidays(props){
                 }
             }
         };
-
         fetcher();
     }, [loading, pageNumber, props.filters])
 
@@ -152,7 +117,6 @@ function Holidays(props){
         // 👇️ refers to the div element
     };
 
-
     const goLogin = () => {
         window.location.replace("/login")
     }
@@ -165,6 +129,7 @@ function Holidays(props){
             window.location.replace(`/holidays/2`)
         }
     }
+
     const goPreviousPage = () => {
         if (page){
             if (page==="2"){
@@ -202,7 +167,6 @@ function Holidays(props){
                                             ) : (
                                                 <></>
                                             )}
-
                                             </div>
                                         </Link>
                                     );

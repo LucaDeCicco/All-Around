@@ -27,34 +27,9 @@ function AddCircuit() {
             },
         },
     };
-
-
     const [allCountries, setAllCountries] = useState(null);
     const [loading, setLoading] = useState(false);
-
     let headers = new Headers();
-
-    headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
-
-    useEffect(() => {
-
-        const fetcher = async () => {
-            let request = await fetch("http://localhost:8888/util/countries", {
-                // mode: "no-cors", /*daca pun asta vine null*/
-                // method: "GET",
-                headers: {"Access-Control-Allow-Origin": "http://localhost:300"}
-
-            })
-            let result = await request.json();
-
-            setAllCountries(result);
-            setLoading(false)
-        };
-
-        fetcher();
-    }, [loading])
-
-
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [images, setImages] = useState([]);
@@ -64,6 +39,20 @@ function AddCircuit() {
     const [days, setDays] = useState('');
     const [countries, setSelectedCountries] = useState([]);
 
+    headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+
+    useEffect(() => {
+        const fetcher = async () => {
+            let request = await fetch("http://localhost:8888/util/countries", {
+                headers: {"Access-Control-Allow-Origin": "http://localhost:300"}
+
+            })
+            let result = await request.json();
+            setAllCountries(result);
+            setLoading(false)
+        };
+        fetcher();
+    }, [loading])
 
     const handleChangeDescription = event => {
         setDescription(event.target.value);
@@ -85,12 +74,12 @@ function AddCircuit() {
             images.push(file.base64);
         }
     }
+
     const handleChangeSelectedCountries = (event) => {
         const {
             target: { value },
         } = event;
         setSelectedCountries(
-            // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         );
     };
@@ -101,20 +90,10 @@ function AddCircuit() {
         const req = await fetch("http://localhost:8888/add-circuit", {
             method: "POST",
             headers: {Authorization: 'Bearer ' + token},
-            // headers: {"Access-Control-Allow-Origin": "http://localhost:300"},
-            // headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "http://localhost:300" },
-            // mode: "no-cors",
             body: JSON.stringify({description,price,itinerary,remainingTickets,days,images,countries, departureDate}),
         });
-        console.log("CONTROL")
-        console.log(req)
-        // if (req.ok) {
-        //     const res = await req.json();
-        //     console.log("uploaded files");
-        //
-        // }
-        // window.location.replace("/circuits");
     }
+
     if (allCountries){
         return (
             <Form>
@@ -126,12 +105,10 @@ function AddCircuit() {
                     <Form.Label>Price</Form.Label>
                     <Form.Control placeholder="100$" />
                 </Form.Group>
-
                 <label>Add Images</label>
                 <FileBase64 multiple={true} onDone={uploadImages} />
                 <br/>
                 <br/>
-
                 <Form.Group className="mb-3" name="itinerary" onChange={handleChangeItinerary} value={itinerary}>
                     <Form.Label>Itinerary</Form.Label>
                     <Form.Control placeholder="itinerary..." />
@@ -140,25 +117,19 @@ function AddCircuit() {
                     <Form.Label>Remaining Tickets:</Form.Label>
                     <Form.Control placeholder="50" />
                 </Form.Group>
-
                 <label>Departure Date</label><br/>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                         label="Basic example"
-
                         value={departureDate}
-                        // multiple
                         onChange={(newValue) => {
                             setDepartureDate(newValue);
-                            // departureDate.push(newValue)
-                            console.log(departureDate)
                         }}
                         renderInput={(params) => <TextField {...params} />}
                     />
                 </LocalizationProvider>
                 <br/>
                 <br/>
-
                 <Form.Group className="mb-3" name="days" onChange={handleChangeDays} value={days}>
                     <Form.Label>Days</Form.Label>
                     <Form.Control placeholder="10" />
@@ -183,19 +154,15 @@ function AddCircuit() {
                         ))}
                     </Select>
                 </FormControl>
-
                 <br/>
                 <br/>
                 <br/>
-
-
                 <Button variant="primary" onClick={uploadCircuits}>
                     Submit
                 </Button>
             </Form>
         );
     }
-
 }
 
 export default AddCircuit;

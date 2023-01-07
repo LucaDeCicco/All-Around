@@ -8,18 +8,12 @@ import Button from 'react-bootstrap/Button';
 
 function FilterBar(props) {
     const {page} = useParams();
-
-
     const [circuitCountries, setCircuitCountries] = useState(null);
     const [titleOfDestination, setTitleOfDestination] = useState("Destination");
     const [titleOfType, setTitleOfType] = useState("Type");
-
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        // if (country){
-        //     setTitleOfDestination(country)
-        // }
         const fetcher = async () => {
             let request = await fetch("http://localhost:8888/util/filterCountries", {
                 headers: {"Access-Control-Allow-Origin": "http://localhost:300"}
@@ -33,25 +27,17 @@ function FilterBar(props) {
 
     const updateCountryFilterCriteria =(e)=> {
         props.setCountryFilterCriteria(e.target.valueOf().innerHTML)
-        // if (props.setFilters){
-        //     props.setFilters(false)
-        // }
         setTitleOfDestination(e.target.valueOf().innerHTML)
     }
 
     const updateTypeFilterCriteria =(e)=> {
         props.setTypeFilterCriteria(e.target.valueOf().innerHTML)
-        // if (props.setFilters){
-        //     props.setFilters(false)
-        // }
         setTitleOfType(e.target.valueOf().innerHTML)
     }
 
     const removeFilters =()=> {
         window.location.replace("/holidays")
     }
-
-
 
     const applyFilters =()=> {
         if (props.filters===2 || props.filters===1) {
@@ -91,7 +77,6 @@ function FilterBar(props) {
                         ) : (
                             <></>
                         )}
-
                     </Nav>
                 </Navbar.Collapse>
             </Container>

@@ -44,11 +44,9 @@ function Register() {
             setEmails(result);
             setLoading(false)
         };
-
         fetcherUsernames();
         fetcherEmails();
     },[loading])
-
 
     const handleChangeName = event => {
         setName(event.target.value);
@@ -65,6 +63,7 @@ function Register() {
             setErrorMessage("")
         }
     };
+
     const handleChangeEmail = event => {
         setEmail(event.target.value);
         let sameEmail = false;
@@ -120,7 +119,6 @@ function Register() {
                     email,
                     name
                 });
-                console.log("ok")
                 let username = name
                 const loginResponse = await axios
                     .post(API_URL + "signin", {
@@ -130,7 +128,6 @@ function Register() {
                 if (loginResponse.data.token) {
                     localStorage.setItem("user", JSON.stringify(loginResponse.data));
                     window.location.replace("/");
-                    // window.location.replace("/profile");
                 }
             }
     }

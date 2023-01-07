@@ -11,7 +11,6 @@ function ProfilePage() {
     const [currentUserRoles, setCurrentUserRoles] = useState([]);
 
 
-
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("user"));
         if (user) {
@@ -22,15 +21,6 @@ function ProfilePage() {
         }
     }, []);
 
-    // const checkIfAdmin = () => {
-    //     for (const currentUserRole of currentUserRoles) {
-    //         if (currentUserRole === "ROLE_ADMIN"){
-    //             return true
-    //         }
-    //     }
-    //     return false
-    // }
-
     if (currentUser===undefined){
         return (
             <>
@@ -39,15 +29,8 @@ function ProfilePage() {
         )
     }
 
-
     return (
-
-
         <div style={{textAlign:"center", backgroundImage: `url(${profileBackground})`, minHeight:"80vh", backgroundRepeat: "repeat-y", backgroundSize:"contain"}}>
-            {/*<h1><b>Profile Page</b></h1>*/}
-            {/*<br></br>*/}
-            {/*<br></br>*/}
-
             <Card style={{ width: '60%',height:"80vh", margin:"auto", marginBottom:"5em", marginLeft:"40%" }}>
                 <Card.Body>
                     <br></br>
@@ -56,10 +39,7 @@ function ProfilePage() {
                     <br></br>
                     <Card.Text>
                         <h5>Your email is : </h5>{email}
-                        {/*{data.description}*/}
                     </Card.Text>
-                    {/*<Card.Link href="#">Card Link</Card.Link>*/}
-                    {/*<Card.Link href="/changeForgotPassword"><p style={{color:"green"}}>Change your password here !</p></Card.Link>*/}
                     <a href={"/changeForgotPassword"} style={{color:"green", textDecoration:"none"}}>Change your password here !</a>
                 </Card.Body>
                 <Button variant={"secondary"} style={{width:"5em", marginLeft:"47%"}}>Log out</Button>

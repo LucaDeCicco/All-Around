@@ -12,7 +12,6 @@ import {
 }
     from 'mdb-react-ui-kit';
 import PersonIcon from "@mui/icons-material/Person";
-import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 
 const API_URL = "http://localhost:8888/api/auth/";
@@ -31,7 +30,6 @@ function Login2() {
         // 👇️ toggle visibility
         setIsVisible(current => !current);
     };
-
     const handleChangeUsername = event => {
         setUsername(event.target.value);
     };
@@ -43,9 +41,7 @@ function Login2() {
             loginUser();
         }
     };
-
     const loginUser = async () => {
-        console.log("loginUser")
         let response = null;
         try {
             response = await axios
@@ -55,9 +51,6 @@ function Login2() {
                 });
         }
         catch (err){
-            console.log("error of bad Credentials")
-            // setBadCredentials(true);
-            console.log("badCredentials are true now")
             setIsVisible(current => !current);
         }
 

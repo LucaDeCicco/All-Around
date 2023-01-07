@@ -10,7 +10,6 @@ import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 
 function Resorts() {
     const {page} = useParams();
-
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [currentUser, setCurrentUser] = useState(undefined);
@@ -52,7 +51,6 @@ function Resorts() {
             }
             if (user){
                 let token = user.token
-
                 if (!page){
                     let request = await fetch(`http://localhost:8888/allMemResortProducts/${1}`, {
                         headers: {Authorization: 'Bearer ' + token},
@@ -75,7 +73,6 @@ function Resorts() {
                     let result = await request.json();
                     setData(result);
                     setLoading(false)
-
                     let requestNextPage = await fetch(`http://localhost:8888/allMemResortProducts/${pageNumber+1}`, {
                         headers: {Authorization: 'Bearer ' + token},
                     })
@@ -83,14 +80,6 @@ function Resorts() {
                     setDataOfNextPage(resultNextPage);
                     setLoading(false)
                 }
-
-
-                // let request = await fetch("http://localhost:8888/allMemResortProducts",{
-                //     headers: {Authorization: 'Bearer ' + token},
-                // })
-                // let result = await request.json();
-                // setData(result);
-                // setLoading(false)
             }
         };
 

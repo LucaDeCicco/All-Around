@@ -25,9 +25,8 @@ export default function StickyFooter() {
     const logosStyle = {
         align: "center",
         textAlign: "center",
-        // backgroundColor: "red"
-
     }
+
     const logoStyle = {
         color: "black"
     }
@@ -37,7 +36,6 @@ export default function StickyFooter() {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        // minHeight: '100vh',
       }}
     >
       <CssBaseline />
@@ -47,7 +45,6 @@ export default function StickyFooter() {
           py: 3,
           px: 2,
           mt: 'auto',
-          // backgroundColor: '#ADB5BD',
           background: 'linear-gradient(to right, lightblue, gray)',
           marginTop: "???px"
         }}
@@ -59,13 +56,6 @@ export default function StickyFooter() {
               </Typography>
                 <Copyright />
             </div>
-          {/*<div key={"icons"} style={logosStyle}>*/}
-          {/*<div key={"icons"} style={{display: 'inline-block', alignSelf: 'start', marginLeft:'2em'}}>*/}
-          {/*        <a href="/ceva">ceva</a>*/}
-          {/*        <FacebookIcon style={logoStyle}/>*/}
-          {/*        <InstagramIcon style={logoStyle}/>*/}
-          {/*        <InfoIcon style={logoStyle}/>*/}
-          {/*</div>*/}
             <div style={{display: 'inline-block', alignSelf: 'start', marginLeft:'2em'}}>
                 <div style={{marginRight: "2em", display: 'inline-block', alignSelf: 'start'}}>
                     <a href={"https://www.facebook.com/CodecoolOfficial"}><FacebookIcon style={logoStyle}/></a>
@@ -77,10 +67,8 @@ export default function StickyFooter() {
                     <a href={"/info"}><InfoIcon style={logoStyle}/></a>
                 </div>
             </div>
-
         </Container>
       </Box>
-
     </Box>
   );
 }

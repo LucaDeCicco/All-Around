@@ -26,7 +26,6 @@ function ForgotPassword() {
     };
 
     const sendEmail = async () => {
-        console.log("send Email")
         await axios.post("http://localhost:8888/util/forgotPassword",{
             email,
         });

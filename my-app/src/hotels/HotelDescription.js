@@ -1,14 +1,3 @@
-// import {useParams} from "react-router-dom";
-// function ResortDescription({data}) {
-//     const {id} = useParams();
-//     return (
-//         <>
-//             <div>DESCRIERE Resort{id}</div>
-//         </>
-//     )
-// }
-// export default ResortDescription;
-
 import Card from 'react-bootstrap/Card';
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
@@ -16,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import axios from "axios";
 
 function HotelDescription({data}) {
+
     const goWebsite = () => {
         window.location.href = data.url
     }
@@ -31,13 +21,9 @@ function HotelDescription({data}) {
                     },
                 })
                 .then((r) => {
-                    console.log(r);
                     window.location.href = r.data;
                 });
-        } else {
-            console.log("user not find")
         }
-
     };
 
     return (

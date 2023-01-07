@@ -23,7 +23,6 @@ function AirbnbCardHotel({data}) {
     return (
         <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' style={circuitPointer}>
             <img src={data.images[0]} alt={property.imageAlt} style={{maxHeight: "214px", minWidth:"323px", minHeight:"214px", maxWidth:"323px"}}/>
-
             <Box p='6' style={{background:'linear-gradient(white, lightblue)'}}>
                 <Box display='flex' alignItems='baseline'>
                     <Badge borderRadius='full' px='2' colorScheme='teal'>
@@ -40,7 +39,6 @@ function AirbnbCardHotel({data}) {
                         {property.days} days
                     </Box>
                 </Box>
-
                 <Box
                     mt='1'
                     fontWeight='semibold'
@@ -50,14 +48,12 @@ function AirbnbCardHotel({data}) {
                 >
                     {property.title}
                 </Box>
-
                 <Box>
                     {property.formattedPrice}
                     <Box as='span' color='gray.600' fontSize='sm'>
                         $ / person
                     </Box>
                 </Box>
-
                 <Box display='flex' mt='2' alignItems='center'>
                     {Array(5)
                         .fill('')
@@ -68,7 +64,6 @@ function AirbnbCardHotel({data}) {
                             />
                         ))}
                     <Box as='span' ml='2' color='gray.600' fontSize='sm'>
-                        {/*{property.reviewCount} reviews*/}
                     </Box>
                 </Box>
             </Box>

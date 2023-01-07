@@ -9,9 +9,9 @@ function CircuitDescription({data}) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
     let countriesData = data.countries
     let countries = ""
+
     for (const country of countriesData) {
         countries += country
         countries += " "
@@ -28,13 +28,9 @@ function CircuitDescription({data}) {
                     },
                 })
                 .then((r) => {
-                    console.log(r);
                     window.location.href = r.data;
                 });
-        } else {
-            console.log("user not find")
         }
-
     };
 
     return (
@@ -45,7 +41,6 @@ function CircuitDescription({data}) {
                 <Card.Text>
                     {data.description}
                 </Card.Text>
-                {/*<Card.Link href="#">View itinerary</Card.Link>*/}
                 <>
                     <Button variant="primary" onClick={handleShow} style={{marginRight:"2em"}}>
                         View itinerary
@@ -67,11 +62,9 @@ function CircuitDescription({data}) {
                             <Button variant="secondary" onClick={handleClose}>
                                 Close
                             </Button>
-                            {/*<Button variant="primary">Understood</Button>*/}
                         </Modal.Footer>
                     </Modal>
                 </>
-                {/*<Card.Link href="#">Pay</Card.Link>*/}
                 <Button variant={"success"} style={{marginLeft:"2em"}} onClick={payment}>Book</Button>
             </Card.Body>
         </Card>

@@ -6,10 +6,8 @@ import axios from "axios";
 
 function CircuitPage() {
     const {id} = useParams();
-
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(false);
-
 
     useEffect(() => {
         const fetcher = async () => {
@@ -27,8 +25,6 @@ function CircuitPage() {
         fetcher();
     }, [loading])
 
-
-
         if (product){
                     return (
                         <div style={{textAlign:"center"}}>
@@ -39,7 +35,6 @@ function CircuitPage() {
                         </div>
                     );
         }
-
 }
 
 export default CircuitPage;

@@ -3,6 +3,7 @@ import {wait} from "@testing-library/user-event/dist/utils";
 import {Link, Navigate} from "react-router-dom";
 
 class FailedPayment extends Component {
+
     constructor(props) {
         super(props);
         this.state = {

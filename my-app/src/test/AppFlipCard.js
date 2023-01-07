@@ -1,9 +1,7 @@
 import FlipCard from "./FlipCard";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-// import "./styles.scss";
 import "C:/Codecool/repository/ADVANCED/weekpair2/el-proyecte-grande-sprint-2-java-LucaDeCicco/my-app/src/test/flipCardStyle.scss";
-import MapFlipCard from "./mapFlipCard";
 
 const cards = [
     {
@@ -25,25 +23,12 @@ const cards = [
         front: "Hover",
         back: "Back"
     }
-    // {
-    //     id: "2",
-    //     variant: "click",
-    //     front: "Click",
-    //     back: "Back"
-    // },
-    // {
-    //     id: "3",
-    //     variant: "focus",
-    //     front: "Focus",
-    //     back: "Back"
-    // }
 ];
 
 export default function AppFlipCard() {
     return (
         <div className="containerFlipCard">
             <div className="row h-50">
-                {/*<div className="col d-flex flex-column flex-md-row justify-content-around align-items-center">*/}
                 <div className="col d-flex" style={{marginLeft:"25%"}}>
                     {cards.map((card) => (
                         <FlipCard key={card.id} card={card} />

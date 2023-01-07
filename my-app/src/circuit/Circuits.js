@@ -1,4 +1,3 @@
-import Airbnb1Card from './CircuitCard'
 import {ChakraProvider, Spinner} from '@chakra-ui/react'
 import {createContext, useEffect, useState} from 'react'
 import { SimpleGrid } from '@chakra-ui/react'
@@ -6,15 +5,11 @@ import {Link, useParams} from "react-router-dom";
 import AirbnbCardCircuit from "./CircuitCard";
 import * as React from "react";
 import Button from "react-bootstrap/Button";
-import Pagination from "../components/Pagination"
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import FilterBar from "../allProducts/FilterBar";
 
 function Circuits(props) {
     const {page, country} = useParams();
-    // const {filterCountry} = useParams();
-
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [currentUser, setCurrentUser] = useState(undefined);
@@ -22,7 +17,6 @@ function Circuits(props) {
     const [previousBtn, setPreviousBtn] = useState(null);
     const [nextBtn, setNextBtn] = useState(null);
     const [dataOfNextPage, setDataOfNextPage] = useState(null);
-
 
     useEffect(() => {
         let previousBtn = document.getElementById("previousBtn")
@@ -49,9 +43,7 @@ function Circuits(props) {
         }
     },[previousBtn, loading, pageNumber, data, dataOfNextPage])
 
-
     useEffect(() => {
-        // console.log("ceva")
         const user = JSON.parse(localStorage.getItem('user'));
         if (user) {
             setCurrentUser(user);
@@ -84,8 +76,6 @@ function Circuits(props) {
                         window.location.replace(`/circuits/1/${props.countryFilterCriteria}`)
                     }
                     else {
-                        console.log("country")
-                        console.log(country)
                         if (country){
                             let route = ``;
                             let request = await fetch(`http://localhost:8888/filteredCircuitsByCountry/${pageNumber}/${country}`, {
@@ -120,7 +110,6 @@ function Circuits(props) {
                 }
             }
         };
-
         fetcher();
     }, [loading, pageNumber, props.countryFilterCriteria])
 
@@ -135,14 +124,12 @@ function Circuits(props) {
         // 👇️ refers to the div element
     };
 
-
     const goLogin = () => {
         window.location.replace("/login")
     }
 
     const goNextPage = () => {
         if (page){
-            console.log(country)
             if(country){
                 window.location.replace(`/circuits/${pageNumber+1}/${country}`)
             }
@@ -157,6 +144,7 @@ function Circuits(props) {
             window.location.replace(`/circuits/2`)
         }
     }
+
     const goPreviousPage = () => {
         if (page){
             if (country){
@@ -166,19 +154,12 @@ function Circuits(props) {
                 window.location.replace(`/circuits/${pageNumber-1}`)
             }
         }
-        // else {
-        //     // if (props.filterCountry){
-        //     //     window.location.replace(`/circuits/${props.filterCountry}/2`)
-        //     // }
-        //     window.location.replace(`/circuits/2`)
-        // }
     }
 
     if (currentUser){
         if (data){
             return (
                 <>
-                    {/*<h1 style={{textAlign:"center"}}>{props.countryFilterCriteria}</h1>*/}
                     <br></br>
                     <div className="circuits" style={container}>
                         <ChakraProvider>
@@ -224,8 +205,6 @@ function Circuits(props) {
             </div>
         )
     }
-
-
 }
 
 export default Circuits;
