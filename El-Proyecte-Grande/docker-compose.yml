@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  app:
+    image: 'elproyectegrande:latest'
+    build:
+      context: .
+    container_name: app
+    ports:
+      - "8888:8888"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/El-Proyecte-Grande
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=MinaDeCreion-2002
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=create
+
+  db:
+    image: 'postgres:14'
+    container_name: db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=MinaDeCreion-2002
+      - POSTGRES_DB=El-Proyecte-Grande
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
