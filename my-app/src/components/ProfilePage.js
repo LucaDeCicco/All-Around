@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import Card from "react-bootstrap/Card";
 import Button from 'react-bootstrap/Button';
-import profileBackground from "C:/Codecool/repository/ADVANCED/weekpair2/el-proyecte-grande-sprint-2-java-LucaDeCicco/my-app/src/images/profileBackground.jpg";
+import profileBackground from "C:/Codecool/repository/CV-Projects/All_Around/All-Around/my-app/src/images/profileBackground.jpg";
+// import profileBackground from "/src/images/profileBackground.jpg";
 
 
 function ProfilePage() {

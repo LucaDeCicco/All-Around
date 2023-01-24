@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
-import mainPage3 from "C:/Codecool/repository/ADVANCED/weekpair2/el-proyecte-grande-sprint-2-java-LucaDeCicco/my-app/src/images/mainPage3.jpg";
+import mainPage3 from "C:/Codecool/repository/CV-Projects/All_Around/All-Around/my-app/src/images/mainPage3.jpg";
+// import mainPage3 from "/src/images/mainPage3.jpg";
 import { Button } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import Video from "./Video";

@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Card from "react-bootstrap/Card";
 import ProfilePageVideo from "./ProfilePageVideo";
-import Background from "C:/Codecool/repository/ADVANCED/weekpair2/el-proyecte-grande-sprint-2-java-LucaDeCicco/my-app/src/images/skyBackground6.jpg";
+import Background from "C:/Codecool/repository/CV-Projects/All_Around/All-Around/my-app/src/images/skyBackground6.jpg";
+// import Background from "/src/images/skyBackground6.jpg";
 
 function Info() {
 

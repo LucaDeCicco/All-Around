@@ -1,5 +1,5 @@
 import React from 'react'
-import MyVideo from 'C:/Codecool/repository/ADVANCED/weekpair2/el-proyecte-grande-sprint-2-java-LucaDeCicco/my-app/src/videos/profilePageVideo.mp4'
+import MyVideo from 'C:/Codecool/repository/CV-Projects/All_Around/All-Around/my-app/src/videos/profilePageVideo.mp4'
 
 const ProfilePageVideo = () => {
     const videoStyle = {

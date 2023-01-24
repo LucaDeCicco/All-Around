@@ -93,7 +93,7 @@ function Resorts() {
 
     };
 
-    const handleClick = (elem) => event => {
+    const  handleClick = (elem) => event => {
         // 👇️ refers to the div element
     };
 
