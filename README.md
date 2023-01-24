@@ -1,8 +1,9 @@
 
 # About the project
 
-Project was made by my, <b>[Luca De Cicco](https://github.com/LucaDeCicco)</b>.
-This is a web application, an online travel agency.
+This project was made by my, <b>[Luca De Cicco](https://github.com/LucaDeCicco)</b>.
+
+It is an online travel agency, a very intuitive site where you can easily find your perfect vacation with the help of multiple filters or by searching in the search bar. Payment is made through Paypal. The application also has an administrative part, an admin can very easily add new holiday packages by adding pictures and the necessary details
 
 ## Features
 
