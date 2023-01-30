@@ -83,7 +83,9 @@ It is an online travel agency, a very intuitive site where you can easily find y
 
 ## Sample photos
 
+
 <div style="display: grid; grid-template-columns: auto auto auto;column-gap: 10px;row-gap: 10px">
+    <img src="https://i.imgur.com/eKItFpi.png" height="auto" width="100%">
     <img src="https://i.imgur.com/tRd26yW.png" height="auto" width="100%">
     <img src="https://i.imgur.com/C6VBuPL.png" height="auto" width="100%">
 </div>
